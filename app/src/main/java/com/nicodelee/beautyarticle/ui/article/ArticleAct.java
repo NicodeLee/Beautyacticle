@@ -1,8 +1,8 @@
 package com.nicodelee.beautyarticle.ui.article;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseSwiBackAct;
@@ -19,7 +19,8 @@ public class ArticleAct extends BaseSwiBackAct{
     }
 
     private void initView(){
-        ActionBar ab = getActionBar();
+//        initActionBar("文字");
+        ActionBar ab = getSupportActionBar();
         ab.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
         ab.setDisplayShowHomeEnabled(false);//图标显示
         ab.setDisplayHomeAsUpEnabled(true);//箭头显示

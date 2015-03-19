@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.github.ksoichiro.android.observablescrollview.ObservableListView;
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
+import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.ikimuhendis.ldrawer.ActionBarDrawerToggle;
 import com.ikimuhendis.ldrawer.DrawerArrowDrawable;
 import com.nicodelee.beautyarticle.R;
@@ -29,10 +32,9 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerArrowDrawable drawerArrow;
-    private boolean drawerArrowColor;
 
     private SwipeRefreshLayout mSwipeLayout;
-    private ListView mListView;
+    private ObservableListView mListView;
     private ArrayList<String> list = new ArrayList<String>();
 
     private ArrayList<SlidMod> slidMods;
@@ -47,15 +49,36 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     }
 
     private void initView() {
-        ActionBar ab = getActionBar();
+        final ActionBar ab = getActionBar();
         ab.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
         ab.setDisplayShowHomeEnabled(false);//图标显示
         ab.setDisplayHomeAsUpEnabled(true);//箭头显示
         ab.setHomeButtonEnabled(true);
 
-        mListView = (ListView) findViewById(R.id.listview);
+        mListView = (ObservableListView) findViewById(R.id.listview);
         mainAdt = new MainAdt(this,slidMods);
-        mListView.setAdapter(mainAdt);
+        mListView.setAdapter(setBottomInAnimation(mListView,mainAdt));
+        mListView.setScrollViewCallbacks(new ObservableScrollViewCallbacks() {
+            @Override
+            public void onScrollChanged(int i, boolean b, boolean b2) {
+            }
+            @Override
+            public void onDownMotionEvent() {
+            }
+
+            @Override
+            public void onUpOrCancelMotionEvent(ScrollState scrollState) {
+                if (scrollState == ScrollState.UP) {
+                    if (ab.isShowing()) {
+                        ab.hide();
+                    }
+                } else if (scrollState == ScrollState.DOWN) {
+                    if (!ab.isShowing()) {
+                        ab.show();
+                    }
+                }
+            }
+        });
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -65,9 +88,9 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
 
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         mSwipeLayout.setOnRefreshListener(this);
-        mSwipeLayout.setColorSchemeResources(R.color.green,
-                R.color.green, R.color.green,
-                R.color.green);
+        mSwipeLayout.setColorSchemeResources(R.color.action_bar,
+                R.color.action_bar, R.color.action_bar,
+                R.color.action_bar);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.navdrawer);
@@ -104,6 +127,7 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         mDrawerList.setAdapter(slidAdt);
 
     }
+
 
 
     @Override

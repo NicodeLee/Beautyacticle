@@ -5,18 +5,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nicodelee.R;
+import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 import com.nicodelee.view.LoadingDialog;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -54,6 +52,14 @@ public class BaseAct extends Activity {
 
     public <T> T findViewByIdExt(int id) {
         return (T) super.findViewById(id);
+    }
+
+    public SwingBottomInAnimationAdapter setBottomInAnimation(AbsListView absListView,BaseAdapter baseAdapter){
+        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(baseAdapter);
+        swingBottomInAnimationAdapter.setAbsListView(absListView);
+        assert swingBottomInAnimationAdapter.getViewAnimator() != null;
+        swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(300);
+        return  swingBottomInAnimationAdapter;
     }
 
     public APP getApp() {

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="#40AD7E"
+    android:background="@color/action_bar"
     android:paddingTop="40dp"
     android:paddingBottom="40dp"
     android:paddingLeft="10dp"

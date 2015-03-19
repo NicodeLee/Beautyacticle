@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.mode.SlidMod;
+import com.nicodelee.beautyarticle.utils.DevicesUtil;
 
 import java.util.ArrayList;
 
@@ -57,6 +59,11 @@ public class MainAdt extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) holder.ivIcon
+                .getLayoutParams();
+        params.width = DevicesUtil.screenWidth;
+        params.height = DevicesUtil.screenWidth;
+        holder.ivIcon.setLayoutParams(params);
         return convertView;
     }
 

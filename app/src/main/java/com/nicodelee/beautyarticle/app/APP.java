@@ -1,16 +1,18 @@
 package com.nicodelee.beautyarticle.app;
 
-import java.io.File;
-
 import android.app.Application;
 import android.content.Context;
 import android.os.Environment;
 
+import com.nicodelee.beautyarticle.utils.AndroidUtils;
+import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+
+import java.io.File;
 
 
 public class APP extends Application {
@@ -27,6 +29,8 @@ public class APP extends Application {
         super.onCreate();
         app = this;
         initImageLoader(getApplicationContext());
+        AndroidUtils.init(this);
+        DevicesUtil.getScreenConfig(this);
     }
 
     private void initImageLoader(Context context) {

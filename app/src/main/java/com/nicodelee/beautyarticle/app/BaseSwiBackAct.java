@@ -1,17 +1,16 @@
 package com.nicodelee.beautyarticle.app;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nicodelee.view.LoadingDialog;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -22,14 +21,13 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
-import com.nicodelee.R;
-
 
 public class BaseSwiBackAct extends SwipeBackActivity {
 
     public LoadingDialog loadingDialog;
     public Intent intent;
     private static BaseSwiBackAct Cot;
+    public ActionBar actionBar;
 
 
     @Override
@@ -40,6 +38,20 @@ public class BaseSwiBackAct extends SwipeBackActivity {
         intent = getIntent();
 
         loadingDialog = new LoadingDialog(this);
+    }
+
+
+    public void initActionBar(String title) {
+        actionBar.setDisplayHomeAsUpEnabled(true);//箭头
+        actionBar.setDisplayShowHomeEnabled(false);//图标
+        actionBar.setDisplayShowTitleEnabled(true);//标题
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setTitle(title);
+//        actionBar.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
+        int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
+        TextView Tvtitle = (TextView) findViewById(titleId);
+//        Tvtitle.setTextColor(this.getResources().getColor(R.color.black));
+        actionBar.show();
     }
 
     public APP getApp() {
@@ -130,22 +142,6 @@ public class BaseSwiBackAct extends SwipeBackActivity {
         return getIntent().getSerializableExtra(name);
     }
 
-//    public ImageLoader imageLoader = ImageLoader.getInstance();
-//    public static DisplayImageOptions options = new DisplayImageOptions.Builder()
-//            .showImageOnLoading(R.color.loading_cl)
-//            .showImageForEmptyUri(R.color.loading_cl)
-////			.showImageOnFail(R.drawable.head_null)
-//            .showImageOnFail(R.color.loading_cl)
-//            .cacheInMemory(true)
-//                    // default
-//            .cacheOnDisc(true)
-//            .considerExifParams(true)
-//            .bitmapConfig(Bitmap.Config.RGB_565)
-//                    // .imageScaleType(ImageScaleType.EXACTLY)
-////			.showImageForEmptyUri(R.drawable.image_loader_empty)
-////			.showImageOnFail(R.drawable.image_loader_fail)
-////			.showImageOnLoading(R.drawable.image_loader_loading)
-//            .displayer(new SimpleBitmapDisplayer()).build();
 
     public void showKeyBoard(View v) {
         v.requestFocus();
