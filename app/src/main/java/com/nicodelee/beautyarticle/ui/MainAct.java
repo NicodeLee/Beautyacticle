@@ -1,6 +1,5 @@
 package com.nicodelee.beautyarticle.ui;
 
-import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,7 +7,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
@@ -26,17 +24,26 @@ import com.nicodelee.beautyarticle.viewhelper.SlidData;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnItemClick;
+
 public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshListener {
 
-    private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
+    //view
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerArrowDrawable drawerArrow;
+    @InjectView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
+    @InjectView(R.id.navdrawer) ListView mDrawerList;
+    @InjectView(R.id.swipe_container) SwipeRefreshLayout mSwipeLayout;
+    @InjectView(R.id.listview) ObservableListView mListView;
+    //click
+    @OnItemClick(R.id.listview) void onMainItemClidk(int position){
+        skipIntent(ArticleAct.class, false);
+    }
 
-    private SwipeRefreshLayout mSwipeLayout;
-    private ObservableListView mListView;
+    //datehelper
     private ArrayList<String> list = new ArrayList<String>();
-
     private ArrayList<SlidMod> slidMods;
     private SlidAdt slidAdt;
     private MainAdt mainAdt;
@@ -45,23 +52,20 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this);
         initView();
     }
 
     private void initView() {
-        final ActionBar ab = getActionBar();
-        ab.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
-        ab.setDisplayShowHomeEnabled(false);//图标显示
-        ab.setDisplayHomeAsUpEnabled(true);//箭头显示
-        ab.setHomeButtonEnabled(true);
+        initActionBar();
 
-        mListView = (ObservableListView) findViewById(R.id.listview);
-        mainAdt = new MainAdt(this,slidMods);
-        mListView.setAdapter(setBottomInAnimation(mListView,mainAdt));
+        mainAdt = new MainAdt(this, slidMods);
+        mListView.setAdapter(setBottomInAnimation(mListView, mainAdt));
         mListView.setScrollViewCallbacks(new ObservableScrollViewCallbacks() {
             @Override
             public void onScrollChanged(int i, boolean b, boolean b2) {
             }
+
             @Override
             public void onDownMotionEvent() {
             }
@@ -79,22 +83,10 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
                 }
             }
         });
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                skipIntent(ArticleAct.class,false);
-            }
-        });
-
-        mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.action_bar,
                 R.color.action_bar, R.color.action_bar,
                 R.color.action_bar);
-
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.navdrawer);
-
 
         drawerArrow = new DrawerArrowDrawable(this) {
             @Override
@@ -120,14 +112,12 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         mDrawerToggle.syncState();
 
         //侧滑
-        View menuHead = getLayoutInflater().inflate(R.layout.left_menu_head,null);
+        View menuHead = getLayoutInflater().inflate(R.layout.left_menu_head, null);
         mDrawerList.addHeaderView(menuHead);
         slidMods = SlidData.SetData(this);
-        slidAdt = new SlidAdt(this,slidMods);
+        slidAdt = new SlidAdt(this, slidMods);
         mDrawerList.setAdapter(slidAdt);
-
     }
-
 
 
     @Override
@@ -160,8 +150,7 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
             public void run() {
                 mSwipeLayout.setRefreshing(false);
             }
-        }, 4000);
+        }, 2000);
     }
-
 
 }

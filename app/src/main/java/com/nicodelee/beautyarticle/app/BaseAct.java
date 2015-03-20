@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
+import com.nicodelee.beautyarticle.R;
 import com.nicodelee.view.LoadingDialog;
 
 import java.io.Serializable;
@@ -24,7 +25,7 @@ import java.util.Map;
 public class BaseAct extends Activity {
 
     public LoadingDialog loadingDialog;
-    public ActionBar actionBar;
+    public ActionBar ab;
     public Intent intent;
     private static BaseAct Cot;
 
@@ -34,20 +35,24 @@ public class BaseAct extends Activity {
         Cot = this;
         intent = getIntent();
         loadingDialog = new LoadingDialog(this);
-        actionBar = getActionBar();
     }
 
-    public void initActionBar(String title) {
-        actionBar.setDisplayHomeAsUpEnabled(true);//箭头
-        actionBar.setDisplayShowHomeEnabled(false);//图标
-        actionBar.setDisplayShowTitleEnabled(true);//标题
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setTitle(title);
-//        actionBar.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
-        int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
-        TextView Tvtitle = (TextView) findViewById(titleId);
-//        Tvtitle.setTextColor(this.getResources().getColor(R.color.black));
-        actionBar.show();
+    public void initActionBar() {
+//        actionBar.setDisplayHomeAsUpEnabled(true);//箭头
+//        actionBar.setDisplayShowHomeEnabled(false);//图标
+//        actionBar.setDisplayShowTitleEnabled(true);//标题
+//        actionBar.setDisplayShowCustomEnabled(true);
+//
+////        actionBar.setBackgroundDactionBar.setTitle(title);rawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
+//        int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
+//        TextView Tvtitle = (TextView) findViewById(titleId);
+////        Tvtitle.setTextColor(this.getResources().getColor(R.color.black));
+//        actionBar.show();
+        ab = getActionBar();
+        ab.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
+        ab.setDisplayShowHomeEnabled(false);//图标显示
+        ab.setDisplayHomeAsUpEnabled(true);//箭头显示
+        ab.setHomeButtonEnabled(true);
     }
 
     public <T> T findViewByIdExt(int id) {

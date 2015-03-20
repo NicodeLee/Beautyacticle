@@ -15,6 +15,9 @@ import com.nicodelee.beautyarticle.utils.DevicesUtil;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class MainAdt extends BaseAdapter {
 
     private Context mContext;
@@ -42,23 +45,14 @@ public class MainAdt extends BaseAdapter {
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-
-        ViewHolder holder = null;
+        ViewHolder holder;
         if (convertView == null) {
-
-            holder = new ViewHolder();
-
-            convertView = mInflater.inflate(R.layout.item_main, null);
-            holder.tvName = (TextView) convertView
-                    .findViewById(R.id.main_title);
-            holder.ivIcon = (ImageView) convertView
-                    .findViewById(R.id.main_ic);
+            convertView = mInflater.inflate(R.layout.item_main,parent,false);
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
         RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) holder.ivIcon
                 .getLayoutParams();
         params.width = DevicesUtil.screenWidth;
@@ -68,8 +62,11 @@ public class MainAdt extends BaseAdapter {
     }
 
     public final class ViewHolder {
-        public TextView tvName;
-        public ImageView ivIcon;
+        @InjectView(R.id.main_title) TextView tvName;
+        @InjectView(R.id.main_ic) ImageView ivIcon;
+        public ViewHolder(View view) {
+            ButterKnife.inject(this, view);
+        }
 
     }
 

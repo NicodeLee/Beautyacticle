@@ -13,6 +13,9 @@ import com.nicodelee.beautyarticle.mode.SlidMod;
 
 import java.util.ArrayList;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class SlidAdt extends BaseAdapter {
 
     private Context mContext;
@@ -40,31 +43,25 @@ public class SlidAdt extends BaseAdapter {
 
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        ViewHolder holder = null;
+        ViewHolder holder;
         if (convertView == null) {
-
-            holder = new ViewHolder();
-
-            convertView = mInflater.inflate(R.layout.item_left_menu, null);
-            holder.tvName = (TextView) convertView
-                    .findViewById(R.id.txt_drawer_menu_item);
-            holder.ivIcon = (ImageView) convertView
-                    .findViewById(R.id.img_left_item_flag);
+            convertView = mInflater.inflate(R.layout.item_left_menu,parent,false);
+            holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
         holder.tvName.setText(mylist.get(position).getName());
         holder.ivIcon.setImageDrawable(mylist.get(position).getIcon());
-
         return convertView;
     }
 
     public final class ViewHolder {
-        public TextView tvName;
-        public ImageView ivIcon;
+        @InjectView(R.id.txt_drawer_menu_item) TextView tvName;
+        @InjectView(R.id.img_left_item_flag) ImageView ivIcon;
+        public ViewHolder(View view) {
+            ButterKnife.inject(this, view);
+        }
 
     }
 

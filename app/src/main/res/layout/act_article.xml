@@ -5,7 +5,8 @@
     android:background="@color/white"
     android:padding="10dp">
 
-    <com.nicodelee.view.StretchScrollView
+    <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
+        android:id="@+id/sc_article"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
@@ -37,7 +38,7 @@
                 android:textSize="18sp" />
         </RelativeLayout>
 
-    </com.nicodelee.view.StretchScrollView>
+    </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
 
 
 </RelativeLayout>
