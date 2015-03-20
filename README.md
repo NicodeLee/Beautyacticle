@@ -1,3 +1,3 @@
 # Beautyacticle
-Share your heart the most beautiful words
+Share the most beautiful words
 Currently in development
