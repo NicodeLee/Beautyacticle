@@ -1,16 +1,14 @@
 
 package me.imid.swipebacklayout.lib.app;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
-
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.Utils;
 
-public class SwipeBackActivity extends SherlockFragmentActivity implements SwipeBackActivityBase {
+public class SwipeBackActivity extends Activity implements SwipeBackActivityBase {
     private SwipeBackActivityHelper mHelper;
 
     @Override

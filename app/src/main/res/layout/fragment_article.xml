@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <com.github.ksoichiro.android.observablescrollview.ObservableScrollView
+        android:id="@+id/sc_article"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="面朝大海，春暖花开"
+                android:textStyle="bold"
+                android:textColor="@color/md__defaultBackground"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_left"
+                android:layout_marginTop="10dp"
+                android:text="@string/article"
+                android:textColor="@color/wallet_dim_foreground_inverse_holo_dark"
+                android:lineSpacingExtra="3dp"
+                android:lineSpacingMultiplier="1.5"
+                android:autoText="true"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+    </com.github.ksoichiro.android.observablescrollview.ObservableScrollView>
+
+
+</RelativeLayout>

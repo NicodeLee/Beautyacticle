@@ -1,55 +1,42 @@
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<android.support.v7.widget.CardView-->
-    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:card_view="http://schemas.android.com/apk/res-auto"-->
-    <!--android:id="@+id/card_view"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--card_view:cardElevation="1dp"-->
-    <!--card_view:cardUseCompatPadding="false"-->
-    <!-->-->
-    <!--card_view:cardCornerRadius="4dp"-->
+<!--<?xml version="1.0" encoding="utf-8"?>--><!--<android.support.v7.widget.CardView--><!--xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:card_view="http://schemas.android.com/apk/res-auto"--><!--android:id="@+id/card_view"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--card_view:cardElevation="1dp"--><!--card_view:cardUseCompatPadding="false"--><!-->--><!--card_view:cardCornerRadius="4dp"-->
 
-    <RelativeLayout
-       xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/selector_card"
-        >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/selector_card">
 
-        <ImageView
-            android:id="@+id/main_ic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:background="@drawable/ic_pic" />
+    <ImageView
+        android:id="@+id/main_ic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:background="@drawable/ic_pic" />
 
-        <TextView
-            android:id="@+id/main_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/main_ic"
-            android:layout_marginTop="10dp"
-            android:text="感谢一路上有你的陪伴"
-            android:textColor="@color/help_view"
-            android:textSize="18sp"
-            android:layout_marginLeft="5dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_ic"
+        android:layout_marginTop="10dp"
+        android:text="面朝大海，春暖花开"
+        android:textColor="@color/help_view"
+        android:textSize="18sp"
+        android:layout_marginLeft="5dp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/main_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="做有意义的移动互联网产品,内修外练。"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/main_title"
-            android:textColor="@color/gray"
-            android:layout_marginLeft="5dp"
-            android:layout_marginBottom="5dp"
-            android:textSize="16sp"
-            />
+    <TextView
+        android:id="@+id/main_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="从明天起，做一个幸福的人 喂马、劈柴，周游世界 从明天起，关心粮食和蔬菜
+我有一所房子，面朝大海，春暖花开。"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/main_title"
+        android:textColor="@color/gray"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="16sp" />
 
-    </RelativeLayout>
+</RelativeLayout>
 
-<!--</android.support.v7.widget.CardView>-->
+    <!--</android.support.v7.widget.CardView>-->
