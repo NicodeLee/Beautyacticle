@@ -1,7 +1,7 @@
 .gradle
 /local.properties
 /.idea/workspace.xml
-#/.idea/libraries
+/.idea/libraries
 .DS_Store
 .svn
 /build
@@ -25,5 +25,5 @@ build
 .settings
 target
 *.iml
-#.idea
+.idea
 local.properties
