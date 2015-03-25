@@ -101,6 +101,7 @@
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.3" level="project" />
     <orderEntry type="module" module-name="CommLib" exported="" />
     <orderEntry type="module" module-name="SwipeBackLayoutLibary" exported="" />
+    <orderEntry type="module" module-name="volley" exported="" />
   </component>
 </module>
 

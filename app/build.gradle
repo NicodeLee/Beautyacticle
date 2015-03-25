@@ -46,4 +46,5 @@ dependencies {
 
     compile project(':libraries:SwipeBackLayoutLibary')
     compile project(':libraries:CommLib')
+    compile project(':libraries:volley')
 }

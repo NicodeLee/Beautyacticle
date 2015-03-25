@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -18,9 +21,14 @@ import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.adapter.MainAdt;
 import com.nicodelee.beautyarticle.adapter.SlidAdt;
 import com.nicodelee.beautyarticle.app.BaseAct;
+import com.nicodelee.beautyarticle.http.URLUtils;
+import com.nicodelee.beautyarticle.http.VolleyUtil;
 import com.nicodelee.beautyarticle.mode.SlidMod;
 import com.nicodelee.beautyarticle.ui.article.ArticleAct;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.viewhelper.SlidData;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -33,12 +41,18 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     //view
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerArrowDrawable drawerArrow;
-    @InjectView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
-    @InjectView(R.id.navdrawer) ListView mDrawerList;
-    @InjectView(R.id.swipe_container) SwipeRefreshLayout mSwipeLayout;
-    @InjectView(R.id.listview) ObservableListView mListView;
+    @InjectView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+    @InjectView(R.id.navdrawer)
+    ListView mDrawerList;
+    @InjectView(R.id.swipe_container)
+    SwipeRefreshLayout mSwipeLayout;
+    @InjectView(R.id.listview)
+    ObservableListView mListView;
+
     //click
-    @OnItemClick(R.id.listview) void onMainItemClidk(int position){
+    @OnItemClick(R.id.listview)
+    void onMainItemClidk(int position) {
         skipIntent(ArticleAct.class, false);
     }
 
@@ -117,6 +131,25 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         slidMods = SlidData.SetData(this);
         slidAdt = new SlidAdt(this, slidMods);
         mDrawerList.setAdapter(slidAdt);
+
+        //get Date
+        //TODO 待使用一段时间再考虑封装
+        JsonObjectRequest request = new JsonObjectRequest(URLUtils.SUGGESTION, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        LogUitl.e("response==" + response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+
+        // 请求添加Tag,用于取消请求
+        request.setTag(this);
+        VolleyUtil.getQueue(this).add(request);
+
     }
 
 
