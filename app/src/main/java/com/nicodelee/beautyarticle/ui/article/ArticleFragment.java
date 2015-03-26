@@ -12,9 +12,6 @@ import com.nicodelee.beautyarticle.app.BaseFragment;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-/**
- * Created by Lin on 15/3/23.
- */
 public class ArticleFragment extends BaseFragment implements ObservableScrollViewCallbacks {
     public static final String EXTRA_POSITION = "ARTICLE_POSITION";
     @InjectView(R.id.sc_article)ObservableScrollView scActicle;

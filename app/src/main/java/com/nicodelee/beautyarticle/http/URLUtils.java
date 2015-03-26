@@ -7,4 +7,6 @@ public class URLUtils {
     public static final String BASE_URL = "https://leancloud.cn/1.1/";
 
     public static final String SUGGESTION = BASE_URL + "classes/SuggestionByUser";
+
+    public static final String ACTITLE = BASE_URL + "classes/Acticle";
 }

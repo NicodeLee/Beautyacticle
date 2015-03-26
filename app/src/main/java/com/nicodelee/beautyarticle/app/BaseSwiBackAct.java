@@ -13,8 +13,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 
@@ -54,17 +52,17 @@ public class BaseSwiBackAct extends SwipeBackActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void showInfo(String message) {
-        Crouton.makeText(this, message, Style.INFO).show();
-    }
-
-    public void showErro(String message) {
-        Crouton.makeText(this, message, Style.ALERT).show();
-    }
-
-    public void showConfirm(String message) {
-        Crouton.makeText(this, message, Style.CONFIRM).show();
-    }
+//    public void showInfo(String message) {
+//        Crouton.makeText(this, message, Style.INFO).show();
+//    }
+//
+//    public void showErro(String message) {
+//        Crouton.makeText(this, message, Style.ALERT).show();
+//    }
+//
+//    public void showConfirm(String message) {
+//        Crouton.makeText(this, message, Style.CONFIRM).show();
+//    }
 
     public <T> T findViewByIdExt(int id) {
         return (T) super.findViewById(id);

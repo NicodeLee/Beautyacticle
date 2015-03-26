@@ -20,9 +20,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
-
 public class BaseFragment extends Fragment {
 	private LayoutInflater inflater;
 	private View contentView;
@@ -102,7 +99,6 @@ public class BaseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Crouton.cancelAllCroutons();
     }
 
     @Override
@@ -118,18 +114,18 @@ public class BaseFragment extends Fragment {
     public void showToast(String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
-
-    public void showInfo(String message) {
-        Crouton.makeText(getActivity(), message, Style.INFO).show();
-    }
-
-    public void showErro(String message) {
-        Crouton.makeText(getActivity(), message, Style.ALERT).show();
-    }
-
-    public void showConfirm(String message) {
-        Crouton.makeText(getActivity(), message, Style.CONFIRM).show();
-    }
+//
+//    public void showInfo(String message) {
+//        Crouton.makeText(getActivity(), message, Style.INFO).show();
+//    }
+//
+//    public void showErro(String message) {
+//        Crouton.makeText(getActivity(), message, Style.ALERT).show();
+//    }
+//
+//    public void showConfirm(String message) {
+//        Crouton.makeText(getActivity(), message, Style.CONFIRM).show();
+//    }
 
     public void skipIntent(Class clz, HashMap<String, Object> map,
                            boolean isFinish) {

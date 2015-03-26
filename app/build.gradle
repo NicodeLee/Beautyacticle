@@ -17,6 +17,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
@@ -34,15 +41,19 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
 
+//    compile 'com.fasterxml.jackson:jackson-parent:2.5'
+
+    compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
 //    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.1.0@aar'
 
 
     compile 'com.jakewharton:butterknife:6.1.0'
 
-    compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
-        // exclusion is not neccessary, but generally a good idea.
-        exclude group: 'com.google.android', module: 'support-v4'
-    }
+//    compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
+//        exclude group: 'com.google.android', module: 'support-v4'
+//    }
 
     compile project(':libraries:SwipeBackLayoutLibary')
     compile project(':libraries:CommLib')

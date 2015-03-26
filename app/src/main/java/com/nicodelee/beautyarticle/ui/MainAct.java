@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -21,9 +22,12 @@ import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.adapter.MainAdt;
 import com.nicodelee.beautyarticle.adapter.SlidAdt;
 import com.nicodelee.beautyarticle.app.BaseAct;
+import com.nicodelee.beautyarticle.http.JsonUtil;
 import com.nicodelee.beautyarticle.http.URLUtils;
 import com.nicodelee.beautyarticle.http.VolleyUtil;
+import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.SlidMod;
+import com.nicodelee.beautyarticle.ui.article.ActicleList;
 import com.nicodelee.beautyarticle.ui.article.ArticleAct;
 import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.viewhelper.SlidData;
@@ -31,6 +35,8 @@ import com.nicodelee.beautyarticle.viewhelper.SlidData;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Logger;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -53,14 +59,16 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     //click
     @OnItemClick(R.id.listview)
     void onMainItemClidk(int position) {
-        skipIntent(ArticleAct.class, false);
+        skipIntent(ArticleAct.class,false);
     }
 
     //datehelper
     private ArrayList<String> list = new ArrayList<String>();
     private ArrayList<SlidMod> slidMods;
+    private ArrayList<ActicleMod> acticleMods;
     private SlidAdt slidAdt;
     private MainAdt mainAdt;
+    private ActicleList acticleList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +81,7 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     private void initView() {
         initActionBar();
 
-        mainAdt = new MainAdt(this, slidMods);
+        mainAdt = new MainAdt(this, acticleMods);
         mListView.setAdapter(setBottomInAnimation(mListView, mainAdt));
         mListView.setScrollViewCallbacks(new ObservableScrollViewCallbacks() {
             @Override
@@ -133,12 +141,14 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         mDrawerList.setAdapter(slidAdt);
 
         //get Date
-        //TODO 待使用一段时间再考虑封装
-        JsonObjectRequest request = new JsonObjectRequest(URLUtils.SUGGESTION, null,
+        //TODO 使用一段时间再考虑封装
+        final JsonObjectRequest request = new JsonObjectRequest(URLUtils.ACTITLE, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        LogUitl.e("response==" + response);
+                        acticleList = JsonUtil.jsonToMod(response.toString(), ActicleList.class);
+                        if (acticleMods != null)
+                            mainAdt.setAdtList(acticleList.results);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -147,6 +157,7 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         });
 
         // 请求添加Tag,用于取消请求
+//        request.setShouldCache(true);
         request.setTag(this);
         VolleyUtil.getQueue(this).add(request);
 
@@ -186,4 +197,9 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         }, 2000);
     }
 
+    @Override
+    protected void onDestroy() {
+        VolleyUtil.getQueue(this).cancelAll(this);
+        super.onDestroy();
+    }
 }

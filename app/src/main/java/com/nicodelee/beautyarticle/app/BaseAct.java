@@ -38,16 +38,6 @@ public class BaseAct extends Activity {
     }
 
     public void initActionBar() {
-//        actionBar.setDisplayHomeAsUpEnabled(true);//箭头
-//        actionBar.setDisplayShowHomeEnabled(false);//图标
-//        actionBar.setDisplayShowTitleEnabled(true);//标题
-//        actionBar.setDisplayShowCustomEnabled(true);
-//
-////        actionBar.setBackgroundDactionBar.setTitle(title);rawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
-//        int titleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
-//        TextView Tvtitle = (TextView) findViewById(titleId);
-////        Tvtitle.setTextColor(this.getResources().getColor(R.color.black));
-//        actionBar.show();
         ab = getActionBar();
         ab.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
         ab.setDisplayShowHomeEnabled(false);//图标显示
