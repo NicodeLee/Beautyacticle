@@ -1,4 +1,4 @@
-package com.nicodelee.beautyarticle.ui.article;
+package com.nicodelee.beautyarticle.mode;
 
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 

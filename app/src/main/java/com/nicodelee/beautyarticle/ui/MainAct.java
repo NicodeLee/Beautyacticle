@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -25,9 +24,9 @@ import com.nicodelee.beautyarticle.app.BaseAct;
 import com.nicodelee.beautyarticle.http.JsonUtil;
 import com.nicodelee.beautyarticle.http.URLUtils;
 import com.nicodelee.beautyarticle.http.VolleyUtil;
+import com.nicodelee.beautyarticle.mode.ActicleList;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.SlidMod;
-import com.nicodelee.beautyarticle.ui.article.ActicleList;
 import com.nicodelee.beautyarticle.ui.article.ArticleAct;
 import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.viewhelper.SlidData;
@@ -35,12 +34,11 @@ import com.nicodelee.beautyarticle.viewhelper.SlidData;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Logger;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnItemClick;
+import de.greenrobot.event.EventBus;
 
 public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshListener {
 
@@ -59,7 +57,9 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     //click
     @OnItemClick(R.id.listview)
     void onMainItemClidk(int position) {
-        skipIntent(ArticleAct.class,false);
+        EventBus.getDefault().postSticky(position);
+        EventBus.getDefault().postSticky(acticleList.results);
+        skipIntent(ArticleAct.class, false);
     }
 
     //datehelper
@@ -76,6 +76,20 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
         initView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().registerSticky(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+    public void onEvent(int event) {
     }
 
     private void initView() {
@@ -146,13 +160,16 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+//                        LogUitl.e("请求数据："+response.toString());
                         acticleList = JsonUtil.jsonToMod(response.toString(), ActicleList.class);
-                        if (acticleMods != null)
+                        if (acticleList != null)
                             mainAdt.setAdtList(acticleList.results);
+
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                showToast("请求失败");
             }
         });
 

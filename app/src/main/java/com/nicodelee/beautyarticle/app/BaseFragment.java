@@ -33,16 +33,16 @@ public class BaseFragment extends Fragment {
 		context = getActivity().getApplicationContext();
 	}
 
-	@Override
-	public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		this.inflater = inflater;
-		this.container = container;
-		onCreateView(savedInstanceState);
-        loadingDialog = new LoadingDialog(getActivity());
-		if (contentView == null)
-			return super.onCreateView(inflater, container, savedInstanceState);
-		return contentView;
-	}
+//	@Override
+//	public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//		this.inflater = inflater;
+//		this.container = container;
+//		onCreateView(savedInstanceState);
+//        loadingDialog = new LoadingDialog(getActivity());
+//		if (contentView == null)
+//			return super.onCreateView(inflater, container, savedInstanceState);
+//		return contentView;
+//	}
 
 	protected void onCreateView(Bundle savedInstanceState) {
 

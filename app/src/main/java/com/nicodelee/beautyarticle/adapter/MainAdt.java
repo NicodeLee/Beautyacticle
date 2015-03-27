@@ -44,7 +44,6 @@ public class MainAdt extends BaseAdapter {
 
     public int getCount() {
         return ListUtils.getSize(mylist);
-//        return 20;
     }
 
     public Object getItem(int arg0) {
