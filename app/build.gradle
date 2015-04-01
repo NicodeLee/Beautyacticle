@@ -25,17 +25,12 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
 
-//    sourceSets {
-//        main {
-//            manifest.srcFile 'src/main/AndroidManifest.xml'
-//            java.srcDirs = ['src/main/java', 'src-gen/main/java']
-//            resources.srcDirs = ['src']
-//            aidl.srcDirs = ['src']
-//            renderscript.srcDirs = ['src']
-//            res.srcDirs = ['res']
-//            assets.srcDirs = ['assets']
-//        }
-//    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
@@ -64,6 +59,8 @@ dependencies {
 
 //    compile project(':libraries:SwipeBackLayoutLibary')
     compile project(':libraries:CommLib')
-    compile project(':libraries:volley')
+//    compile project(':libraries:volley')
     compile project(':libraries:MeterialSettingLib')
+
+    compile(name: 'volley-release', ext: 'aar')
 }
