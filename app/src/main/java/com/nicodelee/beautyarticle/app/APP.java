@@ -2,15 +2,19 @@ package com.nicodelee.beautyarticle.app;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Environment;
 
+import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 
 import java.io.File;
 
@@ -50,6 +54,23 @@ public class APP extends Application {
                 .writeDebugLogs().build();
         ImageLoader.getInstance().init(config);
     }
+
+    public ImageLoader imageLoader = ImageLoader.getInstance();
+    public static DisplayImageOptions options = new DisplayImageOptions.Builder()
+            .showImageOnLoading(R.color.loading_cl)
+            .showImageForEmptyUri(R.color.loading_cl)
+//			.showImageOnFail(R.drawable.head_null)
+            .showImageOnFail(R.color.loading_cl)
+            .cacheInMemory(true)
+                    // default
+            .cacheOnDisc(true)
+            .considerExifParams(true)
+            .bitmapConfig(Bitmap.Config.RGB_565)
+                    // .imageScaleType(ImageScaleType.EXACTLY)
+//			.showImageForEmptyUri(R.drawable.image_loader_empty)
+//			.showImageOnFail(R.drawable.image_loader_fail)
+//			.showImageOnLoading(R.drawable.image_loader_loading)
+            .displayer(new SimpleBitmapDisplayer()).build();
 
 
 }

@@ -46,7 +46,6 @@ public class ArticleAct extends BaseSwiBackAct {
 
 
     public void onEvent(Integer event) {
-//        showToast("==index==" + event);
         position = event;
     }
 
@@ -87,7 +86,7 @@ public class ArticleAct extends BaseSwiBackAct {
         @Override
         public Fragment getItem(int position) {
             final Bundle bundle = new Bundle();
-            bundle.putInt(ArticleFragment.EXTRA_POSITION, position + 1);
+            bundle.putInt(ArticleFragment.EXTRA_POSITION, position);
             final ArticleFragment fragment = new ArticleFragment();
             fragment.setArguments(bundle);
             return fragment;

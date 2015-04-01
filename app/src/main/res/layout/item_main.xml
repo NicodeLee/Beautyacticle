@@ -20,8 +20,9 @@
         android:layout_marginTop="10dp"
         android:text="面朝大海，春暖花开"
         android:textColor="@color/help_view"
+        android:layout_marginRight="10dp"
         android:textSize="18sp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="10dp"
         android:textStyle="bold" />
 
     <TextView
@@ -35,6 +36,7 @@
         android:textColor="@color/gray"
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="5dp"
+        android:maxLines="4"
         android:textSize="16sp" />
 
 </RelativeLayout>

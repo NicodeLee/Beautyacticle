@@ -6,14 +6,19 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.nicodelee.beautyarticle.R;
+import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
+import com.nicodelee.beautyarticle.utils.DevicesUtil;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
 
@@ -29,6 +34,8 @@ public class ArticleFragment extends BaseFragment implements ObservableScrollVie
     TextView tvTitle;
     @InjectView(R.id.tv_acticle_detail)
     TextView tvDetail;
+    @InjectView(R.id.ic_acticle)
+    ImageView ivActicle;
 
     public static final String EXTRA_POSITION = "ARTICLE_POSITION";
     private int position;
@@ -60,12 +67,16 @@ public class ArticleFragment extends BaseFragment implements ObservableScrollVie
     }
 
 
-    public void onEvent(Integer event) {
-    }
-
     public void onEvent(ArrayList<ActicleMod> eventList) {
-        tvTitle.setText(eventList.get(position).title + "");
-        tvDetail.setText(eventList.get(position).details + "");
+        ActicleMod mod = eventList.get(position);
+        tvTitle.setText(mod.title + "");
+        tvDetail.setText(mod.details + "");
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivActicle
+                .getLayoutParams();
+        params.width = DevicesUtil.screenWidth;
+        params.height = DevicesUtil.screenWidth;
+        ivActicle.setLayoutParams(params);
+        APP.getInstance().imageLoader.displayImage(mod.image, ivActicle, APP.options, new SimpleImageLoadingListener());
     }
 
 

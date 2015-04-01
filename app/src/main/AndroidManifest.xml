@@ -3,6 +3,8 @@
     package="com.nicodelee.beautyarticle" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".app.APP"
@@ -23,6 +25,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.article.ArticleAct" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.SettingAct"
+            android:theme="@style/MaterialSettingsTheme" >
+        </activity>
     </application>
 
 </manifest>

@@ -10,12 +10,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nicodelee.beautyarticle.R;
+import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.SlidMod;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.utils.ListUtils;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -44,6 +48,7 @@ public class MainAdt extends BaseAdapter {
 
     public int getCount() {
         return ListUtils.getSize(mylist);
+//        return 5;
     }
 
     public Object getItem(int arg0) {
@@ -73,6 +78,8 @@ public class MainAdt extends BaseAdapter {
 
         holder.tvName.setText(mod.title);
         holder.tvDesc.setText(mod.descriptions);
+
+        APP.getInstance().imageLoader.displayImage(mod.image, holder.ivIcon, APP.options, new SimpleImageLoadingListener());
 
         return convertView;
     }

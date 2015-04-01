@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "21.1.1"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.0"
 
     defaultConfig {
-        applicationId "com.alee.beautyarticle"
+        applicationId "com.nicodelee.beautyarticle"
         minSdkVersion 15
-        targetSdkVersion 19
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -24,12 +24,25 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
+
+//    sourceSets {
+//        main {
+//            manifest.srcFile 'src/main/AndroidManifest.xml'
+//            java.srcDirs = ['src/main/java', 'src-gen/main/java']
+//            resources.srcDirs = ['src']
+//            aidl.srcDirs = ['src']
+//            renderscript.srcDirs = ['src']
+//            res.srcDirs = ['res']
+//            assets.srcDirs = ['assets']
+//        }
+//    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'com.android.support:support-v13:21.0.3'
+    compile 'com.android.support:support-v13:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.android.support:cardview-v7:21.0.+'
     compile 'com.ikimuhendis:ldrawer:0.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
@@ -46,10 +59,11 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
 
     compile 'com.jakewharton:butterknife:6.1.0'
-
     compile 'de.greenrobot:eventbus:2.4.0'
+    compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
 
-    compile project(':libraries:SwipeBackLayoutLibary')
+//    compile project(':libraries:SwipeBackLayoutLibary')
     compile project(':libraries:CommLib')
     compile project(':libraries:volley')
+    compile project(':libraries:MeterialSettingLib')
 }

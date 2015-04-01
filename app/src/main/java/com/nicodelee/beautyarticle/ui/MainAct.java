@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
@@ -28,7 +29,8 @@ import com.nicodelee.beautyarticle.mode.ActicleList;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.SlidMod;
 import com.nicodelee.beautyarticle.ui.article.ArticleAct;
-import com.nicodelee.beautyarticle.utils.LogUitl;
+import com.nicodelee.beautyarticle.utils.IsExit;
+import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.beautyarticle.viewhelper.SlidData;
 
 import org.json.JSONObject;
@@ -50,7 +52,7 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     @InjectView(R.id.navdrawer)
     ListView mDrawerList;
     @InjectView(R.id.swipe_container)
-    SwipeRefreshLayout mSwipeLayout;
+    MySwipeRefreshLayout mSwipeLayout;
     @InjectView(R.id.listview)
     ObservableListView mListView;
 
@@ -62,6 +64,20 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         skipIntent(ArticleAct.class, false);
     }
 
+    @OnItemClick(R.id.navdrawer)
+    void onSlidItemClick(int position) {
+        switch (position){
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                skipIntent(SettingAct.class,false);
+                break;
+        }
+    }
     //datehelper
     private ArrayList<String> list = new ArrayList<String>();
     private ArrayList<SlidMod> slidMods;
@@ -89,6 +105,7 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         EventBus.getDefault().unregister(this);
         super.onStop();
     }
+
     public void onEvent(int event) {
     }
 
@@ -120,6 +137,7 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
             }
         });
         mSwipeLayout.setOnRefreshListener(this);
+        mSwipeLayout.setRefreshing(true);
         mSwipeLayout.setColorSchemeResources(R.color.action_bar,
                 R.color.action_bar, R.color.action_bar,
                 R.color.action_bar);
@@ -154,13 +172,14 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         slidAdt = new SlidAdt(this, slidMods);
         mDrawerList.setAdapter(slidAdt);
 
+        String uri = String.format(URLUtils.ACTITLE+"?order=%1$s&limit=%2$s","-createdAt","10");
         //get Date
         //TODO 使用一段时间再考虑封装
-        final JsonObjectRequest request = new JsonObjectRequest(URLUtils.ACTITLE, null,
+        final JsonObjectRequest request = new JsonObjectRequest(uri, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-//                        LogUitl.e("请求数据："+response.toString());
+                        mSwipeLayout.setRefreshing(false);
                         acticleList = JsonUtil.jsonToMod(response.toString(), ActicleList.class);
                         if (acticleList != null)
                             mainAdt.setAdtList(acticleList.results);
@@ -169,9 +188,11 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                showToast("请求失败");
+                mSwipeLayout.setRefreshing(false);
+                showToast("请求失败:"+error.toString());
             }
         });
+
 
         // 请求添加Tag,用于取消请求
 //        request.setShouldCache(true);
@@ -218,5 +239,26 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     protected void onDestroy() {
         VolleyUtil.getQueue(this).cancelAll(this);
         super.onDestroy();
+    }
+
+    // 按返回退出App
+    private IsExit exit = new IsExit();
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            pressAgainExit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void pressAgainExit() {
+        if (exit.isExit()) {
+            finish();
+        } else {
+            showInfo("喵，再按一次离开^~^");
+            exit.doExitInThreeSecond();
+
+        }
     }
 }

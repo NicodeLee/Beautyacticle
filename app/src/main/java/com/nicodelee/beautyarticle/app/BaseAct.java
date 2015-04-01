@@ -2,17 +2,13 @@ package com.nicodelee.beautyarticle.app;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.devspark.appmsg.AppMsg;
 import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.view.LoadingDialog;
@@ -69,6 +65,13 @@ public class BaseAct extends Activity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    public void showInfo(String message) {
+        AppMsg.Style style = new AppMsg.Style(1500, R.color.accent);
+        AppMsg appMsg = AppMsg.makeText(this, message, style);
+        appMsg.setAnimation(R.anim.slide_in_top,R.anim.slide_out_bottom);
+        appMsg.show();
+    }
+
 
     public void skipIntent(Class clz, HashMap<String, Object> map,
                            boolean isFinish) {
@@ -121,38 +124,8 @@ public class BaseAct extends Activity {
             finish();
     }
 
-
     public Object getExtra(String name) {
         return getIntent().getSerializableExtra(name);
-    }
-
-//    public ImageLoader imageLoader = ImageLoader.getInstance();
-//    public static DisplayImageOptions options = new DisplayImageOptions.Builder()
-//            .showImageOnLoading(R.color.white)
-//            .showImageForEmptyUri(R.color.white)
-//            .showImageOnFail(R.color.white)
-//            .cacheInMemory(true)
-//                    // default
-//            .cacheOnDisc(true)
-//            .considerExifParams(true)
-//            .bitmapConfig(Bitmap.Config.RGB_565)
-//            .displayer(new SimpleBitmapDisplayer()).build();
-
-    public void showKeyBoard(View v) {
-        v.requestFocus();
-        InputMethodManager imm = (InputMethodManager) v.getContext()
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.isActive(v);
-        imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
-    }
-
-    public void hideKeyBoard(View v) {
-        InputMethodManager imm = (InputMethodManager) this
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        // ((EditText)v).setCursorVisible(false);// 失去光标
-        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-        // imm.restartInput(v);
-        v.clearFocus();
     }
 
 }

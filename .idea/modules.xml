@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Beautyacticle.iml" filepath="$PROJECT_DIR$/Beautyacticle.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/CommLib/CommLib.iml" filepath="$PROJECT_DIR$/libraries/CommLib/CommLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/MeterialSettingLib/MeterialSettingLib.iml" filepath="$PROJECT_DIR$/libraries/MeterialSettingLib/MeterialSettingLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/SwipeBackLayoutLibary/SwipeBackLayoutLibary.iml" filepath="$PROJECT_DIR$/libraries/SwipeBackLayoutLibary/SwipeBackLayoutLibary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/libraries.iml" filepath="$PROJECT_DIR$/libraries/libraries.iml" />
@@ -11,4 +12,3 @@
     </modules>
   </component>
 </project>
-
