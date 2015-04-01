@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	style="?attr/msItem">
+
+	<ImageView
+		android:id="@+id/material_settings_text_icon"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:scaleType="centerInside"
+		android:src="@drawable/abc_btn_radio_to_on_mtrl_000"
+		android:layout_marginRight="24dp"
+		android:layout_centerVertical="true"
+		android:visibility="gone"/>
+
+	<TextView
+		android:id="@+id/material_settings_text_title"
+		style="?attr/msTextStyle"
+		android:layout_toRightOf="@+id/material_settings_text_icon"/>
+
+	<TextView
+		android:id="@+id/material_settings_text_subtitle"
+		style="?attr/msSubTextStyle"
+		android:layout_toRightOf="@+id/material_settings_text_icon"
+		android:layout_below="@+id/material_settings_text_title"/>
+
+</RelativeLayout>

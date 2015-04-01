@@ -1,0 +1,15 @@
+<resources>
+	<dimen name="default_item_height">48dp</dimen>
+	<dimen name="default_item_horizontal_padd">16dp</dimen>
+	<dimen name="default_item_text_size">16sp</dimen>
+    
+	<dimen name="default_list_item_height">72dp</dimen>
+	<dimen name="default_list_item_spacing">5dp</dimen>
+
+	<dimen name="activity_settings_padding_horizontal">8dp</dimen>
+	<dimen name="activity_settings_padding_vertical">8dp</dimen>
+	<dimen name="activity_settings_item_padding">16dp</dimen>
+    
+	<dimen name="lay_small_gap">8dp</dimen>
+	<dimen name="lay_default_padd">16dp</dimen>
+</resources>

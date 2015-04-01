@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#FF46545E</color>
+    <color name="action_bar">#ff2d333d</color>
+    <color name="primary_dark">#FF37454B</color>
+    <color name="accent">#FF1A9185</color>
+    <color name="accent_dark">#FF242424</color>
+    
+    <color name="ms_white">#FFFFFFFF</color>
+    <color name="ms_white_alfa_ripple">#DDFFFFFF</color>
+    <color name="ms_white_alfa">#55FFFFFF</color>
+    <color name="ms_black">#FF000000</color>
+    <color name="ms_gray">#FFD9D9D9</color>
+    <color name="ms_gray2">#FFF0F0F0</color>
+    <color name="ms_gray3">#FFBDBDBD</color>
+    <color name="ms_gray4">#FF616161</color>
+    <color name="ms_gray5">#FF797979</color>
+    <color name="ms_gray6">#FFF2F2F2</color>
+    <color name="ms_gray_dark">#FF616161</color>
+
+    <color name="ms_dark_window_bg">#FF5E5E5E</color>
+
+    <color name="default_text">#FF424242</color>
+    <color name="dialog_bg_color">#FFF5F5F5</color>
+    <color name="default_divider">@color/ms_gray6</color>
+    <color name="default_divider_dark">#FF757575</color>
+</resources>
