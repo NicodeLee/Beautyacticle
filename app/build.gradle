@@ -59,8 +59,8 @@ dependencies {
 
 //    compile project(':libraries:SwipeBackLayoutLibary')
     compile project(':libraries:CommLib')
-//    compile project(':libraries:volley')
+    compile project(':libraries:volley')
     compile project(':libraries:MeterialSettingLib')
 
-    compile(name: 'volley-release', ext: 'aar')
+//    compile(name: 'volley-release', ext: 'aar')
 }

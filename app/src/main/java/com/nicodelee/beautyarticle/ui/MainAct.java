@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
+import com.android.volley.Cache;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -30,12 +31,14 @@ import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.SlidMod;
 import com.nicodelee.beautyarticle.ui.article.ArticleAct;
 import com.nicodelee.beautyarticle.utils.IsExit;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.beautyarticle.viewhelper.SlidData;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -183,7 +186,6 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
                         acticleList = JsonUtil.jsonToMod(response.toString(), ActicleList.class);
                         if (acticleList != null)
                             mainAdt.setAdtList(acticleList.results);
-
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -195,8 +197,8 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
 
 
         // 请求添加Tag,用于取消请求
-//        request.setShouldCache(true);
         request.setTag(this);
+        showInfo("==cache==" + request.getCacheKey());
         VolleyUtil.getQueue(this).add(request);
 
     }

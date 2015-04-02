@@ -92,7 +92,6 @@
     <orderEntry type="library" exported="" name="lib-manipulation-3.1.0" level="project" />
     <orderEntry type="library" exported="" name="eventbus-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="jackson-core-2.4.1" level="project" />
-    <orderEntry type="library" exported="" name="volley-release-" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-22.0.0" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="butterknife-6.1.0" level="project" />
@@ -108,5 +107,6 @@
     <orderEntry type="library" exported="" name="support-v13-22.0.0" level="project" />
     <orderEntry type="module" module-name="MeterialSettingLib" exported="" />
     <orderEntry type="module" module-name="CommLib" exported="" />
+    <orderEntry type="module" module-name="volley" exported="" />
   </component>
 </module>
