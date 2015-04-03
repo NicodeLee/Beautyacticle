@@ -198,7 +198,7 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
 
         // 请求添加Tag,用于取消请求
         request.setTag(this);
-        showInfo("==cache==" + request.getCacheKey());
+//        showInfo("==cache==" + request.getCacheKey());
         VolleyUtil.getQueue(this).add(request);
 
     }

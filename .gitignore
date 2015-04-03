@@ -6,7 +6,6 @@
 .svn
 /build
 *~
-.gradle
 gen
 bin
 local.properties
@@ -18,13 +17,6 @@ target
 classes
 project.properties
 *.iml
-.DS_Store
 out
-.gradle
 build
 .settings
-target
-*.iml
-.idea
-local.properties
-/*.iml

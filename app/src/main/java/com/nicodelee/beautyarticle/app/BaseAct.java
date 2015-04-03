@@ -66,7 +66,7 @@ public class BaseAct extends Activity {
     }
 
     public void showInfo(String message) {
-        AppMsg.Style style = new AppMsg.Style(15000, R.color.accent);
+        AppMsg.Style style = new AppMsg.Style(1500, R.color.accent);
         AppMsg appMsg = AppMsg.makeText(this, message, style);
         appMsg.setAnimation(R.anim.slide_in_top,R.anim.slide_out_bottom);
         appMsg.show();

@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:windowBackground">@color/ls_item</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -9,6 +10,10 @@
 
     <style name="ActTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <style name="Act" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>
