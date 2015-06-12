@@ -205,5 +205,6 @@
 
     <color name="bg_1_bar_opacity">#FF33E5B5</color>
     <color name="bg_1_bar_clarity">#AA33E5B5</color>
+    <color name="window_background">#FFF5F5F5</color>
 
 </resources>

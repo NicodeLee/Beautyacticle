@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="Base.Theme.DesignDemo">
         <item name="android:windowBackground">@color/ls_item</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:actionMenuTextColor">@color/black</item>
@@ -8,12 +8,27 @@
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="ActTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="ActTheme" parent="Base.Theme.DesignDemo">
         <item name="android:windowIsTranslucent">false</item>
     </style>
 
-    <style name="Act" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="Act" parent="Base.Theme.DesignDemo">
         <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Base.Theme.DesignDemo" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#673AB7</item>
+        <item name="colorPrimaryDark">#512DA8</item>
+        <item name="colorAccent">#FF4081</item>
+        <item name="android:windowBackground">@color/window_background</item>
+    </style>
+
+    <style name="Widget.CardContent" parent="android:Widget">
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">24dp</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
 </resources>

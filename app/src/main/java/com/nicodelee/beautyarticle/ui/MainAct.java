@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -113,7 +115,6 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     }
 
     private void initView() {
-        initActionBar();
 
         mainAdt = new MainAdt(this, acticleMods);
         mListView.setAdapter(setBottomInAnimation(mListView, mainAdt));
@@ -129,16 +130,17 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
             @Override
             public void onUpOrCancelMotionEvent(ScrollState scrollState) {
                 if (scrollState == ScrollState.UP) {
-                    if (ab.isShowing()) {
-                        ab.hide();
-                    }
-                } else if (scrollState == ScrollState.DOWN) {
-                    if (!ab.isShowing()) {
-                        ab.show();
-                    }
+//                    if (ab.isShowing()) {
+//                        ab.hide();
+//                    }
+//                } else if (scrollState == ScrollState.DOWN) {
+//                    if (!ab.isShowing()) {
+//                        ab.show();
+//                    }
                 }
             }
         });
+
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setRefreshing(true);
         mSwipeLayout.setColorSchemeResources(R.color.action_bar,
@@ -183,6 +185,7 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
                     @Override
                     public void onResponse(JSONObject response) {
                         mSwipeLayout.setRefreshing(false);
+                        LogUitl.e("="+response.toString());
                         acticleList = JsonUtil.jsonToMod(response.toString(), ActicleList.class);
                         if (acticleList != null)
                             mainAdt.setAdtList(acticleList.results);
@@ -194,7 +197,6 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
                 showToast("请求失败:"+error.toString());
             }
         });
-
 
         // 请求添加Tag,用于取消请求
         request.setTag(this);

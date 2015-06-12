@@ -1,9 +1,8 @@
 package com.nicodelee.beautyarticle.app;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Toast;
@@ -18,10 +17,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class BaseAct extends Activity {
+public abstract class BaseAct extends AppCompatActivity {
 
     public LoadingDialog loadingDialog;
-    public ActionBar ab;
     public Intent intent;
     private static BaseAct Cot;
 
@@ -33,13 +31,6 @@ public class BaseAct extends Activity {
         loadingDialog = new LoadingDialog(this);
     }
 
-    public void initActionBar() {
-        ab = getActionBar();
-        ab.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
-        ab.setDisplayShowHomeEnabled(false);//图标显示
-        ab.setDisplayHomeAsUpEnabled(true);//箭头显示
-        ab.setHomeButtonEnabled(true);
-    }
 
     public <T> T findViewByIdExt(int id) {
         return (T) super.findViewById(id);

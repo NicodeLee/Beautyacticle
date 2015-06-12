@@ -28,14 +28,10 @@ import de.greenrobot.event.EventBus;
 
 public class ArticleFragment extends BaseFragment implements ObservableScrollViewCallbacks {
 
-    @InjectView(R.id.sc_article)
-    ObservableScrollView scActicle;
-    @InjectView(R.id.tv_acticle_title)
-    TextView tvTitle;
-    @InjectView(R.id.tv_acticle_detail)
-    TextView tvDetail;
-    @InjectView(R.id.ic_acticle)
-    ImageView ivActicle;
+    @InjectView(R.id.sc_article) ObservableScrollView scActicle;
+    @InjectView(R.id.tv_acticle_title) TextView tvTitle;
+    @InjectView(R.id.tv_acticle_detail) TextView tvDetail;
+    @InjectView(R.id.ic_acticle) ImageView ivActicle;
 
     public static final String EXTRA_POSITION = "ARTICLE_POSITION";
     private int position;

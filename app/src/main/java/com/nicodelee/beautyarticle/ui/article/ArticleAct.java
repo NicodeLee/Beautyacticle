@@ -1,9 +1,8 @@
 package com.nicodelee.beautyarticle.ui.article;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v13.app.FragmentStatePagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
@@ -41,7 +40,7 @@ public class ArticleAct extends BaseSwiBackAct {
 
     private void initView() {
         initActionBar();
-        mAdapter = new ArticleAdt(getFragmentManager());
+        mAdapter = new ArticleAdt(getSupportFragmentManager());
     }
 
 
@@ -77,9 +76,9 @@ public class ArticleAct extends BaseSwiBackAct {
         return super.onOptionsItemSelected(item);
     }
 
-    public class ArticleAdt extends FragmentStatePagerAdapter {
+    public class ArticleAdt extends FragmentPagerAdapter {
 
-        public ArticleAdt(FragmentManager fragmentManager) {
+        public ArticleAdt(android.support.v4.app.FragmentManager fragmentManager) {
             super(fragmentManager);
         }
 
