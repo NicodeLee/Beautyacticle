@@ -2,14 +2,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="12dp"
+    android:background="@drawable/selector_card"
+    android:padding="10dp"
    >
 
         <ImageView
             android:id="@+id/main_ic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_pic"
             android:scaleType="centerCrop" />
 
         <TextView

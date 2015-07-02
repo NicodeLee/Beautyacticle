@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
+import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.SlidMod;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
@@ -28,18 +29,18 @@ public class MainAdt extends BaseAdapter {
 
     private Context mContext;
     private LayoutInflater mInflater;
-    private ArrayList<ActicleMod> mylist;
+    private ArrayList<ActicleMainMod> mylist;
 
-    public MainAdt(Context context, ArrayList<ActicleMod> list) {
+    public MainAdt(Context context, ArrayList<ActicleMainMod> list) {
         this.mContext = context;
         mInflater = LayoutInflater.from(mContext);
         mylist = list;
 
     }
 
-    public void setAdtList(ArrayList<ActicleMod> list) {
+    public void setAdtList(ArrayList<ActicleMainMod> list) {
         if (list == null) {
-            list = new ArrayList<ActicleMod>();
+            list = new ArrayList<ActicleMainMod>();
         } else {
             this.mylist = list;
         }
@@ -74,7 +75,7 @@ public class MainAdt extends BaseAdapter {
         params.height = DevicesUtil.screenWidth;
         holder.ivIcon.setLayoutParams(params);
 
-        ActicleMod mod = mylist.get(position);
+        ActicleMod mod = mylist.get(position).fields;
 
         holder.tvName.setText(mod.title);
         holder.tvDesc.setText(mod.descriptions);

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.nicodelee.utils.StringUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by Nicodelee on 15/3/26.
@@ -26,6 +27,22 @@ public class JsonUtil {
             return JsonMapper
                     .getInstance()
                     .getJsonMapper().readValue(jsonString, clazz);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static <T> ArrayList<T> jsonToList(String jsonString, Class<T> clazz) {
+        if (StringUtils.isEmpty(jsonString)) {
+            return null;
+        }
+        try {
+            return JsonMapper
+                    .getInstance()
+                    .getJsonMapper().readValue(jsonString, JsonMapper
+                            .getInstance()
+                            .getJsonMapper().getTypeFactory().constructCollectionType(ArrayList.class, clazz));
         } catch (IOException e) {
             e.printStackTrace();
             return null;

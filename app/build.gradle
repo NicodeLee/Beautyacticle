@@ -59,14 +59,14 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
 
+    compile 'com.loopj.android:android-async-http:1.4.7'
+
     compile 'com.jakewharton:butterknife:6.1.0'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
 
 //    compile project(':libraries:SwipeBackLayoutLibary')
     compile project(':libraries:CommLib')
-    compile project(':libraries:volley')
     compile project(':libraries:MeterialSettingLib')
 
-//    compile(name: 'volley-release', ext: 'aar')
 }

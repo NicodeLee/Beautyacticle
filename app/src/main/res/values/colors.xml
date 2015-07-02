@@ -197,12 +197,6 @@
     <color name="mode_selection_border">#33B5E5</color>
 
 
-    <!-- 公共的 -->
-    <color name="tab_main_text_1">#aaa</color>
-    <color name="tab_main_text_2">#74b5f7</color>
-    <color name="tab_top_text_1">#aaa</color>
-    <color name="tab_top_text_2">#000</color>
-
     <color name="bg_1_bar_opacity">#FF33E5B5</color>
     <color name="bg_1_bar_clarity">#AA33E5B5</color>
     <color name="window_background">#FFF5F5F5</color>

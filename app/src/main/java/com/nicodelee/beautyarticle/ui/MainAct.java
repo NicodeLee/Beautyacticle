@@ -5,17 +5,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import com.android.volley.Cache;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
@@ -25,22 +19,20 @@ import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.adapter.MainAdt;
 import com.nicodelee.beautyarticle.adapter.SlidAdt;
 import com.nicodelee.beautyarticle.app.BaseAct;
+import com.nicodelee.beautyarticle.http.AsyncHandlerTextBase;
+import com.nicodelee.beautyarticle.http.HttpHelper;
 import com.nicodelee.beautyarticle.http.JsonUtil;
-import com.nicodelee.beautyarticle.http.URLUtils;
-import com.nicodelee.beautyarticle.http.VolleyUtil;
 import com.nicodelee.beautyarticle.mode.ActicleList;
-import com.nicodelee.beautyarticle.mode.ActicleMod;
+import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.SlidMod;
 import com.nicodelee.beautyarticle.ui.article.ArticleAct;
 import com.nicodelee.beautyarticle.utils.IsExit;
-import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.beautyarticle.viewhelper.SlidData;
 
-import org.json.JSONObject;
+import org.apache.http.Header;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -86,7 +78,7 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
     //datehelper
     private ArrayList<String> list = new ArrayList<String>();
     private ArrayList<SlidMod> slidMods;
-    private ArrayList<ActicleMod> acticleMods;
+    private ArrayList<ActicleMainMod> acticleMods;
     private SlidAdt slidAdt;
     private MainAdt mainAdt;
     private ActicleList acticleList;
@@ -177,31 +169,40 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         slidAdt = new SlidAdt(this, slidMods);
         mDrawerList.setAdapter(slidAdt);
 
-        String uri = String.format(URLUtils.ACTITLE+"?order=%1$s&limit=%2$s","-createdAt","10");
-        //get Date
-        //TODO 使用一段时间再考虑封装
-        final JsonObjectRequest request = new JsonObjectRequest(uri, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        mSwipeLayout.setRefreshing(false);
-                        LogUitl.e("="+response.toString());
-                        acticleList = JsonUtil.jsonToMod(response.toString(), ActicleList.class);
-                        if (acticleList != null)
-                            mainAdt.setAdtList(acticleList.results);
-                    }
-                }, new Response.ErrorListener() {
+        new HttpHelper.Builder().toUrl("http://beautifulwords.sinaapp.com/polls/").executeGet(new AsyncHandlerTextBase() {
             @Override
-            public void onErrorResponse(VolleyError error) {
-                mSwipeLayout.setRefreshing(false);
-                showToast("请求失败:"+error.toString());
+            public void onSuccess(int statusCode, Header[] headers, String result) {
+                super.onSuccess(statusCode, headers, result);
+                ArrayList<ActicleMainMod> data = JsonUtil.jsonToList(result,ActicleMainMod.class);
+                mainAdt.setAdtList(data);
             }
-        });
+        }).build();
 
-        // 请求添加Tag,用于取消请求
-        request.setTag(this);
-//        showInfo("==cache==" + request.getCacheKey());
-        VolleyUtil.getQueue(this).add(request);
+//        String uri = String.format(URLUtils.ACTITLE+"?order=%1$s&limit=%2$s","-createdAt","10");
+//        //get Date
+//        //TODO 使用一段时间再考虑封装
+//        final JsonObjectRequest request = new JsonObjectRequest(uri, null,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        mSwipeLayout.setRefreshing(false);
+//                        LogUitl.e("="+response.toString());
+//                        acticleList = JsonUtil.jsonToMod(response.toString(), ActicleList.class);
+//                        if (acticleList != null)
+//                            mainAdt.setAdtList(acticleList.results);
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                mSwipeLayout.setRefreshing(false);
+//                showToast("请求失败:"+error.toString());
+//            }
+//        });
+//
+//        // 请求添加Tag,用于取消请求
+//        request.setTag(this);
+////        showInfo("==cache==" + request.getCacheKey());
+//        VolleyUtil.getQueue(this).add(request);
 
     }
 
@@ -239,11 +240,6 @@ public class MainAct extends BaseAct implements SwipeRefreshLayout.OnRefreshList
         }, 2000);
     }
 
-    @Override
-    protected void onDestroy() {
-        VolleyUtil.getQueue(this).cancelAll(this);
-        super.onDestroy();
-    }
 
     // 按返回退出App
     private IsExit exit = new IsExit();

@@ -31,24 +31,20 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
+import com.nicodelee.beautyarticle.http.AsyncHandlerTextBase;
+import com.nicodelee.beautyarticle.http.HttpHelper;
 import com.nicodelee.beautyarticle.http.JsonUtil;
-import com.nicodelee.beautyarticle.http.URLUtils;
-import com.nicodelee.beautyarticle.http.VolleyUtil;
-import com.nicodelee.beautyarticle.mode.ActicleList;
+import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
-import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.utils.ListUtils;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import org.json.JSONObject;
+import org.apache.http.Header;
 
 import java.util.ArrayList;
 
@@ -71,32 +67,20 @@ public class CheeseListFragment extends BaseFragment implements SwipeRefreshLayo
         return view;
     }
 
+
     private void setupRecyclerView(final RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
 
-        String uri = String.format(URLUtils.ACTITLE+"?order=%1$s&limit=%2$s","-createdAt","10");
-        //TODO 使用一段时间再考虑封装
-        final JsonObjectRequest request = new JsonObjectRequest(uri, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        mSwipeLayout.setRefreshing(false);
-                        LogUitl.e("=" + response.toString());
-                        ActicleList acticleList = JsonUtil.jsonToMod(response.toString(), ActicleList.class);
-                        if (acticleList != null){
-                            recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(),acticleList.results));
-                        }
-                    }
-                }, new Response.ErrorListener() {
+        new HttpHelper.Builder().toUrl("http://beautifulwords.sinaapp.com/polls/").executeGet(new AsyncHandlerTextBase() {
             @Override
-            public void onErrorResponse(VolleyError error) {
+            public void onSuccess(int statusCode, Header[] headers, String result) {
+                super.onSuccess(statusCode, headers, result);
+                ArrayList<ActicleMainMod> data = JsonUtil.jsonToList(result,ActicleMainMod.class);
+                recyclerView.setAdapter(new SimpleStringRecyclerViewAdapter(getActivity(),data));
                 mSwipeLayout.setRefreshing(false);
-                showToast("请求失败:"+error.toString());
             }
-        });
-        // 请求添加Tag,用于取消请求
-        request.setTag(this);
-        VolleyUtil.getQueue(getActivity()).add(request);
+        }).build();
+
     }
 
 
@@ -116,7 +100,7 @@ public class CheeseListFragment extends BaseFragment implements SwipeRefreshLayo
 
         private final TypedValue mTypedValue = new TypedValue();
         private int mBackground;
-        private ArrayList<ActicleMod> mylist;
+        private ArrayList<ActicleMainMod> mylist;
 
         public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -131,7 +115,7 @@ public class CheeseListFragment extends BaseFragment implements SwipeRefreshLayo
         }
 
 
-        public SimpleStringRecyclerViewAdapter(Context context, ArrayList<ActicleMod>  items) {
+        public SimpleStringRecyclerViewAdapter(Context context, ArrayList<ActicleMainMod>  items) {
             context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
             mBackground = mTypedValue.resourceId;
             mylist = items;
@@ -154,7 +138,7 @@ public class CheeseListFragment extends BaseFragment implements SwipeRefreshLayo
             params.height = DevicesUtil.screenWidth;
             holder.ivIcon.setLayoutParams(params);
 
-            ActicleMod mod = mylist.get(position);
+            ActicleMod mod = mylist.get(position).fields;
 
             holder.tvName.setText(mod.title);
             holder.tvDesc.setText(mod.descriptions);
