@@ -8,7 +8,9 @@ import android.view.MenuItem;
 
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseSwiBackAct;
+import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 
 import java.util.ArrayList;
 
@@ -26,7 +28,6 @@ public class ArticleAct extends BaseSwiBackAct {
 
     private ArticleAdt mAdapter;
 
-    ArrayList<ActicleMod> eventList;
     private int count;
     private int position;
 
@@ -39,7 +40,6 @@ public class ArticleAct extends BaseSwiBackAct {
     }
 
     private void initView() {
-        initActionBar();
         mAdapter = new ArticleAdt(getSupportFragmentManager());
     }
 
@@ -48,23 +48,12 @@ public class ArticleAct extends BaseSwiBackAct {
         position = event;
     }
 
-    public void onEvent(ArrayList<ActicleMod> eventList) {
+    public void onEvent(ArrayList<ActicleMainMod> eventList) {
         count = eventList.size();
         vpActicle.setAdapter(mAdapter);
         vpActicle.setCurrentItem(position);
     }
 
-    @Override
-    protected void onStart() {
-        EventBus.getDefault().registerSticky(this);
-        super.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

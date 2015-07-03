@@ -21,7 +21,7 @@ public class WelcomeAct extends BaseAct {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                skipIntent(MainActNew.class,true);
+                skipIntent(MainAct.class,true);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
 

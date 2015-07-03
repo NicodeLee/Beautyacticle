@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import de.greenrobot.event.EventBus;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 
@@ -32,14 +33,6 @@ public class BaseSwiBackAct extends SwipeBackActivity {
     }
 
 
-    public void initActionBar() {
-        ab = getActionBar();
-        ab.setBackgroundDrawable(this.getResources().getDrawable(R.drawable.actionbar_bg));
-        ab.setDisplayShowHomeEnabled(false);//图标显示
-        ab.setDisplayHomeAsUpEnabled(true);//箭头显示
-        ab.setHomeButtonEnabled(true);
-    }
-
     public APP getApp() {
         return (APP) getApplication();
     }
@@ -52,17 +45,6 @@ public class BaseSwiBackAct extends SwipeBackActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-//    public void showInfo(String message) {
-//        Crouton.makeText(this, message, Style.INFO).show();
-//    }
-//
-//    public void showErro(String message) {
-//        Crouton.makeText(this, message, Style.ALERT).show();
-//    }
-//
-//    public void showConfirm(String message) {
-//        Crouton.makeText(this, message, Style.CONFIRM).show();
-//    }
 
     public <T> T findViewByIdExt(int id) {
         return (T) super.findViewById(id);
@@ -123,5 +105,16 @@ public class BaseSwiBackAct extends SwipeBackActivity {
         return getIntent().getSerializableExtra(name);
     }
 
+
+    @Override protected void onStart() {
+        EventBus.getDefault().registerSticky(this);
+        super.onStart();
+    }
+
+    @Override public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+    public void onEvent(int event) {}
 
 }

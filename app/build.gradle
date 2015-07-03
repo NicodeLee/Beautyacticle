@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.0"
+    buildToolsVersion "22.0.1"
 
     defaultConfig {
         applicationId "com.nicodelee.beautyarticle"
@@ -42,18 +42,13 @@ dependencies {
     compile 'com.android.support:cardview-v7:22.2.0'
     compile 'com.android.support:recyclerview-v7:22.2.0'
 
-    compile 'com.github.bumptech.glide:glide:3.6.0'
-    compile 'de.hdodenhof:circleimageview:1.3.0'
 
-    compile 'com.ikimuhendis:ldrawer:0.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
 
     compile 'com.nhaarman.listviewanimations:lib-core:3.1.0@aar'
     compile 'com.nhaarman.listviewanimations:lib-manipulation:3.1.0@aar'
     compile 'com.nhaarman.listviewanimations:lib-core-slh:3.1.0@aar'
     compile 'com.nineoldandroids:library:2.4.0'
-
-    compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
 
     compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1'

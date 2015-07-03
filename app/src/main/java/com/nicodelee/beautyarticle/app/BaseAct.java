@@ -3,6 +3,7 @@ package com.nicodelee.beautyarticle.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Toast;
@@ -16,6 +17,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import de.greenrobot.event.EventBus;
 
 public abstract class BaseAct extends AppCompatActivity {
 
@@ -59,7 +62,8 @@ public abstract class BaseAct extends AppCompatActivity {
     public void showInfo(String message) {
         AppMsg.Style style = new AppMsg.Style(1500, R.color.accent);
         AppMsg appMsg = AppMsg.makeText(this, message, style);
-        appMsg.setAnimation(R.anim.slide_in_top,R.anim.slide_out_bottom);
+        appMsg.setAnimation(R.anim.slide_in_bottom,R.anim.slide_out_bottom);
+        appMsg.setLayoutGravity(Gravity.CENTER);
         appMsg.show();
     }
 
@@ -118,5 +122,16 @@ public abstract class BaseAct extends AppCompatActivity {
     public Object getExtra(String name) {
         return getIntent().getSerializableExtra(name);
     }
+
+    @Override protected void onStart() {
+        EventBus.getDefault().registerSticky(this);
+        super.onStart();
+    }
+
+    @Override public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+    public void onEvent(int event) {}
 
 }

@@ -17,6 +17,7 @@
 package com.nicodelee.beautyarticle.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -39,6 +40,7 @@ import com.nicodelee.beautyarticle.http.HttpHelper;
 import com.nicodelee.beautyarticle.http.JsonUtil;
 import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
+import com.nicodelee.beautyarticle.ui.article.ArticleAct;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.utils.ListUtils;
@@ -50,8 +52,9 @@ import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import de.greenrobot.event.EventBus;
 
-public class CheeseListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
+public class ActicleListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
 
     @InjectView(R.id.recyclerview) RecyclerView rv;
     @InjectView(R.id.swipe_container) MySwipeRefreshLayout mSwipeLayout;
@@ -107,9 +110,11 @@ public class CheeseListFragment extends BaseFragment implements SwipeRefreshLayo
             @InjectView(R.id.main_title) TextView tvName;
             @InjectView(R.id.main_desc) TextView tvDesc;
             @InjectView(R.id.main_ic) ImageView ivIcon;
+            public final View mView;
 
             public ViewHolder(View view) {
                 super(view);
+                mView = view;
                 ButterKnife.inject(this, view);
             }
         }
@@ -126,11 +131,12 @@ public class CheeseListFragment extends BaseFragment implements SwipeRefreshLayo
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_main, parent, false);
             view.setBackgroundResource(mBackground);
+
             return new ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
 
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) holder.ivIcon
                     .getLayoutParams();
@@ -138,12 +144,23 @@ public class CheeseListFragment extends BaseFragment implements SwipeRefreshLayo
             params.height = DevicesUtil.screenWidth;
             holder.ivIcon.setLayoutParams(params);
 
-            ActicleMod mod = mylist.get(position).fields;
+            final ActicleMod mod = mylist.get(position).fields;
 
             holder.tvName.setText(mod.title);
             holder.tvDesc.setText(mod.descriptions);
 
             APP.getInstance().imageLoader.displayImage(mod.image, holder.ivIcon, APP.options, new SimpleImageLoadingListener());
+
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, ArticleAct.class);
+                    EventBus.getDefault().postSticky(position);
+                    EventBus.getDefault().postSticky(mylist);
+                    context.startActivity(intent);
+                }
+            });
 
         }
 
