@@ -56,7 +56,8 @@ dependencies {
 
     compile 'com.loopj.android:android-async-http:1.4.7'
 
-    compile 'com.jakewharton:butterknife:6.1.0'
+//    compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.github.johnkil.android-appmsg:appmsg:1.2.0'
 

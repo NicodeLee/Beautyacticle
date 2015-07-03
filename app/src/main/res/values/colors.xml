@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	
-	
-	
 	<color name="tabMedium">#2B2B2B</color>
 	<color name="tabDark">#000000</color>
 	<color name="tabTransparent">#10ffffff</color>
 	<color name="app_red">#D92536</color>
-
     <color name="orange">#ffffdc7e</color>
     <color name="grey">#ffd3d3d3</color>
     <color name="green">#ff8dd304</color>
@@ -15,9 +12,6 @@
     <color name="yellow">#fffffbae</color>
     <color name="red">#fff10800</color>
     <color name="list_item_pressed">#1A000000</color>
-
-
-
     <color name="app_bg">#4A4B67</color>
     <color name="search_select">#444444</color>//tap 选中
     <color name="white">#ffffff</color>
@@ -74,7 +68,6 @@
     <color name="fuchsia">#FF00FF</color> <!-- 紫红色 -->
 
     <color name="magenta">#FF00FF</color> <!-- 红紫色 -->
-
 
     <color name="oldlace">#FDF5E6</color> <!-- 老花色 -->
 
@@ -195,7 +188,6 @@
     <color name="pano_progress_indication">#FF0099CC</color>
     <color name="pano_progress_indication_fast">#FFFF2222</color>
     <color name="mode_selection_border">#33B5E5</color>
-
 
     <color name="bg_1_bar_opacity">#FF33E5B5</color>
     <color name="bg_1_bar_clarity">#AA33E5B5</color>

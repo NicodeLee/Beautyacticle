@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import de.greenrobot.event.EventBus;
+
 public class BaseFragment extends Fragment {
 	private LayoutInflater inflater;
 	private View contentView;
@@ -31,21 +33,6 @@ public class BaseFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = getActivity().getApplicationContext();
-	}
-
-//	@Override
-//	public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//		this.inflater = inflater;
-//		this.container = container;
-//		onCreateView(savedInstanceState);
-//        loadingDialog = new LoadingDialog(getActivity());
-//		if (contentView == null)
-//			return super.onCreateView(inflater, container, savedInstanceState);
-//		return contentView;
-//	}
-
-	protected void onCreateView(Bundle savedInstanceState) {
-
 	}
 
 
@@ -73,12 +60,6 @@ public class BaseFragment extends Fragment {
         return  swingBottomInAnimationAdapter;
     }
 
-	public View findViewById(int id) {
-		if (contentView != null)
-			return contentView.findViewById(id);
-		return null;
-	}
-
 	// http://stackoverflow.com/questions/15207305/getting-the-error-java-lang-illegalstateexception-activity-has-been-destroyed
 	@Override
 	public void onDetach() {
@@ -96,15 +77,6 @@ public class BaseFragment extends Fragment {
 	}
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
 
 
     public APP getApp() {
@@ -114,18 +86,6 @@ public class BaseFragment extends Fragment {
     public void showToast(String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
-//
-//    public void showInfo(String message) {
-//        Crouton.makeText(getActivity(), message, Style.INFO).show();
-//    }
-//
-//    public void showErro(String message) {
-//        Crouton.makeText(getActivity(), message, Style.ALERT).show();
-//    }
-//
-//    public void showConfirm(String message) {
-//        Crouton.makeText(getActivity(), message, Style.CONFIRM).show();
-//    }
 
     public void skipIntent(Class clz, HashMap<String, Object> map,
                            boolean isFinish) {
@@ -185,5 +145,20 @@ public class BaseFragment extends Fragment {
 
     public Object getExtra(String name) {
         return getActivity().getIntent().getSerializableExtra(name);
+    }
+
+    @Override
+    public void onStart() {
+        EventBus.getDefault().registerSticky(this);
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    public void onEvent(Object event) {
     }
 }

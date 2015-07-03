@@ -1,18 +1,3 @@
-/*
- * Copyright (C) 2015 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 package com.nicodelee.beautyarticle.ui;
 
@@ -38,6 +23,7 @@ import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.http.AsyncHandlerTextBase;
 import com.nicodelee.beautyarticle.http.HttpHelper;
 import com.nicodelee.beautyarticle.http.JsonUtil;
+import com.nicodelee.beautyarticle.http.URLUtils;
 import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.ui.article.ArticleAct;
@@ -50,20 +36,20 @@ import org.apache.http.Header;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.greenrobot.event.EventBus;
 
 public class ActicleListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener{
 
-    @InjectView(R.id.recyclerview) RecyclerView rv;
-    @InjectView(R.id.swipe_container) MySwipeRefreshLayout mSwipeLayout;
+    @Bind(R.id.recyclerview) RecyclerView rv;
+    @Bind(R.id.swipe_container) MySwipeRefreshLayout mSwipeLayout;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cheese_list, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         setupRecyclerView(rv);
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setRefreshing(true);
@@ -74,7 +60,7 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
     private void setupRecyclerView(final RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
 
-        new HttpHelper.Builder().toUrl("http://beautifulwords.sinaapp.com/polls/").executeGet(new AsyncHandlerTextBase() {
+        new HttpHelper.Builder().toUrl(URLUtils.ACTICLE).executeGet(new AsyncHandlerTextBase() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String result) {
                 super.onSuccess(statusCode, headers, result);
@@ -97,7 +83,6 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
         }, 2000);
     }
 
-
     public static class SimpleStringRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleStringRecyclerViewAdapter.ViewHolder> {
 
@@ -107,15 +92,15 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
 
         public static class ViewHolder extends RecyclerView.ViewHolder {
 
-            @InjectView(R.id.main_title) TextView tvName;
-            @InjectView(R.id.main_desc) TextView tvDesc;
-            @InjectView(R.id.main_ic) ImageView ivIcon;
+            @Bind(R.id.main_title) TextView tvName;
+            @Bind(R.id.main_desc) TextView tvDesc;
+            @Bind(R.id.main_ic) ImageView ivIcon;
             public final View mView;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                ButterKnife.inject(this, view);
+                ButterKnife.bind(this, view);
             }
         }
 
@@ -130,7 +115,6 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_main, parent, false);
-            view.setBackgroundResource(mBackground);
 
             return new ViewHolder(view);
         }

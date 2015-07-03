@@ -13,17 +13,14 @@ import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
-import com.nicodelee.beautyarticle.mode.SlidMod;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
-import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.utils.ListUtils;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class MainAdt extends BaseAdapter {
 
@@ -86,11 +83,11 @@ public class MainAdt extends BaseAdapter {
     }
 
     public final class ViewHolder {
-        @InjectView(R.id.main_title) TextView tvName;
-        @InjectView(R.id.main_desc) TextView tvDesc;
-        @InjectView(R.id.main_ic) ImageView ivIcon;
+        @Bind(R.id.main_title) TextView tvName;
+        @Bind(R.id.main_desc) TextView tvDesc;
+        @Bind(R.id.main_ic) ImageView ivIcon;
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
 
     }

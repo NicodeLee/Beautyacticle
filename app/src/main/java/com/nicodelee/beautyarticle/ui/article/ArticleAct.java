@@ -9,22 +9,18 @@ import android.view.MenuItem;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseSwiBackAct;
 import com.nicodelee.beautyarticle.mode.ActicleMainMod;
-import com.nicodelee.beautyarticle.mode.ActicleMod;
-import com.nicodelee.beautyarticle.utils.LogUitl;
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import de.greenrobot.event.EventBus;
 
 /**
  * Created by alee on 2015/1/9.
  */
 public class ArticleAct extends BaseSwiBackAct {
 
-    @InjectView(R.id.vp_acticle)
-    ViewPager vpActicle;
+    @Bind(R.id.vp_acticle) ViewPager vpActicle;
 
     private ArticleAdt mAdapter;
 
@@ -35,7 +31,7 @@ public class ArticleAct extends BaseSwiBackAct {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_article);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         initView();
     }
 

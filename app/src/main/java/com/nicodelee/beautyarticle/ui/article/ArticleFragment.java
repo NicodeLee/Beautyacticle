@@ -2,11 +2,15 @@ package com.nicodelee.beautyarticle.ui.article;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nicodelee.beautyarticle.R;
@@ -19,15 +23,15 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import de.greenrobot.event.EventBus;
 
 public class ArticleFragment extends BaseFragment {
 
-    @InjectView(R.id.tv_acticle_title) TextView tvTitle;
-    @InjectView(R.id.tv_acticle_detail) TextView tvDetail;
-    @InjectView(R.id.ic_acticle) ImageView ivActicle;
+    @Bind(R.id.tv_acticle_detail) TextView tvDetail;
+    @Bind(R.id.ic_acticle) ImageView ivActicle;
+    @Bind(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbar;
+    @Bind(R.id.toolbar) Toolbar toolbar;
 
     public static final String EXTRA_POSITION = "ARTICLE_POSITION";
     private int position;
@@ -37,8 +41,7 @@ public class ArticleFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         position = getArguments().getInt(EXTRA_POSITION);
         View view = inflater.inflate(R.layout.fragment_article, container, false);
-        ButterKnife.inject(this, view);
-        EventBus.getDefault().registerSticky(this);
+        ButterKnife.bind(this, view);
         initView();
         return view;
     }
@@ -49,23 +52,29 @@ public class ArticleFragment extends BaseFragment {
     }
 
     private void initView() {
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override
-    public void onDestroyView() {
-        EventBus.getDefault().unregister(this);
-        super.onDestroyView();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getActivity().finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
-
 
     public void onEvent(ArrayList<ActicleMainMod> eventList) {
         ActicleMod mod = eventList.get(position).fields;
-        tvTitle.setText(mod.title + "");
+        collapsingToolbar.setTitle(mod.title + "");
         tvDetail.setText(mod.details + "");
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivActicle
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) ivActicle
                 .getLayoutParams();
         params.width = DevicesUtil.screenWidth;
-        params.height = DevicesUtil.screenWidth;
+        params.height = DevicesUtil.screenWidth+DevicesUtil.statusBar+DevicesUtil.dip2px(getActivity(),48);
         ivActicle.setLayoutParams(params);
         APP.getInstance().imageLoader.displayImage(mod.image, ivActicle, APP.options, new SimpleImageLoadingListener());
     }

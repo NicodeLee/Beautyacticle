@@ -19,30 +19,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_dashboard"
-            android:title="Home" />
-        <item
-            android:id="@+id/nav_messages"
-            android:icon="@drawable/ic_event"
-            android:title="Messages" />
+            android:icon="@drawable/drawer_home_icon"
+            android:title="主页" />
         <item
             android:id="@+id/nav_friends"
-            android:icon="@drawable/ic_headset"
-            android:title="Friends" />
-        <item
-            android:id="@+id/nav_discussion"
-            android:icon="@drawable/ic_forum"
-            android:title="Discussion" />
+            android:icon="@drawable/ico_favorite"
+            android:title="喜欢" />
     </group>
 
-    <item android:title="Sub items">
+    <item android:title="更多">
         <menu>
             <item
-                android:icon="@drawable/ic_dashboard"
-                android:title="Sub item 1" />
-            <item
-                android:icon="@drawable/ic_forum"
-                android:title="Sub item 2" />
+                android:icon="@drawable/ico_setting"
+                android:title="设置" />
         </menu>
     </item>
 

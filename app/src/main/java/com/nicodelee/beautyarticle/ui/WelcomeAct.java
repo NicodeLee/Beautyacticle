@@ -16,7 +16,6 @@ public class WelcomeAct extends BaseAct {
         setContentView(R.layout.act_welcome);
         initView();
     }
-
     private void initView() {
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -26,8 +25,6 @@ public class WelcomeAct extends BaseAct {
             }
 
         }, 300);
-
     }
-
 
 }
