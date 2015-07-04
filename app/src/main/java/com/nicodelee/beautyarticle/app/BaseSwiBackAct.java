@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.nicodelee.beautyarticle.R;
 import com.nicodelee.view.LoadingDialog;
 
 import java.io.Serializable;

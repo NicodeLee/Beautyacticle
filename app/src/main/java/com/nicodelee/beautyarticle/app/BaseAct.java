@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.widget.AbsListView;
-import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.devspark.appmsg.AppMsg;
-import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.view.LoadingDialog;
 
@@ -39,13 +36,6 @@ public abstract class BaseAct extends AppCompatActivity {
         return (T) super.findViewById(id);
     }
 
-    public SwingBottomInAnimationAdapter setBottomInAnimation(AbsListView absListView,BaseAdapter baseAdapter){
-        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(baseAdapter);
-        swingBottomInAnimationAdapter.setAbsListView(absListView);
-        assert swingBottomInAnimationAdapter.getViewAnimator() != null;
-        swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(300);
-        return  swingBottomInAnimationAdapter;
-    }
 
     public APP getApp() {
         return (APP) getApplication();

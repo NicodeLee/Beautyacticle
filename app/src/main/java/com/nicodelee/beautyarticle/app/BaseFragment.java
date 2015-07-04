@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.BaseAdapter;
 import android.widget.Toast;
 
-import com.nhaarman.listviewanimations.appearance.simple.SwingBottomInAnimationAdapter;
 import com.nicodelee.view.LoadingDialog;
 
 import java.io.Serializable;
@@ -21,6 +19,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 import de.greenrobot.event.EventBus;
+import jp.wasabeef.recyclerview.animators.FadeInAnimator;
+import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 
 public class BaseFragment extends Fragment {
 	private LayoutInflater inflater;
@@ -52,13 +53,13 @@ public class BaseFragment extends Fragment {
 		return contentView;
 	}
 
-    public SwingBottomInAnimationAdapter setBottomInAnimation(AbsListView absListView,BaseAdapter baseAdapter){
-        SwingBottomInAnimationAdapter swingBottomInAnimationAdapter = new SwingBottomInAnimationAdapter(baseAdapter);
-        swingBottomInAnimationAdapter.setAbsListView(absListView);
-        assert swingBottomInAnimationAdapter.getViewAnimator() != null;
-        swingBottomInAnimationAdapter.getViewAnimator().setInitialDelayMillis(300);
-        return  swingBottomInAnimationAdapter;
+    public ScaleInAnimationAdapter getAnimaAdapter(RecyclerView recyclerView,RecyclerView.Adapter adapter){
+        recyclerView.setItemAnimator(new FadeInAnimator());
+        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);
+        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
+        return scaleAdapter;
     }
+
 
 	// http://stackoverflow.com/questions/15207305/getting-the-error-java-lang-illegalstateexception-activity-has-been-destroyed
 	@Override

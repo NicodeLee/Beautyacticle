@@ -17,9 +17,11 @@ import android.view.MenuItem;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseAct;
 import com.nicodelee.beautyarticle.utils.IsExit;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -68,7 +70,7 @@ public class MainAct extends BaseAct {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new ActicleListFragment(), "文字");
-        adapter.addFragment(new ActicleListFragment(), "好玩");
+        adapter.addFragment(new FunFragment(), "好玩");
         viewPager.setAdapter(adapter);
     }
 
@@ -79,6 +81,14 @@ public class MainAct extends BaseAct {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        switch (menuItem.getItemId()) {
+                            case R.id.nav_home:
+
+                                break;
+                            case R.id.nav_setting:
+                                skipIntent(SettingAct.class,false);
+                                break;
+                        }
                         return true;
                     }
                 });

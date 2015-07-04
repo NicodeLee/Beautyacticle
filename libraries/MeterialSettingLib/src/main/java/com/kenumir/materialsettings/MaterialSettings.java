@@ -55,6 +55,7 @@ public abstract class MaterialSettings extends SwipeBackActionBarAct {
 		setSupportActionBar(toolbar);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setDisplayShowHomeEnabled(true);
+		toolbar.setBackgroundColor(getResources().getColor(R.color.material_deep_teal_500));
 		getSupportActionBar().setTitle("设置");
 
 		material_settings_content = (LinearLayout) findViewById(R.id.material_settings_content);

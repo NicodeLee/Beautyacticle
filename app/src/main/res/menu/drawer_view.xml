@@ -30,6 +30,7 @@
     <item android:title="更多">
         <menu>
             <item
+                android:id="@+id/nav_setting"
                 android:icon="@drawable/ico_setting"
                 android:title="设置" />
         </menu>
