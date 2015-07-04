@@ -3,8 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="16dp"
-    android:layout_marginLeft="@dimen/card_margin"
-    android:layout_marginRight="@dimen/card_margin"
    >
 
     <RelativeLayout
@@ -26,6 +24,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:textColor="@color/help_view"
+            style="@style/FontTitle"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -38,6 +37,7 @@
             android:layout_marginTop="10dp"
             android:maxLines="4"
             android:textColor="@color/gray"
+            style="@style/FontActicle"
             android:textSize="16sp" />
     </RelativeLayout>
 

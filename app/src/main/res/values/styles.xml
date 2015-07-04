@@ -31,4 +31,17 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="FontTitle">
+        <item name="fontPath">fonts/Roboto-Medium.ttf</item>
+        <!--<item name="android:textColor">#444</item>-->
+    </style>
+
+    <style name="FontActicle">
+        <item name="fontPath">fonts/Roboto-Light.ttf</item>
+    </style>
+
+    <style name="FontComm">
+        <item name="fontPath">fonts/Roboto-Regular.ttf</item>
+    </style>
+
 </resources>

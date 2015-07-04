@@ -57,8 +57,10 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="25dp"
+            android:paddingTop="20dp"
             android:textColor="@color/material_blue_grey_800"
-            android:textSize="16sp" />
+            style="@style/FontActicle"
+            android:textSize="18sp" />
 
     </android.support.v4.widget.NestedScrollView>
 

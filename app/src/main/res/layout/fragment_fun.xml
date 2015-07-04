@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="我们正在构思一个好玩的东西"
+        android:textSize="20sp"
+        style="@style/FontComm"
         />
 
 </RelativeLayout>

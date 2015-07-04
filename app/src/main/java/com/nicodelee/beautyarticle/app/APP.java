@@ -18,12 +18,11 @@ import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 
 import java.io.File;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 
 public class APP extends Application {
-
-
-    public static APP app;
-
+    private static APP app;
     public static APP getInstance() {
         return app;
     }
@@ -35,6 +34,11 @@ public class APP extends Application {
         initImageLoader(getApplicationContext());
         AndroidUtils.init(this);
         DevicesUtil.getScreenConfig(this);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                        .setDefaultFontPath("fonts/Roboto-Light.ttf")
+                        .setFontAttrId(R.attr.fontPath)
+                        .build()
+        );
     }
 
     private void initImageLoader(Context context) {
