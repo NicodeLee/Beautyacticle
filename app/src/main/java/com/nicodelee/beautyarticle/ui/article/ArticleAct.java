@@ -23,7 +23,6 @@ public class ArticleAct extends BaseSwiBackAct {
     @Bind(R.id.vp_acticle) ViewPager vpActicle;
 
     private ArticleAdt mAdapter;
-
     private int count;
     private int position;
 

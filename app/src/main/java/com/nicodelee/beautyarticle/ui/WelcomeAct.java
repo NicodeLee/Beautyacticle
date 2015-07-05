@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.nicodelee.beautyarticle.R;
-import com.nicodelee.beautyarticle.app.BaseAct;
 
 public class WelcomeAct extends BaseAct {
     @Override

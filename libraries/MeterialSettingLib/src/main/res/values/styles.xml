@@ -2,8 +2,8 @@
 
 	<!-- Base application theme. -->
 	<style name="MaterialSettingsTheme" parent="Theme.AppCompat.Light.NoActionBar">
-		<item name="msColorPrimary">@color/action_bar</item>
-		<item name="msColorPrimaryDark">@color/action_bar</item>
+		<item name="msColorPrimary">@color/accent</item>
+		<item name="msColorPrimaryDark">@color/accent</item>
 		<item name="msColorAccent">@color/accent</item>
 		<item name="msWindowBg">@color/ms_white</item>
 		<item name="msToolbarTheme">@style/MaterialSettingsTheme_Toolbar</item>

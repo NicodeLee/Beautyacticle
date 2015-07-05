@@ -19,7 +19,6 @@ import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.ui.article.ArticleAct;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nicodelee.utils.ListUtils;
-import com.nicodelee.view.SelectableRoundedImageView;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
@@ -35,7 +34,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by alee on 2015/7/4.
  */
-public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<SimpleStringRecyclerViewAdapter.ViewHolder> {
+public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder> {
 
     private final TypedValue mTypedValue = new TypedValue();
     private ArrayList<ActicleMainMod> mylist;
@@ -55,7 +54,7 @@ public class SimpleStringRecyclerViewAdapter extends RecyclerView.Adapter<Simple
     }
 
 
-    public SimpleStringRecyclerViewAdapter(Context context, ArrayList<ActicleMainMod>  items) {
+    public MainRecyclerViewAdapter(Context context, ArrayList<ActicleMainMod> items) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mylist = items;
     }

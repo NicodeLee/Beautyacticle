@@ -71,11 +71,6 @@ public class ArticleFragment extends BaseFragment {
         ActicleMod mod = eventList.get(position).fields;
         collapsingToolbar.setTitle(mod.title + "");
         tvDetail.setText(mod.details + "");
-        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) ivActicle
-                .getLayoutParams();
-        params.width = DevicesUtil.screenWidth;
-        params.height = DevicesUtil.screenWidth+DevicesUtil.statusBar+DevicesUtil.dip2px(getActivity(),48);
-        ivActicle.setLayoutParams(params);
         APP.getInstance().imageLoader.displayImage(mod.image, ivActicle, APP.options, new SimpleImageLoadingListener());
     }
 

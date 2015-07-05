@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nicodelee.beautyarticle.R;
-import com.nicodelee.beautyarticle.adapter.SimpleStringRecyclerViewAdapter;
+import com.nicodelee.beautyarticle.adapter.MainRecyclerViewAdapter;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.http.AsyncHandlerTextBase;
 import com.nicodelee.beautyarticle.http.HttpHelper;
@@ -54,7 +54,7 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
                 super.onSuccess(statusCode, headers, result);
                 ArrayList<ActicleMainMod> data = JsonUtil.jsonToList(result,ActicleMainMod.class);
                 recyclerView.setAdapter(getAnimaAdapter(recyclerView,
-                        new SimpleStringRecyclerViewAdapter(getActivity(), data)));
+                        new MainRecyclerViewAdapter(getActivity(), data)));
                 mSwipeLayout.setRefreshing(false);
             }
             @Override
