@@ -25,6 +25,15 @@ android {
         exclude 'META-INF/NOTICE.txt'
     }
 
+    signingConfigs {
+        debug {
+            storeFile file("beautiful.keystore")
+            storePassword "com.nicodelee"
+            keyAlias "android"
+            keyPassword "com.nicodelee"
+        }
+    }
+
 }
 
 repositories {
