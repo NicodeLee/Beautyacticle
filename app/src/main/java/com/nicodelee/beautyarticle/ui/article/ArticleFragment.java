@@ -19,6 +19,7 @@ import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
+import com.nicodelee.beautyarticle.utils.UILUtils;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
@@ -71,7 +72,8 @@ public class ArticleFragment extends BaseFragment {
         ActicleMod mod = eventList.get(position).fields;
         collapsingToolbar.setTitle(mod.title + "");
         tvDetail.setText(mod.details + "");
-        APP.getInstance().imageLoader.displayImage(mod.image, ivActicle, APP.options, new SimpleImageLoadingListener());
+        APP.getInstance().imageLoader.displayImage(mod.image, ivActicle, APP.options,
+                new UILUtils.AnimateFirstDisplayListener());
     }
 
 }

@@ -238,8 +238,7 @@ public class AndroidUtils {
 	 */
 
 	/**
-	 * 鑾峰彇鐘舵�鏍忛珮搴�
-	 * 
+	 *
 	 * @return
 	 */
 	public static int getStatusBarHeight(Context context) {

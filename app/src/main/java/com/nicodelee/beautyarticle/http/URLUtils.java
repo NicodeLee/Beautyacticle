@@ -6,7 +6,7 @@ package com.nicodelee.beautyarticle.http;
 public class URLUtils {
     public static final String BASE_URL = "http://beautifulwords.sinaapp.com/";
 
-    public static final String ACTICLE = BASE_URL+"polls/";
+    public static final String ACTICLE = BASE_URL+"acticle/";
 
 
 

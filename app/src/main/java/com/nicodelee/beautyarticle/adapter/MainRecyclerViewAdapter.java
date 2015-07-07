@@ -18,6 +18,7 @@ import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.ui.article.ArticleAct;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
+import com.nicodelee.beautyarticle.utils.UILUtils;
 import com.nicodelee.utils.ListUtils;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -81,8 +82,8 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         holder.tvName.setText(mod.title);
         holder.tvDesc.setText(mod.descriptions);
 
-        AnimateFirstDisplayListener animateFirstDisplayListener = new AnimateFirstDisplayListener();
-        APP.getInstance().imageLoader.displayImage(mod.image, holder.ivIcon, APP.options, animateFirstDisplayListener);
+        APP.getInstance().imageLoader.displayImage(mod.image, holder.ivIcon, APP.options,
+                new UILUtils.AnimateFirstDisplayListener());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,20 +98,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     }
 
-    private static class AnimateFirstDisplayListener extends SimpleImageLoadingListener {
-        static final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
 
-        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-            if (loadedImage != null) {
-                ImageView imageView = (ImageView) view;
-                boolean firstDisplay = !displayedImages.contains(imageUri);
-                if (firstDisplay) {
-                    FadeInBitmapDisplayer.animate(imageView, 500);//动画效果
-                    displayedImages.add(imageUri);
-                }
-            }
-        }
-    }
 
     @Override
     public int getItemCount() {
