@@ -38,7 +38,7 @@ import de.greenrobot.event.EventBus;
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder> {
 
     private final TypedValue mTypedValue = new TypedValue();
-    private ArrayList<ActicleMainMod> mylist;
+    private ArrayList<ActicleMod> mylist;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -55,7 +55,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     }
 
 
-    public MainRecyclerViewAdapter(Context context, ArrayList<ActicleMainMod> items) {
+    public MainRecyclerViewAdapter(Context context, ArrayList<ActicleMod> items) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mylist = items;
     }
@@ -77,7 +77,7 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         params.height = DevicesUtil.screenWidth;
         holder.ivIcon.setLayoutParams(params);
 
-        final ActicleMod mod = mylist.get(position).fields;
+        final ActicleMod mod = mylist.get(position);
 
         holder.tvName.setText(mod.title);
         holder.tvDesc.setText(mod.descriptions);
@@ -97,8 +97,6 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         });
 
     }
-
-
 
     @Override
     public int getItemCount() {

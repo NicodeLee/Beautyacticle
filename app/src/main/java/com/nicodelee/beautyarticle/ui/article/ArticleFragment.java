@@ -68,8 +68,8 @@ public class ArticleFragment extends BaseFragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onEvent(ArrayList<ActicleMainMod> eventList) {
-        ActicleMod mod = eventList.get(position).fields;
+    public void onEvent(ArrayList<ActicleMod> eventList) {
+        ActicleMod mod = eventList.get(position);
         collapsingToolbar.setTitle(mod.title + "");
         tvDetail.setText(mod.details + "");
         APP.getInstance().imageLoader.displayImage(mod.image, ivActicle, APP.options,

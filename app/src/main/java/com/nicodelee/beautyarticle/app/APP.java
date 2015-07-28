@@ -15,6 +15,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 import java.io.File;
 
@@ -30,6 +31,7 @@ public class APP extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        FlowManager.init(this);
         app = this;
         initImageLoader(getApplicationContext());
         AndroidUtils.init(this);
