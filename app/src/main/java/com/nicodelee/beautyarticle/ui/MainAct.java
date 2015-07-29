@@ -1,6 +1,7 @@
 package com.nicodelee.beautyarticle.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -36,6 +37,7 @@ public class MainAct extends MainBase {
             setupViewPager(viewPager);
         }
         tabLayout.setupWithViewPager(viewPager);
+
     }
 
     @Override

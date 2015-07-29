@@ -3,6 +3,7 @@ package com.nicodelee.beautyarticle.ui;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,7 +22,9 @@ import com.nicodelee.beautyarticle.http.URLUtils;
 import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod$Table;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
+import com.nicodelee.utils.WeakHandler;
 import com.raizlabs.android.dbflow.sql.builder.Condition;
 import com.raizlabs.android.dbflow.sql.language.Delete;
 import com.raizlabs.android.dbflow.sql.language.Select;
@@ -30,6 +33,7 @@ import org.apache.http.Header;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -55,6 +59,7 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         //请求数据
         if (isInDB(1)){
+            LogUitl.e("have data");
             mSwipeLayout.setRefreshing(false);
             List<ActicleMod> acticleMods =  new Select().from(ActicleMod.class).queryList();
             recyclerView.setAdapter(getAnimaAdapter(recyclerView,
@@ -65,23 +70,25 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
                 public void onSuccess(int statusCode, Header[] headers, String result) {
                     super.onSuccess(statusCode, headers, result);
                     mSwipeLayout.setRefreshing(false);
-                    ArrayList<ActicleMainMod> data = JsonUtil.jsonToList(result, ActicleMainMod.class);
-
-                    //setDataBase
-                    ActicleMod acticleMod;
-                    ArrayList<ActicleMod> acticleMods = new ArrayList<ActicleMod>();
-                    for (ActicleMainMod mainMod : data) {
-                        acticleMod = mainMod.fields;
-                        acticleMods.add(mainMod.fields);
-                        acticleMod.insert();
-                    }
-
-                    recyclerView.setAdapter(getAnimaAdapter(recyclerView,
-                            new MainRecyclerViewAdapter(getActivity(), acticleMods)));
+                    final ArrayList<ActicleMainMod> data = JsonUtil.jsonToList(result, ActicleMainMod.class);
+                    new WeakHandler().post(new Runnable() {
+                        @Override public void run() {
+                            ActicleMod acticleMod;
+                            ArrayList<ActicleMod> acticleMods = new ArrayList<ActicleMod>();
+                            for (ActicleMainMod mainMod : data) {
+                                acticleMod = mainMod.fields;
+                                acticleMods.add(mainMod.fields);
+                                acticleMod.insert();
+                            }
+                            recyclerView.setAdapter(getAnimaAdapter(recyclerView,
+                                    new MainRecyclerViewAdapter(getActivity(), acticleMods)));
+                        }
+                    });
                 }
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, String result, Throwable throwable) {
+                    LogUitl.e("onFailure="+throwable);
                     mSwipeLayout.setRefreshing(false);
                 }
             }).build();
