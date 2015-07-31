@@ -116,7 +116,7 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
                     recyclerView.setAdapter(getAnimaAdapter(recyclerView, mActcleAdapter));
                 }else if(page<0) {
                     for (ActicleMod mainMod : acticleMods) {
-                        macticleMods.add(mainMod);
+                        macticleMods.add(0,mainMod);
                     }
                     mActcleAdapter.setDatas(macticleMods);
                     recyclerView.setAdapter(getAnimaAdapter(recyclerView, mActcleAdapter));
