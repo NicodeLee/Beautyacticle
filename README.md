@@ -1,8 +1,7 @@
 # Beautyacticle
 Share the most beautiful words
 
-尽我所能，做一个好用的文字APP。
-尽我所学，把代码写好。
+做一个好用的文字APP
 
 ##应用Demo
 <br>
