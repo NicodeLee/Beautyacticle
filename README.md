@@ -7,6 +7,15 @@ Share the most beautiful words
 <br>
 ![](https://github.com/rizhilee/Beautyacticle/blob/master/screenshot/demo.gif)  
 
+# Thanks
+- [butterknife](https://github.com/JakeWharton/butterknife)
+- [EventBus](https://github.com/greenrobot/EventBus)
+- [Android-Universal-Image-Loader](https://github.com/nostra13/Android-Universal-Image-Loader)
+- [jackson](https://github.com/FasterXML/jackson)
+- [android-async-http](https://github.com/loopj/android-async-http)
+- [Android-AppMsg](https://github.com/johnkil/Android-AppMsg)
+- [recyclerview-animators](https://github.com/wasabeef/recyclerview-animators)
+- [DBFlow](https://github.com/Raizlabs/DBFlow)
 
 ##License
 -------
