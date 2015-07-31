@@ -7,7 +7,7 @@ Share the most beautiful words
 <br>
 ![](https://github.com/rizhilee/Beautyacticle/blob/master/screenshot/demo.gif)  
 
-# Thanks
+## Thanks
 - [butterknife](https://github.com/JakeWharton/butterknife)
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [Android-Universal-Image-Loader](https://github.com/nostra13/Android-Universal-Image-Loader)
