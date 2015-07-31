@@ -11,8 +11,8 @@ import com.raizlabs.android.dbflow.annotation.Table;
 @Table(databaseName = ActicleDatabase.NANE)
 public class ActicleMod extends BaseMod{
 
-    @Column
-    @PrimaryKey(autoincrement = true)
+    @Column(name = "id")
+    @PrimaryKey
     public long id;
 
     @Column(name = "title")
@@ -26,5 +26,13 @@ public class ActicleMod extends BaseMod{
 
     @Column(name = "descriptions")
     public String descriptions;
+
+    @Column(name = "pub_date")
+    public String pub_date;
+
+    @Column(name = "author")
+    public String author;
+
+
 
 }

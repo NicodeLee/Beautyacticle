@@ -8,7 +8,7 @@ import android.view.MenuItem;
 
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseSwiBackAct;
-import com.nicodelee.beautyarticle.mode.ActicleMainMod;
+import com.nicodelee.beautyarticle.mode.ActicleMod;
 
 import java.util.ArrayList;
 
@@ -43,7 +43,7 @@ public class ArticleAct extends BaseSwiBackAct {
         position = event;
     }
 
-    public void onEvent(ArrayList<ActicleMainMod> eventList) {
+    public void onEvent(ArrayList<ActicleMod> eventList) {
         count = eventList.size();
         vpActicle.setAdapter(mAdapter);
         vpActicle.setCurrentItem(position);

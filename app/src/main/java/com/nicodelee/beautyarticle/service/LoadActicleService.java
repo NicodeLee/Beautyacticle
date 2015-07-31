@@ -3,11 +3,6 @@ package com.nicodelee.beautyarticle.service;
 import android.app.IntentService;
 import android.content.Intent;
 
-import com.nicodelee.beautyarticle.mode.ActicleMod;
-import com.nicodelee.beautyarticle.mode.ActicleMod$Table;
-import com.raizlabs.android.dbflow.sql.builder.Condition;
-import com.raizlabs.android.dbflow.sql.language.Select;
-
 /**
  * Created by Nicodelee on 15/7/28.
  */
@@ -48,10 +43,10 @@ public class LoadActicleService extends IntentService{
 //
 //    }
 
-    private boolean isInDB(int index) {
-        return new Select()
-                .from(ActicleMod.class)
-                .where(Condition.column(ActicleMod$Table.ID).eq(index))
-                .querySingle() != null;
-    }
+//    private boolean isInDB(int index) {
+//        return new Select()
+//                .from(ActicleMod.class)
+//                .where(Condition.column(ActicleMod$Table.ID).eq(index))
+//                .querySingle() != null;
+//    }
 }

@@ -23,34 +23,13 @@ import jp.wasabeef.recyclerview.animators.FadeInAnimator;
 import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 
-public class BaseFragment extends Fragment {
-	private LayoutInflater inflater;
-	private View contentView;
+public abstract class BaseFragment extends Fragment {
 	private Context context;
-	private ViewGroup container;
-    public LoadingDialog loadingDialog;
 
     @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = getActivity().getApplicationContext();
-	}
-
-
-	public Context getApplicationContext() {
-		return context;
-	}
-
-	public void setContentView(int layoutResID) {
-		setContentView((ViewGroup) inflater.inflate(layoutResID, container, false));
-	}
-
-	public void setContentView(View view) {
-		contentView = view;
-	}
-
-	public View getContentView() {
-		return contentView;
 	}
 
     public ScaleInAnimationAdapter getAnimaAdapter(RecyclerView recyclerView,RecyclerView.Adapter adapter){

@@ -9,18 +9,14 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
-import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
-import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nicodelee.beautyarticle.utils.UILUtils;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
 

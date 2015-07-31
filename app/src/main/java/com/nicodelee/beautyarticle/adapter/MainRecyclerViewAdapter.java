@@ -2,7 +2,6 @@ package com.nicodelee.beautyarticle.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -14,19 +13,13 @@ import android.widget.TextView;
 
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
-import com.nicodelee.beautyarticle.mode.ActicleMainMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.ui.article.ArticleAct;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nicodelee.beautyarticle.utils.UILUtils;
 import com.nicodelee.utils.ListUtils;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -58,6 +51,15 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
     public MainRecyclerViewAdapter(Context context, ArrayList<ActicleMod> items) {
         context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
         mylist = items;
+    }
+
+    public void setDatas(ArrayList<ActicleMod> coll) {
+        if (coll == null) {
+            coll = new ArrayList<ActicleMod>();
+        } else {
+            this.mylist = coll;
+        }
+        notifyDataSetChanged();
     }
 
     @Override
