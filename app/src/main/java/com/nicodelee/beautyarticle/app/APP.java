@@ -54,7 +54,7 @@ public class APP extends Application {
                         new UnlimitedDiscCache(new File(Environment
                                 .getExternalStorageDirectory()
                                 .getAbsolutePath()
-                                + "/BeautyArcile/pic")))
+                                + "/Beautyacticle/pic")))
                 .discCacheFileNameGenerator(new HashCodeFileNameGenerator())
                 .discCacheSize(50 * 1024 * 1024).discCacheFileCount(100)
                 .denyCacheImageMultipleSizesInMemory()

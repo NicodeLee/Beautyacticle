@@ -53,11 +53,11 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         mylist = items;
     }
 
-    public void setDatas(ArrayList<ActicleMod> coll) {
-        if (coll == null) {
-            coll = new ArrayList<ActicleMod>();
+    public void setDatas(ArrayList<ActicleMod> acticleMods) {
+        if (acticleMods == null) {
+            acticleMods = new ArrayList<ActicleMod>();
         } else {
-            this.mylist = coll;
+            this.mylist = acticleMods;
         }
         notifyDataSetChanged();
     }

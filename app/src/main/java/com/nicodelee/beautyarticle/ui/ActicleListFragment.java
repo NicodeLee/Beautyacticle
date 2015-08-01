@@ -19,7 +19,6 @@ import com.nicodelee.beautyarticle.http.JsonUtil;
 import com.nicodelee.beautyarticle.http.URLUtils;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod$Table;
-import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.viewhelper.EndlessRecyclerOnScrollListener;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.utils.ListUtils;
@@ -29,7 +28,6 @@ import com.raizlabs.android.dbflow.sql.language.Select;
 import org.apache.http.Header;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,44 +42,39 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
     private boolean isHasMore = true;
 
     @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_list, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         macticleMods = new ArrayList<ActicleMod>();
         mSwipeLayout.setOnRefreshListener(this);
-        setupRecyclerView(rv);
+        setupRecyclerView();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(linearLayoutManager);
         rv.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
             @Override public void onLoadMore() {
-                LogUitl.e("mSwipeLayout.isRefreshing()=="+mSwipeLayout.isRefreshing());
-                LogUitl.e("size="+macticleMods.size()+" ,lastID=="+ (int) macticleMods.get(macticleMods.size()-1).id);
-                if(isHasMore && !mSwipeLayout.isRefreshing()){
-                    getActicle(1, (int) macticleMods.get(macticleMods.size()-1).id,rv);
+                int size = macticleMods.size();
+                if (isHasMore && !mSwipeLayout.isRefreshing()) {
+                    getActicle(1, (int) macticleMods.get(size - 1).id);
                 }
             }
         });
     }
 
-    private void setupRecyclerView(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+    private void setupRecyclerView() {
+        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
         if (isInDB()){
-            //TODO 加载本地缓存，请求最新
             macticleMods =  (ArrayList<ActicleMod>)new Select().from(ActicleMod.class)
                     .orderBy(false, ActicleMod$Table.ID).queryList();
-            mActcleAdapter = new MainRecyclerViewAdapter(getActivity(),macticleMods);
-
-            recyclerView.setAdapter(getAnimaAdapter(recyclerView,mActcleAdapter));
-
+            mActcleAdapter = new MainRecyclerViewAdapter(getActivity(), macticleMods);
+            rv.setAdapter(mActcleAdapter);
+//            rv.setAdapter(getAnimaAdapter(rv, mActcleAdapter));
         }else {
-            getActicle(0,0,recyclerView);//首次获取数据
+            getActicle(0,0);//首次获取数据
         }
     }
 
@@ -90,57 +83,55 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
                 .limit(1).queryList().size() > 0;
     }
 
-    private void getActicle(final int page,int id,final RecyclerView recyclerView){
-        //page = 0 首次 <0 刷新 >0 加载更多
+    private void getActicle(final int page,int id){
         mSwipeLayout.setRefreshing(true);
-        new HttpHelper.Builder().toUrl(URLUtils.ACTICLE).addParams("page",page+"").addParams("id", id + "").executeGet(new AsyncHandlerTextBase() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, String result) {
-                super.onSuccess(statusCode, headers, result);
-                mSwipeLayout.setRefreshing(false);
-                final ArrayList<ActicleMod> acticleMods = JsonUtil.jsonToList(result, ActicleMod.class);
+        new HttpHelper.Builder().toUrl(URLUtils.ACTICLE)
+                .addParams("page", page + "")
+                .addParams("id", id + "")
+                .executeGet(new AsyncHandlerTextBase() {
+                    @Override public void onSuccess(int statusCode, Header[] headers, String result) {
+                        super.onSuccess(statusCode, headers, result);
 
-                if(ListUtils.isEmpty(acticleMods) && page>0 ){
-                    showToast("全部加载完毕");
-                    isHasMore = false;
-                    return;
-                }
-
-                if (page == 0){
-                    macticleMods = acticleMods;
-                    mActcleAdapter = new MainRecyclerViewAdapter(getActivity(),macticleMods);
-                    recyclerView.setAdapter(getAnimaAdapter(recyclerView,mActcleAdapter));
-                }else if(page>0){
-                    macticleMods.addAll(acticleMods);
-                    mActcleAdapter.setDatas(macticleMods);
-                    recyclerView.setAdapter(getAnimaAdapter(recyclerView, mActcleAdapter));
-                }else if(page<0) {
-                    for (ActicleMod mainMod : acticleMods) {
-                        macticleMods.add(0,mainMod);
-                    }
-                    mActcleAdapter.setDatas(macticleMods);
-                    recyclerView.setAdapter(getAnimaAdapter(recyclerView, mActcleAdapter));
-                }
-
-                new WeakHandler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        ActicleMod acticleMod;
-                        for (ActicleMod mainMod : acticleMods) {
-                            acticleMod = mainMod;
-                            acticleMod.save();
+                        final ArrayList<ActicleMod> acticleMods = JsonUtil.jsonToList(result, ActicleMod.class);
+                        mSwipeLayout.setRefreshing(false);
+                        if (ListUtils.isEmpty(acticleMods) && page > 0) {
+                            showToast("全部加载完毕");
+                            isHasMore = false;
+                            return;
                         }
+                        //page = 0 首次 <0 刷新 >0 加载更多
+                        if (page == 0) {
+                            macticleMods = acticleMods;
+                            mActcleAdapter = new MainRecyclerViewAdapter(getActivity(), macticleMods);
+//                    rv.setAdapter(getAnimaAdapter(rv,mActcleAdapter));
+                            rv.setAdapter(mActcleAdapter);
+                        } else if (page > 0) {
+                            macticleMods.addAll(acticleMods);
+//                    rv.setAdapter(getAnimaAdapter(rv, mActcleAdapter));
+                        } else if (page < 0) {
+                            for (ActicleMod mainMod : acticleMods) {
+                                macticleMods.add(0, mainMod);
+                            }
+//                    rv.setAdapter(getAnimaAdapter(rv, mActcleAdapter));
+                        }
+                        mActcleAdapter.notifyDataSetChanged();
+
+                        new WeakHandler().post(new Runnable() {
+                            @Override
+                            public void run() {
+                                ActicleMod acticleMod;
+                                for (ActicleMod mainMod : acticleMods) {
+                                    acticleMod = mainMod;
+                                    acticleMod.save();
+                                }
+                            }
+                        });
                     }
-                });
 
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String result, Throwable throwable) {
-                LogUitl.e("throwable:"+throwable);
-                mSwipeLayout.setRefreshing(false);
-            }
-        }).build();
+                    @Override public void onFailure(int statusCode, Header[] headers, String result, Throwable throwable) {
+                        mSwipeLayout.setRefreshing(false);
+                    }
+                }).build();
     }
 
     @Override public void onRefresh() {
@@ -148,15 +139,9 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
             @Override
             public void run() {
                 if (!ListUtils.isEmpty(macticleMods))
-                getActicle(-1,(int)macticleMods.get(0).id,rv);
+                    getActicle(-1, (int) macticleMods.get(0).id);
             }
         }, 300);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        new EndlessRecyclerOnScrollListener().reset(0, true);
     }
 
 }

@@ -33,6 +33,4 @@ public class ActicleMod extends BaseMod{
     @Column(name = "author")
     public String author;
 
-
-
 }
