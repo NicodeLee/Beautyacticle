@@ -3,6 +3,8 @@ Share the most beautiful words
 
 做一个好用的文字APP
 
+直接下载：http://fir.im/beautyacticle
+
 ##应用Demo
 <br>
 ![](https://github.com/rizhilee/Beautyacticle/blob/master/screenshot/demo.gif)  
