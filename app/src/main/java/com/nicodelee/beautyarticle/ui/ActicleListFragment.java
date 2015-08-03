@@ -72,7 +72,6 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
                     .orderBy(false, ActicleMod$Table.ID).queryList();
             mActcleAdapter = new MainRecyclerViewAdapter(getActivity(), macticleMods);
             rv.setAdapter(mActcleAdapter);
-//            rv.setAdapter(getAnimaAdapter(rv, mActcleAdapter));
         }else {
             getActicle(0,0);//首次获取数据
         }
@@ -103,16 +102,13 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
                         if (page == 0) {
                             macticleMods = acticleMods;
                             mActcleAdapter = new MainRecyclerViewAdapter(getActivity(), macticleMods);
-//                    rv.setAdapter(getAnimaAdapter(rv,mActcleAdapter));
                             rv.setAdapter(mActcleAdapter);
                         } else if (page > 0) {
                             macticleMods.addAll(acticleMods);
-//                    rv.setAdapter(getAnimaAdapter(rv, mActcleAdapter));
                         } else if (page < 0) {
                             for (ActicleMod mainMod : acticleMods) {
                                 macticleMods.add(0, mainMod);
                             }
-//                    rv.setAdapter(getAnimaAdapter(rv, mActcleAdapter));
                         }
                         mActcleAdapter.notifyDataSetChanged();
 

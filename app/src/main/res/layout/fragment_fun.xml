@@ -1,21 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sc_fun"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f8f8f1"
-    android:id="@+id/rl_fun"
     >
 
-    <TextView
-        android:id="@+id/tv_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="我们正在构思一个好玩的东西"
-        android:textSize="20sp"
-        style="@style/FontComm"
-        />
+    <RelativeLayout
+        android:id="@+id/rl_fun"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f8f8f1"
+        >
 
+        <com.nicodelee.view.CircularImage
+            android:id="@+id/iv_fun"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/head" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/FontComm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/iv_fun"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:maxEms="1"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <com.nicodelee.beautyarticle.viewhelper.VerticalTextView
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_fun"
+            android:layout_marginRight="18dp"
+            android:layout_marginTop="30dp"
+            android:layout_toLeftOf="@+id/tv_title"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/FontComm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="12dp"
+            android:gravity="bottom"
+            android:maxEms="1"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</ScrollView>

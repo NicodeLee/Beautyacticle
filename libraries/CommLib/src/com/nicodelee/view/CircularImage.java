@@ -3,7 +3,7 @@ package com.nicodelee.view;
 /**
  * Description 圆形头像图片
  * 
- * Author lirizhi
+ * Author Nicodelee
  * Create date 2013-12-29
  */
 
