@@ -23,7 +23,7 @@ public class SettingAct extends MaterialSettings implements SampleDialog.OnDialo
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addItem(new HeaderItem(this).setTitle("感谢有你"));
+        addItem(new HeaderItem(this).setTitle("设置开发完善中"));
         addItem(new CheckboxItem(this, "key1").setTitle("无图模式").setSubtitle("更省流量").setOnCheckedChangeListener(new CheckboxItem.OnCheckedChangeListener() {
             @Override
             public void onCheckedChange(CheckboxItem cbi, boolean isChecked) {
@@ -42,10 +42,10 @@ public class SettingAct extends MaterialSettings implements SampleDialog.OnDialo
         }));
         addItem(new DividerItem(this));
         addItem(new HeaderItem(this).setTitle("我是哪位？"));
-        addItem(new TextItem(this, "key4").setTitle("关于作者").setSubtitle("感谢亲的使用").setOnclick(new TextItem.OnClickListener() {
+        addItem(new TextItem(this, "key4").setTitle("关于作者").setSubtitle("感谢使用").setOnclick(new TextItem.OnClickListener() {
             @Override
             public void onClick(TextItem v) {
-                Toast.makeText(SettingAct.this, "Clicked 2", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SettingAct.this, "感谢使用", Toast.LENGTH_SHORT).show();
             }
         }));
     }

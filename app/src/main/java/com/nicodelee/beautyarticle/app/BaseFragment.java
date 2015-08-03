@@ -4,13 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.nicodelee.view.LoadingDialog;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -19,9 +13,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 import de.greenrobot.event.EventBus;
-import jp.wasabeef.recyclerview.animators.FadeInAnimator;
-import jp.wasabeef.recyclerview.animators.adapters.AlphaInAnimationAdapter;
-import jp.wasabeef.recyclerview.animators.adapters.ScaleInAnimationAdapter;
 
 public abstract class BaseFragment extends Fragment {
 	private Context context;
@@ -32,12 +23,12 @@ public abstract class BaseFragment extends Fragment {
 		context = getActivity().getApplicationContext();
 	}
 
-    public ScaleInAnimationAdapter getAnimaAdapter(RecyclerView recyclerView,RecyclerView.Adapter adapter){
-        recyclerView.setItemAnimator(new FadeInAnimator());
-        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);
-        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
-        return scaleAdapter;
-    }
+//    public ScaleInAnimationAdapter getAnimaAdapter(RecyclerView recyclerView,RecyclerView.Adapter adapter){
+//        recyclerView.setItemAnimator(new FadeInAnimator());
+//        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);
+//        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
+//        return scaleAdapter;
+//    }
 
 
 	// http://stackoverflow.com/questions/15207305/getting-the-error-java-lang-illegalstateexception-activity-has-been-destroyed

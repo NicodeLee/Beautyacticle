@@ -2,6 +2,7 @@ package com.nicodelee.beautyarticle.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
@@ -18,8 +20,15 @@ import com.nicodelee.beautyarticle.ui.article.ArticleAct;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nicodelee.beautyarticle.utils.UILUtils;
 import com.nicodelee.utils.ListUtils;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,6 +47,10 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         @Bind(R.id.main_title) TextView tvName;
         @Bind(R.id.main_desc) TextView tvDesc;
         @Bind(R.id.main_ic) ImageView ivIcon;
+        @Bind(R.id.rl_msg) RelativeLayout rlMsg;
+        @Bind(R.id.rl_loading) RelativeLayout rlLoading;
+        @Bind(R.id.number_progress_bar)
+        NumberProgressBar progressBar;
         public final View mView;
 
         public ViewHolder(View view) {
@@ -85,7 +98,40 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
         holder.tvDesc.setText(mod.descriptions);
 
         APP.getInstance().imageLoader.displayImage(mod.image, holder.ivIcon, APP.options,
-                new UILUtils.AnimateFirstDisplayListener());
+                new SimpleImageLoadingListener() {
+
+                     final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
+                    @Override
+                    public void onLoadingStarted(String imageUri, View view) {
+                        holder.progressBar.setProgress(0);
+                        holder.rlLoading.setVisibility(View.VISIBLE);
+                    }
+                    @Override
+                    public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                        holder.rlLoading.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                        holder.rlLoading.setVisibility(View.GONE);
+                        if (loadedImage != null) {
+                            ImageView imageView = (ImageView) view;
+                            boolean firstDisplay = !displayedImages.contains(imageUri);
+                            if (firstDisplay) {
+                                FadeInBitmapDisplayer.animate(imageView, 500);//动画效果
+                                displayedImages.add(imageUri);
+                            }
+                        }
+                    }
+
+                }, new ImageLoadingProgressListener() {
+                    @Override
+                    public void onProgressUpdate(String imageUri, View view, int current, int total) {
+                        holder.progressBar.setProgress(Math.round(100.0f * current / total));
+                    }
+                });
+//        APP.getInstance().imageLoader.displayImage(mod.image, holder.ivIcon, APP.options,
+//                new UILUtils.AnimateFirstDisplayListener());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
