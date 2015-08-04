@@ -12,6 +12,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.FrameLayout.LayoutParams;
 
+import com.github.clans.fab.FloatingActionMenu;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
@@ -34,6 +35,7 @@ public class FunFragment extends BaseFragment {
     @Bind(R.id.tv_desc) VerticalTextView tvDesc;
     @Bind(R.id.tv_time) TextView tvTime;
     @Bind(R.id.tv_title) TextView tvTitle;
+    @Bind(R.id.fl_menu) FloatingActionMenu famFun;
 
     @BindString(R.string.article) String acticle;
 
@@ -58,15 +60,22 @@ public class FunFragment extends BaseFragment {
         tvDesc.setTypeface(face);
         tvDesc.setText(acticle);
         tvTime.setText(TimeUtils.dateToCnDate(TimeUtils.getCurentData()));
-        rlFun.setLayoutParams(new LayoutParams(DevicesUtil.screenWidth,LayoutParams.MATCH_PARENT));
+        rlFun.setLayoutParams(new LayoutParams(DevicesUtil.screenWidth,LayoutParams.WRAP_CONTENT));
         layoutToImage = new LayoutToImage(scFun);
         bitmap = layoutToImage.convertlayout();
     }
 
-    @OnClick({R.id.rl_fun})
-    public void Click() {
-        if (SharImageUtils.saveBitmap(bitmap, sharePicName))
-            SharImageUtils.share(AndroidUtils.IMAGE_CACHE_PATH + "/" + sharePicName, "分享", getActivity());
+    @OnClick({R.id.fb_share,R.id.fb_make})
+    public void Click(View view) {
+        switch (view.getId()){
+            case R.id.fb_share:
+                if (SharImageUtils.saveBitmap(bitmap, sharePicName))
+                    SharImageUtils.share(AndroidUtils.IMAGE_CACHE_PATH + "/" + sharePicName, "分享", getActivity());
+                break;
+            case R.id.fb_make:
+                showToast("全力开发中...");
+                break;
+        }
     }
 
 }
