@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/main_title"
-            style="@style/FontTitle"
+            style="@style/FontComm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/main_ic"

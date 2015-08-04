@@ -2,6 +2,7 @@
 package com.nicodelee.beautyarticle.ui;
 
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.nicodelee.beautyarticle.viewhelper.LayoutToImage;
 import com.nicodelee.beautyarticle.viewhelper.VerticalTextView;
 
 import butterknife.Bind;
+import butterknife.BindColor;
+import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -29,11 +32,14 @@ public class FunFragment extends BaseFragment {
     @Bind(R.id.sc_fun) ScrollView scFun;
     @Bind(R.id.rl_fun) RelativeLayout rlFun;
     @Bind(R.id.tv_desc) VerticalTextView tvDesc;
-    @Bind(R.id.tv_title) TextView tvTitle;
     @Bind(R.id.tv_time) TextView tvTime;
+    @Bind(R.id.tv_title) TextView tvTitle;
+
+    @BindString(R.string.article) String acticle;
 
     private LayoutToImage layoutToImage;
     private Bitmap bitmap;
+
     private String sharePicName = "beautyacticle.png";
 
     @Override
@@ -46,7 +52,11 @@ public class FunFragment extends BaseFragment {
 
     private void init() {
         tvTitle.setText("一生");
-        tvDesc.setText("我行过许多地方的桥");
+        tvDesc.setTextSize(40);
+        tvDesc.setLineWidth(60);
+        Typeface face = Typeface.createFromAsset(getActivity().getAssets(),"fonts/fun_font.TTF");
+        tvDesc.setTypeface(face);
+        tvDesc.setText(acticle);
         tvTime.setText(TimeUtils.dateToCnDate(TimeUtils.getCurentData()));
         rlFun.setLayoutParams(new LayoutParams(DevicesUtil.screenWidth,LayoutParams.MATCH_PARENT));
         layoutToImage = new LayoutToImage(scFun);

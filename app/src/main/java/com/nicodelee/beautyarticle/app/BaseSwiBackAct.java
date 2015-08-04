@@ -1,6 +1,7 @@
 package com.nicodelee.beautyarticle.app;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class BaseSwiBackAct extends SwipeBackActivity {
@@ -29,6 +31,11 @@ public class BaseSwiBackAct extends SwipeBackActivity {
         Cot = this;
         intent = getIntent();
         loadingDialog = new LoadingDialog(this);
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
 

@@ -32,15 +32,15 @@ public class APP extends Application {
     public void onCreate() {
         super.onCreate();
         FlowManager.init(this);
-        app = this;
-        initImageLoader(getApplicationContext());
-        AndroidUtils.init(this);
-        DevicesUtil.getScreenConfig(this);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
                         .setDefaultFontPath("fonts/Roboto-Light.ttf")
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         );
+        app = this;
+        initImageLoader(getApplicationContext());
+        AndroidUtils.init(this);
+        DevicesUtil.getScreenConfig(this);
     }
 
     private void initImageLoader(Context context) {

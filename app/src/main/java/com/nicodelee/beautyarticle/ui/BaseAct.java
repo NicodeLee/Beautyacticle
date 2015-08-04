@@ -1,5 +1,6 @@
 package com.nicodelee.beautyarticle.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 import de.greenrobot.event.EventBus;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public abstract class BaseAct extends AppCompatActivity {
 
@@ -36,7 +38,10 @@ public abstract class BaseAct extends AppCompatActivity {
     public <T> T findViewByIdExt(int id) {
         return (T) super.findViewById(id);
     }
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
 
     public APP getApp() {
         return (APP) getApplication();

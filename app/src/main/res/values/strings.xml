@@ -4,30 +4,7 @@
     <string name="app_name">最美文字</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="article">
-    未 选 择 的 路 \n
-\t\t弗罗斯特  \n \n
-黄色的树林里分出两条路，  \n
-可惜我不能同时去涉足，  \n
-我在那路口久久伫立，  \n
-我向着一条路极目望去，  \n
-直到它消失在丛林深处。  \n
-但我却选了另外一条路，  \n
-它荒草萋萋，十分幽寂，  \n
-显得更诱人、更美丽，  \n
-虽然在这两条小路上，  \n
-都很少留下旅人的足迹，  \n
-虽然那天清晨落叶满地，  \n
-两条路都未经脚印污染。  \n
-呵，留下一条路等改日再见！  \n
-但我知道路径延绵无尽头，  \n
-恐怕我难以再回返。  \n
-也许多少年后在某个地方，  \n
-我将轻声叹息把往事回顾，  \n
-一片树林里分出两条路，  \n
-而我选了人迹更少的一条，  \n
-从此决定了我一生的道路。 \n
-    </string>
+    <string name="article">我行过许多地方的桥，\n看过许多次数的云，\n喝过很多种类的酒，\n却只爱过一个正当最好年龄的人。</string>
 
     <string name="app_description">Android drawer icon with material design animation</string>
     <string name="drawer_open">drawer_open</string>
