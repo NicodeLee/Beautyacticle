@@ -53,9 +53,10 @@ public class FunFragment extends BaseFragment {
     }
 
     private void init() {
+        famFun.setClosedOnTouchOutside(true);
         tvTitle.setText("一生");
-        tvDesc.setTextSize(40);
-        tvDesc.setLineWidth(60);
+        tvDesc.setTextSize(38);
+        tvDesc.setLineWidth(58);
         Typeface face = Typeface.createFromAsset(getActivity().getAssets(),"fonts/fun_font.TTF");
         tvDesc.setTypeface(face);
         tvDesc.setText(acticle);
@@ -69,10 +70,12 @@ public class FunFragment extends BaseFragment {
     public void Click(View view) {
         switch (view.getId()){
             case R.id.fb_share:
+                famFun.close(true);
                 if (SharImageUtils.saveBitmap(bitmap, sharePicName))
                     SharImageUtils.share(AndroidUtils.IMAGE_CACHE_PATH + "/" + sharePicName, "分享", getActivity());
                 break;
             case R.id.fb_make:
+                famFun.close(true);
                 showToast("全力开发中...");
                 break;
         }

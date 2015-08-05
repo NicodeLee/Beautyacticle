@@ -93,11 +93,17 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
 
                         final ArrayList<ActicleMod> acticleMods = JsonUtil.jsonToList(result, ActicleMod.class);
                         mSwipeLayout.setRefreshing(false);
-                        if (ListUtils.isEmpty(acticleMods) && page > 0) {
-                            showToast("全部加载完毕");
-                            isHasMore = false;
+
+                        if (ListUtils.isEmpty(acticleMods)) {
+                            if (page > 0){
+                                showToast("全部加载完毕");
+                                isHasMore = false;
+                            }else if(page < 0){
+                                showToast("小编正为你编辑更多文章");
+                            }
                             return;
                         }
+
                         //page = 0 首次 <0 刷新 >0 加载更多
                         if (page == 0) {
                             macticleMods = acticleMods;
@@ -105,12 +111,13 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
                             rv.setAdapter(mActcleAdapter);
                         } else if (page > 0) {
                             macticleMods.addAll(acticleMods);
+                            mActcleAdapter.notifyItemInserted(macticleMods.size());
                         } else if (page < 0) {
                             for (ActicleMod mainMod : acticleMods) {
                                 macticleMods.add(0, mainMod);
                             }
+                            mActcleAdapter.notifyItemRangeChanged(0,acticleMods.size());
                         }
-                        mActcleAdapter.notifyDataSetChanged();
 
                         new WeakHandler().post(new Runnable() {
                             @Override
