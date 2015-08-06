@@ -43,7 +43,7 @@ public class SharImageUtils {
         }
         try {
             FileOutputStream out = new FileOutputStream(f);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 70, out);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 50, out);
             out.flush();
             out.close();
             return true;

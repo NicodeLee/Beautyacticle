@@ -1,9 +1,11 @@
 package com.nicodelee.beautyarticle.app;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -46,6 +48,14 @@ public abstract class BaseFragment extends Fragment {
 			throw new RuntimeException(e);
 		}
 	}
+
+    public FragmentActivity mActivity;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = (FragmentActivity) activity;
+    }
 
 
 

@@ -35,6 +35,25 @@ public class DevicesUtil {
 		return (int) (pxValue / scale + 0.5f);
 	}
 
+
+	/**
+	 * 将px值转换为sp值，保证文字大小不变
+	 *DisplayMetrics类中属性scaledDensity）
+	 */
+	public static int px2sp(Context context, float pxValue) {
+		final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+		return (int) (pxValue / fontScale + 0.5f);
+	}
+
+	/**
+	 * 将sp值转换为px值，保证文字大小不变
+	 * DisplayMetrics类中属性scaledDensity）
+	 */
+	public static int sp2px(Context context, float spValue) {
+		final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+		return (int) (spValue * fontScale + 0.5f);
+	}
+
 	// 获取屏幕的高度和宽度
 	public static void getScreenConfig(Context context) {
 

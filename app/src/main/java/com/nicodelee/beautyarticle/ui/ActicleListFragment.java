@@ -70,7 +70,7 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
         if (isInDB()){
             macticleMods =  (ArrayList<ActicleMod>)new Select().from(ActicleMod.class)
                     .orderBy(false, ActicleMod$Table.ID).queryList();
-            mActcleAdapter = new MainRecyclerViewAdapter(getActivity(), macticleMods);
+            mActcleAdapter = new MainRecyclerViewAdapter(mActivity, macticleMods);
             rv.setAdapter(mActcleAdapter);
         }else {
             getActicle(0,0);//首次获取数据
@@ -107,7 +107,7 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
                         //page = 0 首次 <0 刷新 >0 加载更多
                         if (page == 0) {
                             macticleMods = acticleMods;
-                            mActcleAdapter = new MainRecyclerViewAdapter(getActivity(), macticleMods);
+                            mActcleAdapter = new MainRecyclerViewAdapter(mActivity, macticleMods);
                             rv.setAdapter(mActcleAdapter);
                         } else if (page > 0) {
                             macticleMods.addAll(acticleMods);
@@ -116,7 +116,8 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
                             for (ActicleMod mainMod : acticleMods) {
                                 macticleMods.add(0, mainMod);
                             }
-                            mActcleAdapter.notifyItemRangeChanged(0,acticleMods.size());
+//                            mActcleAdapter.notifyItemRangeChanged(0,acticleMods.size());
+                            mActcleAdapter.notifyDataSetChanged();
                         }
 
                         new WeakHandler().post(new Runnable() {
@@ -141,8 +142,11 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
         new WeakHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!ListUtils.isEmpty(macticleMods))
+                if (ListUtils.isEmpty(macticleMods)){
+                    getActicle(0,0);//首次获取数据
+                }else {
                     getActicle(-1, (int) macticleMods.get(0).id);
+                }
             }
         }, 300);
     }

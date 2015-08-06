@@ -26,6 +26,7 @@ public class VerticalTextView extends View {
     private int mRealLine = 0;// 字符串真实的行数
     private int mLineWidth = 0;//列宽度
     private int TextLength = 0;//字符串长度
+    private int maxTextCount = 18;//每行超过字数自动换行数
     private int oldwidth = 0;//存储久的width
     private String text = "";//待显示的文字
     private Handler mHandler = null;
@@ -49,18 +50,6 @@ public class VerticalTextView extends View {
         } catch (Exception e) {
         }
     }
-
-    /*
-    //获取整数值
-    private final int getAttributeIntValue(AttributeSet attrs,String field) {
-    	int intVal = 0;
-    	//TODO
-    	//应该可以直接用attrs.getAttributeIntValue()获取对应的数值的，
-    	//但不知道为什么一直无法获得只好临时写个函数凑合着用,没有写完整，暂时只支持px作为单位，其它单位的转换有空再写
-    	String tempText=attrs.getAttributeValue(androidns, field);
-    	intVal = (int)Math.ceil(Float.parseFloat(tempText.replaceAll("px","")));
-		return intVal;
-    }*/
     //设置文字
     public final void setText(String text) {
         this.text = text;
@@ -111,7 +100,6 @@ public class VerticalTextView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.v("TextViewVertical", "onDraw");
         if (drawable != null) {
             //画背景
             Bitmap b = Bitmap.createBitmap(drawable.getBitmap(), 0, 0, mTextWidth, mTextHeight);
@@ -156,7 +144,6 @@ public class VerticalTextView extends View {
 
     //计算文字行数和总宽
     private void GetTextInfo() {
-        Log.v("TextViewVertical", "GetTextInfo");
         char ch;
         int h = 0;
         paint.setTextSize(mFontSize);
@@ -180,12 +167,12 @@ public class VerticalTextView extends View {
             } else {
                 h += mFontHeight;
                 if (h > this.mTextHeight) {
-                    mRealLine++;// 真实的行数加一
+                    mRealLine++;
                     i--;
                     h = 0;
                 } else {
                     if (i == this.TextLength - 1) {
-                        mRealLine++;// 真实的行数加一
+                        mRealLine++;
                     }
                 }
             }
@@ -220,16 +207,4 @@ public class VerticalTextView extends View {
         mTextHeight = result;//设置文本高度
         return result;
     }
-    /*
-    private int measureWidth(int measureSpec) {
-		int specMode = MeasureSpec.getMode(measureSpec);
-		int specSize = MeasureSpec.getSize(measureSpec);
-		int result = 500;
-		if (specMode == MeasureSpec.AT_MOST){
-			result = specSize;
-		}else if (specMode == MeasureSpec.EXACTLY){
-			result = specSize;
-		}
-		return result;
-	}  */
 }

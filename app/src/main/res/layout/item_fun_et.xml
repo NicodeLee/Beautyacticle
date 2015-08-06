@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
+    >
+
+    <EditText
+        android:id="@+id/et_title"
+        style="@style/FontComm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/help_view"
+        android:textSize="18sp"
+        android:hint="想个好标题"
+        android:singleLine="true"
+        />
+
+    <EditText
+        android:id="@+id/et_desc"
+        style="@style/FontComm"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_below="@id/et_title"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/help_view"
+        android:hint="说说图片的故事"
+        android:textSize="18sp" />
+</RelativeLayout>
+
