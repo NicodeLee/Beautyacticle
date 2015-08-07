@@ -27,6 +27,13 @@
         <activity android:name=".ui.article.ArticleAct" android:screenOrientation="portrait"/>
         <activity android:name=".ui.SettingAct" android:screenOrientation="portrait" android:theme="@style/MaterialSettingsTheme" />
 
+        <activity
+            android:name="me.nereo.multi_image_selector.PreviewPicturesActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
+            android:configChanges="orientation|screenSize" />
+
     </application>
 
 </manifest>

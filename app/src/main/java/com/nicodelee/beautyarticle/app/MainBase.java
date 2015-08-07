@@ -16,7 +16,7 @@ import butterknife.Bind;
 /**
  * Created by alee on 2015/7/4.
  */
-public class MainBase extends BaseAct {
+public abstract class MainBase extends BaseAct {
     @Bind(R.id.toolbar) protected Toolbar toolbar;
     @Bind(R.id.drawer_layout) protected DrawerLayout mDrawerLayout;
     @Bind(R.id.nav_view) protected NavigationView navigationView;

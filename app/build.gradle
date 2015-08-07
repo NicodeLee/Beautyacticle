@@ -72,8 +72,10 @@ dependencies {
     compile "com.raizlabs.android:DBFlow:2.2.1"
     compile 'com.daimajia.numberprogressbar:library:1.2@aar'
     compile 'com.github.clans:fab:1.5.5'
+    compile 'com.github.michaelye.easydialog:easydialog:1.0'
 
     compile project(':libraries:CommLib')
     compile project(':libraries:MeterialSettingLib')
+    compile project(':libraries:multi-image-selector')
 
 }
