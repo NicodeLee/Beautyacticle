@@ -82,7 +82,7 @@ public class FunFragment extends BaseFragment {
                         @Override public void run() {
                          easyDialog.dismiss();
                         }
-                    },1500);
+                    },1100);
                 }
             }
         });
