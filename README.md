@@ -7,7 +7,7 @@ Share the most beautiful words
 
 ##应用Demo
 <br>
-![](https://github.com/rizhilee/Beautyacticle/blob/master/screenshot/demo.gif)  
+![](https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo.gif)  
 
 ## Thanks
 - [butterknife](https://github.com/JakeWharton/butterknife)
