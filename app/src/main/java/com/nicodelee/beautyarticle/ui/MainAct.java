@@ -3,6 +3,7 @@ package com.nicodelee.beautyarticle.ui;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -11,8 +12,10 @@ import android.view.MenuItem;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.adapter.MainTabPageAdapter;
 import com.nicodelee.beautyarticle.app.MainBase;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 
 import butterknife.ButterKnife;
+import de.greenrobot.event.EventBus;
 
 public class MainAct extends MainBase {
 
@@ -37,6 +40,16 @@ public class MainAct extends MainBase {
             setupViewPager(viewPager);
         }
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+            @Override public void onTabUnselected(TabLayout.Tab tab) {}
+            @Override public void onTabReselected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0)
+                EventBus.getDefault().postSticky("Reselected");
+            }
+        });
 
     }
 

@@ -19,6 +19,7 @@ import com.nicodelee.beautyarticle.http.JsonUtil;
 import com.nicodelee.beautyarticle.http.URLUtils;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod$Table;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.viewhelper.EndlessRecyclerOnScrollListener;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.utils.ListUtils;
@@ -40,6 +41,7 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
     private ArrayList<ActicleMod> macticleMods;
     private MainRecyclerViewAdapter mActcleAdapter;
     private boolean isHasMore = true;
+    private LinearLayoutManager linearLayoutManager;
 
     @Nullable
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,10 +55,11 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
         macticleMods = new ArrayList<ActicleMod>();
         mSwipeLayout.setOnRefreshListener(this);
         setupRecyclerView();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(mActivity);
         rv.setLayoutManager(linearLayoutManager);
         rv.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
-            @Override public void onLoadMore() {
+            @Override
+            public void onLoadMore() {
                 int size = macticleMods.size();
                 if (isHasMore && !mSwipeLayout.isRefreshing()) {
                     getActicle(1, (int) macticleMods.get(size - 1).id);
@@ -142,13 +145,17 @@ public class ActicleListFragment extends BaseFragment implements SwipeRefreshLay
         new WeakHandler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (ListUtils.isEmpty(macticleMods)){
-                    getActicle(0,0);//首次获取数据
-                }else {
+                if (ListUtils.isEmpty(macticleMods)) {
+                    getActicle(0, 0);//首次获取数据
+                } else {
                     getActicle(-1, (int) macticleMods.get(0).id);
                 }
             }
         }, 300);
+    }
+
+    public void onEvent(String select) {
+        linearLayoutManager.scrollToPosition(0);
     }
 
 }
