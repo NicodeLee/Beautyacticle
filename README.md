@@ -5,9 +5,9 @@ Share the most beautiful words
 
 直接下载：http://fir.im/beautyacticle
 
-<img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo1.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo2.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/d.gif" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo1.png" alt="screenshot" title="screenshot" width="270" height="486" />
 
-<img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo3.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo4.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo2.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo3.png" alt="screenshot" title="screenshot" width="270" height="486" />
 
 ## Thanks
 - [butterknife](https://github.com/JakeWharton/butterknife)
