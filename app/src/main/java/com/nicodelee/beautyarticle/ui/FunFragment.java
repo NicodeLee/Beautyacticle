@@ -82,7 +82,7 @@ public class FunFragment extends BaseFragment {
                         @Override public void run() {
                          easyDialog.dismiss();
                         }
-                    },1100);
+                    },900);
                 }
             }
         });
@@ -112,7 +112,6 @@ public class FunFragment extends BaseFragment {
                 showEdDialig();
                 break;
             case R.id.iv_fun:
-                //TODO 有点乱
                 int selectedMode = MultiImageSelectorActivity.MODE_SINGLE;
                 MultiImageSelectorActivity.startSelect(FunFragment.this, REQUEST_IMAGE, 1, selectedMode);
                 break;

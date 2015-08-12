@@ -5,10 +5,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-
-/**
- * Created by Kenumir on 2015-03-18.
- */
 public class SampleDialog extends DialogFragment {
 
 	public static interface OnDialogOkClick {

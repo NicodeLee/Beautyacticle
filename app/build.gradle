@@ -58,7 +58,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:22.2.1'
 
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
-    compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
+//    compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
     compile 'com.loopj.android:android-async-http:1.4.7'
