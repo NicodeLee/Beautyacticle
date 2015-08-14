@@ -5,6 +5,10 @@ Share the most beautiful words
 
 直接下载：http://fir.im/beautyacticle
 
+- Material Design
+- 精选好图好文，带缓存
+- 文艺的装逼（图4）
+
 <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/d.gif" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo1.png" alt="screenshot" title="screenshot" width="270" height="486" />
 
 <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo2.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo3.png" alt="screenshot" title="screenshot" width="270" height="486" />
@@ -16,7 +20,8 @@ Share the most beautiful words
 - [jackson](https://github.com/FasterXML/jackson)
 - [android-async-http](https://github.com/loopj/android-async-http)
 - [Android-AppMsg](https://github.com/johnkil/Android-AppMsg)
-- [recyclerview-animators](https://github.com/wasabeef/recyclerview-animators)
+- [NumberProgressBar](https://github.com/daimajia/NumberProgressBar)
+- [SwipeBackLayout](https://github.com/ikew0ng/SwipeBackLayout)
 - [DBFlow](https://github.com/Raizlabs/DBFlow)
 
 ##License
