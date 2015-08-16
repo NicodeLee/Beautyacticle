@@ -1,7 +1,7 @@
 # Beautyacticle
-Share the most beautiful words
+> Share the most beautiful words
 
-做一个好用的文字APP
+> 做一个好用的文字APP
 
 直接下载：http://fir.im/beautyacticle
 
