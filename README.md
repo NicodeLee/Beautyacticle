@@ -11,7 +11,7 @@ Share the most beautiful words
 
 ###后续
 - 更好的图文排版
-- 选图自定义原型剪裁
+- 选图自定义圆形剪裁
 
 <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/d.gif" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo1.png" alt="screenshot" title="screenshot" width="270" height="486" />
 
