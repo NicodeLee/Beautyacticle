@@ -26,8 +26,7 @@ public class ArticleAct extends BaseSwiBackAct {
     private int count;
     private int position;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_article);
         ButterKnife.bind(this);
@@ -49,9 +48,7 @@ public class ArticleAct extends BaseSwiBackAct {
         vpActicle.setCurrentItem(position);
     }
 
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
@@ -66,8 +63,7 @@ public class ArticleAct extends BaseSwiBackAct {
             super(fragmentManager);
         }
 
-        @Override
-        public Fragment getItem(int position) {
+        @Override public Fragment getItem(int position) {
             final Bundle bundle = new Bundle();
             bundle.putInt(ArticleFragment.EXTRA_POSITION, position);
             final ArticleFragment fragment = new ArticleFragment();
@@ -75,8 +71,7 @@ public class ArticleAct extends BaseSwiBackAct {
             return fragment;
         }
 
-        @Override
-        public int getCount() {
+        @Override public int getCount() {
             return count;
         }
     }

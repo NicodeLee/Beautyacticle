@@ -1,7 +1,6 @@
 <resources>
 
     <style name="AppTheme" parent="Base.Theme.DesignDemo">
-        <item name="android:windowBackground">@color/ls_item</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:actionMenuTextColor">@color/material_deep_teal_500</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_arrow_back_white_24dp</item>

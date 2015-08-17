@@ -20,11 +20,17 @@
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.article.ArticleAct" android:screenOrientation="portrait"/>
+        <activity android:name=".ui.article.ArticleAct" android:screenOrientation="portrait"
+            android:parentActivityName=".ui.MainAct">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.MainAct" />
+        </activity>
+
         <activity android:name=".ui.SettingAct" android:screenOrientation="portrait" android:theme="@style/MaterialSettingsTheme" />
 
         <activity
