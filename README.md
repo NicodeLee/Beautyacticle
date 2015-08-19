@@ -29,7 +29,7 @@
 - [DBFlow](https://github.com/Raizlabs/DBFlow)
 
 
-感谢[daimajia](https://github.com/daimajia),分享的小窗口
+感谢[daimajia](https://github.com/daimajia)引用了他部分代码
 
 ##License
 -------
