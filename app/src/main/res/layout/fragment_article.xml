@@ -52,7 +52,6 @@
             android:layout_height="wrap_content"
             style="@style/FontActicle"
             android:layout_marginTop="10dp"
-            android:autoText="true"
             android:lineSpacingExtra="3dp"
             android:lineSpacingMultiplier="1.5"
             android:paddingLeft="10dp"

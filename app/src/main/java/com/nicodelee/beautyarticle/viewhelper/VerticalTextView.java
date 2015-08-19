@@ -41,12 +41,12 @@ public class VerticalTextView extends View {
     public VerticalTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         matrix = new Matrix();
-        paint = new Paint();//新建画笔
+        paint = new Paint();
         paint.setTextAlign(Paint.Align.CENTER);//文字居中
         paint.setAntiAlias(true);//平滑处理
         paint.setColor(Color.BLACK);//默认文字颜色
         try {
-            mFontSize = Float.parseFloat(attrs.getAttributeValue(null, "textSize"));//获取字体大小属性
+            mFontSize = Float.parseFloat(attrs.getAttributeValue(null, "textSize"));
         } catch (Exception e) {
         }
     }
@@ -82,7 +82,6 @@ public class VerticalTextView extends View {
         }
     }
 
-    //设置行宽
     public void setLineWidth(int LineWidth) {
         mLineWidth = LineWidth;
     }
@@ -111,8 +110,8 @@ public class VerticalTextView extends View {
 
     private void draw(Canvas canvas, String thetext) {
         char ch;
-        mTextPosy = 0;//初始化y坐标
-        mTextPosx = textStartAlign == Paint.Align.LEFT ? mLineWidth : mTextWidth - mLineWidth;//初始化x坐标
+        mTextPosy = 0;//初始化坐标
+        mTextPosx = textStartAlign == Paint.Align.LEFT ? mLineWidth : mTextWidth - mLineWidth;
         for (int i = 0; i < this.TextLength; i++) {
             ch = thetext.charAt(i);
             if (ch == '\n') {
@@ -126,9 +125,9 @@ public class VerticalTextView extends View {
                 mTextPosy += mFontHeight;
                 if (mTextPosy > this.mTextHeight) {
                     if (textStartAlign == Paint.Align.LEFT) {
-                        mTextPosx += mLineWidth;// 换列
+                        mTextPosx += mLineWidth;
                     } else {
-                        mTextPosx -= mLineWidth;// 换列
+                        mTextPosx -= mLineWidth;
                     }
                     i--;
                     mTextPosy = 0;

@@ -79,5 +79,6 @@ dependencies {
     compile project(':libraries:CommLib')
     compile project(':libraries:MeterialSettingLib')
     compile project(':libraries:multi-image-selector')
+    compile project(':libraries:sociallibrary')
 
 }

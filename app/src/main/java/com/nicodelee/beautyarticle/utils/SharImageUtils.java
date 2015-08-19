@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class SharImageUtils {
 
-
+    public static String sharePicName = "beautyacticle.png";
     public static void share(String imgPath, String content, Context context) {
         File f = new File(imgPath);
         Uri uri = Uri.fromFile(f);

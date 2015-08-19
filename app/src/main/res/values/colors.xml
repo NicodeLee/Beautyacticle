@@ -204,4 +204,7 @@
     <color name="blue_semi_transparent">#805677fc</color>
     <color name="blue_semi_transparent_pressed">#80738ffe</color>
 
+    <drawable name="dr_white">#ffffff</drawable>
+    <drawable name="dr_text_disabled">#e4e4e4</drawable>
+
 </resources>

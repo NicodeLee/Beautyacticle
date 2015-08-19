@@ -25,6 +25,7 @@ import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nicodelee.beautyarticle.utils.SharImageUtils;
+import com.nicodelee.beautyarticle.utils.ShareHelper;
 import com.nicodelee.beautyarticle.utils.TimeUtils;
 import com.nicodelee.beautyarticle.viewhelper.LayoutToImage;
 import com.nicodelee.beautyarticle.viewhelper.VerticalTextView;
@@ -59,9 +60,7 @@ public class FunFragment extends BaseFragment {
     private Bitmap bitmap;
     private LayoutInflater inflater;
 
-    private String sharePicName = "beautyacticle.png";
     private String title,desc;
-
     private static final int REQUEST_IMAGE = 2;
 
     @Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -104,8 +103,10 @@ public class FunFragment extends BaseFragment {
             case R.id.fb_share:
                 famFun.close(true);
                 bitmap = layoutToImage.convertlayout();
-                if (SharImageUtils.saveBitmap(bitmap, sharePicName))
-                    SharImageUtils.share(AndroidUtils.IMAGE_CACHE_PATH + "/" + sharePicName, "分享", getActivity());
+                if (SharImageUtils.saveBitmap(bitmap, SharImageUtils.sharePicName)){
+                    ShareHelper.showUp(mActivity);
+                }
+
                 break;
             case R.id.fb_make:
                 famFun.close(true);
