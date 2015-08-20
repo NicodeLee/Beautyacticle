@@ -20,60 +20,58 @@ import butterknife.ButterKnife;
  */
 public class ArticleAct extends BaseSwiBackAct {
 
-    @Bind(R.id.vp_acticle) ViewPager vpActicle;
+  @Bind(R.id.vp_acticle) ViewPager vpActicle;
 
-    private ArticleAdt mAdapter;
-    private int count;
-    private int position;
+  private ArticleAdt mAdapter;
+  private int count;
+  private int position;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_article);
-        ButterKnife.bind(this);
-        initView();
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.act_article);
+    ButterKnife.bind(this);
+    initView();
+  }
+
+  private void initView() {
+    mAdapter = new ArticleAdt(getSupportFragmentManager());
+  }
+
+  public void onEvent(Integer event) {
+    position = event;
+  }
+
+  public void onEvent(ArrayList<ActicleMod> eventList) {
+    count = eventList.size();
+    vpActicle.setAdapter(mAdapter);
+    vpActicle.setCurrentItem(position);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        finish();
+        break;
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
+  public class ArticleAdt extends FragmentPagerAdapter {
+
+    public ArticleAdt(android.support.v4.app.FragmentManager fragmentManager) {
+      super(fragmentManager);
     }
 
-    private void initView() {
-        mAdapter = new ArticleAdt(getSupportFragmentManager());
+    @Override public Fragment getItem(int position) {
+      final Bundle bundle = new Bundle();
+      bundle.putInt(ArticleFragment.EXTRA_POSITION, position);
+      final ArticleFragment fragment = new ArticleFragment();
+      fragment.setArguments(bundle);
+      return fragment;
     }
 
-
-    public void onEvent(Integer event) {
-        position = event;
+    @Override public int getCount() {
+      return count;
     }
-
-    public void onEvent(ArrayList<ActicleMod> eventList) {
-        count = eventList.size();
-        vpActicle.setAdapter(mAdapter);
-        vpActicle.setCurrentItem(position);
-    }
-
-    @Override public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public class ArticleAdt extends FragmentPagerAdapter {
-
-        public ArticleAdt(android.support.v4.app.FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        @Override public Fragment getItem(int position) {
-            final Bundle bundle = new Bundle();
-            bundle.putInt(ArticleFragment.EXTRA_POSITION, position);
-            final ArticleFragment fragment = new ArticleFragment();
-            fragment.setArguments(bundle);
-            return fragment;
-        }
-
-        @Override public int getCount() {
-            return count;
-        }
-    }
-
+  }
 }

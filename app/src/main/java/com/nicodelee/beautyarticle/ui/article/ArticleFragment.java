@@ -25,51 +25,46 @@ import butterknife.ButterKnife;
 
 public class ArticleFragment extends BaseFragment {
 
-    @Bind(R.id.tv_acticle_detail) TextView tvDetail;
-    @Bind(R.id.ic_acticle) ImageView ivActicle;
-    @Bind(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbar;
-    @Bind(R.id.toolbar) Toolbar toolbar;
+  @Bind(R.id.tv_acticle_detail) TextView tvDetail;
+  @Bind(R.id.ic_acticle) ImageView ivActicle;
+  @Bind(R.id.collapsing_toolbar) CollapsingToolbarLayout collapsingToolbar;
+  @Bind(R.id.toolbar) Toolbar toolbar;
 
-    public static final String EXTRA_POSITION = "ARTICLE_POSITION";
-    private int position;
+  public static final String EXTRA_POSITION = "ARTICLE_POSITION";
+  private int position;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        position = getArguments().getInt(EXTRA_POSITION);
-        View view = inflater.inflate(R.layout.fragment_article, container, false);
-        ButterKnife.bind(this, view);
-        initView();
-        return view;
+  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    position = getArguments().getInt(EXTRA_POSITION);
+    View view = inflater.inflate(R.layout.fragment_article, container, false);
+    ButterKnife.bind(this, view);
+    initView();
+    return view;
+  }
+
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+  }
+
+  private void initView() {
+    ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+    ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        getActivity().finish();
+        return true;
     }
+    return super.onOptionsItemSelected(item);
+  }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    private void initView() {
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                getActivity().finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void onEvent(ArrayList<ActicleMod> eventList) {
-        ActicleMod mod = eventList.get(position);
-        collapsingToolbar.setTitle(mod.title + "");
-        tvDetail.setText(mod.details + "");
-        APP.getInstance().imageLoader.displayImage(mod.image, ivActicle, APP.options,
-                new UILUtils.AnimateFirstDisplayListener());
-    }
-
+  public void onEvent(ArrayList<ActicleMod> eventList) {
+    ActicleMod mod = eventList.get(position);
+    collapsingToolbar.setTitle(mod.title + "");
+    tvDetail.setText(mod.details + "");
+    APP.getInstance().imageLoader.displayImage(mod.image, ivActicle, APP.options,
+        new UILUtils.AnimateFirstDisplayListener());
+  }
 }

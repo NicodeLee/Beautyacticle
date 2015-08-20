@@ -10,18 +10,15 @@ import org.apache.http.Header;
  */
 public abstract class AsyncHandlerTextBase extends TextHttpResponseHandler {
 
-    @Override
-    public void onStart() {
-    }
+  @Override public void onStart() {
+  }
 
-    @Override
-    public void onSuccess(int statusCode, Header[] headers, String result) {
-        LogUitl.e("onSuccess result==" + result);
-    }
+  @Override public void onSuccess(int statusCode, Header[] headers, String result) {
+    LogUitl.e("onSuccess result==" + result);
+  }
 
-    @Override
-    public void onFailure(int statusCode, Header[] headers, String result, Throwable throwable) {
-        LogUitl.e("onFailure==" + throwable);
-    }
-
+  @Override
+  public void onFailure(int statusCode, Header[] headers, String result, Throwable throwable) {
+    LogUitl.e("onFailure==" + throwable);
+  }
 }

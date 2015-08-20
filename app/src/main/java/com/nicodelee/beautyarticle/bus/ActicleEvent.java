@@ -10,14 +10,13 @@ import java.util.List;
  */
 public class ActicleEvent {
 
-    private ArrayList<ActicleMod> acticleMods;
+  private ArrayList<ActicleMod> acticleMods;
 
-    public ActicleEvent(ArrayList<ActicleMod> items) {
-        this.acticleMods = items;
-    }
+  public ActicleEvent(ArrayList<ActicleMod> items) {
+    this.acticleMods = items;
+  }
 
-    public ArrayList<ActicleMod> getActicleMods() {
-        return acticleMods;
-    }
-
+  public ArrayList<ActicleMod> getActicleMods() {
+    return acticleMods;
+  }
 }

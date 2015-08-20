@@ -11,30 +11,27 @@ import java.util.List;
  * Created by alee on 2015/7/4.
  */
 public class MainTabPageAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mFragments = new ArrayList<>();
-    private final List<String> mFragmentTitles = new ArrayList<>();
+  private final List<Fragment> mFragments = new ArrayList<>();
+  private final List<String> mFragmentTitles = new ArrayList<>();
 
-    public MainTabPageAdapter(FragmentManager fm) {
-        super(fm);
-    }
+  public MainTabPageAdapter(FragmentManager fm) {
+    super(fm);
+  }
 
-    public void addFragment(Fragment fragment, String title) {
-        mFragments.add(fragment);
-        mFragmentTitles.add(title);
-    }
+  public void addFragment(Fragment fragment, String title) {
+    mFragments.add(fragment);
+    mFragmentTitles.add(title);
+  }
 
-    @Override
-    public Fragment getItem(int position) {
-        return mFragments.get(position);
-    }
+  @Override public Fragment getItem(int position) {
+    return mFragments.get(position);
+  }
 
-    @Override
-    public int getCount() {
-        return mFragments.size();
-    }
+  @Override public int getCount() {
+    return mFragments.size();
+  }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mFragmentTitles.get(position);
-    }
+  @Override public CharSequence getPageTitle(int position) {
+    return mFragmentTitles.get(position);
+  }
 }

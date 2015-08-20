@@ -32,161 +32,147 @@ import cn.sharesdk.wechat.moments.WechatMoments;
 
 public class ShareHelper {
 
-    private static void shareAction(Context context, AlertDialog dialog) {
+  private static void shareAction(Context context, AlertDialog dialog) {
+    dialog.dismiss();
+    Toast.makeText(context, context.getString(R.string.share_tip), Toast.LENGTH_SHORT).show();
+  }
+
+  public static void showUp(final Context context, final ShareMod shareMod) {
+    ShareSDK.initSDK(context);
+
+    View v = LayoutInflater.from(context).inflate(R.layout.layout_share, null, false);
+    final AlertDialog dialog = new AlertDialog.Builder(context).setView(v).create();
+    dialog.show();
+    ShareButton weibo = (ShareButton) v.findViewById(R.id.action_share_weibo);
+    ShareButton wechat = (ShareButton) v.findViewById(R.id.action_share_wechat);
+    ShareButton wechatTimeline = (ShareButton) v.findViewById(R.id.action_share_wechat_timeline);
+    ShareButton qq = (ShareButton) v.findViewById(R.id.action_share_qq);
+    ShareButton link = (ShareButton) v.findViewById(R.id.action_share_this);
+    ShareButton qzone = (ShareButton) v.findViewById(R.id.action_share_qzone);
+
+    final TextView cancel = (TextView) v.findViewById(R.id.cancel);
+
+    final Handler showMsg = new Handler(new Handler.Callback() {
+      @Override public boolean handleMessage(Message msg) {
+        Toast.makeText(context, msg.obj.toString(), Toast.LENGTH_SHORT).show();
+        return true;
+      }
+    });
+
+    final PlatformActionListener platformActionListener = new PlatformActionListener() {
+      @Override public void onComplete(Platform platform, int i,
+          HashMap<String, Object> stringObjectHashMap) {
+        Message msg = Message.obtain(showMsg);
+        msg.obj = context.getString(R.string.share_success);
+        msg.sendToTarget();
+      }
+
+      @Override public void onError(Platform platform, int i, Throwable throwable) {
+        LogUitl.e("@@@" + throwable.getMessage() + "," + platform.getName());
+        Message msg = Message.obtain(showMsg);
+        msg.obj = context.getString(R.string.share_error);
+        msg.sendToTarget();
+      }
+
+      @Override public void onCancel(Platform platform, int i) {
+        Message msg = Message.obtain(showMsg);
+        msg.obj = context.getString(R.string.share_cancel);
+        msg.sendToTarget();
+      }
+    };
+
+    weibo.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
+        Platform pf = ShareSDK.getPlatform(context, SinaWeibo.NAME);
+        sp.setText(shareMod.text);
+        sp.setUrl(shareMod.url);
+        //                sp.setImageUrl(shareMod.imageUrl);
+        sp.setImageData(shareMod.imageData);
+        sp.setShareType(Platform.SHARE_IMAGE);
+        pf.setPlatformActionListener(platformActionListener);
+        pf.share(sp);
+        shareAction(context, dialog);
+      }
+    });
+
+    wechat.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        Platform plat = ShareSDK.getPlatform(context, Wechat.NAME);
+        Wechat.ShareParams sp = new Wechat.ShareParams();
+        sp.setTitle(shareMod.title);
+        sp.setText(shareMod.text);
+        sp.setImageUrl(shareMod.imageUrl);
+        Bitmap imageData = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
+        sp.setImageData(shareMod.imageData);
+        sp.setUrl(shareMod.url);
+        sp.setShareType(Platform.SHARE_IMAGE);
+        plat.setPlatformActionListener(platformActionListener);
+        plat.share(sp);
+        shareAction(context, dialog);
+      }
+    });
+
+    wechatTimeline.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        Platform plat = ShareSDK.getPlatform(context, WechatMoments.NAME);
+        WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
+        sp.title = shareMod.title;
+        sp.text = shareMod.text;
+        sp.imageUrl = shareMod.imageUrl;
+        sp.url = shareMod.url;
+        sp.imageData = shareMod.imageData;
+        sp.shareType = Platform.SHARE_IMAGE;
+        plat.setPlatformActionListener(platformActionListener);
+        plat.share(sp);
+        shareAction(context, dialog);
+      }
+    });
+
+    qq.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        Platform plat = ShareSDK.getPlatform(context, QQ.NAME);
+        QQ.ShareParams sp = new QQ.ShareParams();
+        sp.setTitle(shareMod.title);
+        sp.setText(shareMod.text);
+        sp.setImageUrl(shareMod.imageUrl);
+        sp.setTitleUrl(shareMod.titleUrl);
+        sp.setImageData(shareMod.imageData);
+        sp.setShareType(QQ.SHARE_IMAGE);
+        plat.setPlatformActionListener(platformActionListener);
+        plat.share(sp);
+        shareAction(context, dialog);
+      }
+    });
+
+    qzone.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        Platform plat = ShareSDK.getPlatform(context, QZone.NAME);
+        QZone.ShareParams sp = new QZone.ShareParams();
+        sp.setTitle(shareMod.title);
+        sp.setText(shareMod.text);
+        sp.setImageUrl(shareMod.imageUrl);
+        sp.setTitleUrl(shareMod.titleUrl);
+        sp.setImageData(shareMod.imageData);
+        sp.setShareType(QZone.SHARE_IMAGE);
+        plat.setPlatformActionListener(platformActionListener);
+        plat.share(sp);
+        shareAction(context, dialog);
+      }
+    });
+
+    link.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        SharImageUtils.share(AndroidUtils.IMAGE_CACHE_PATH + "/" + SharImageUtils.sharePicName,
+            "分享", context);
         dialog.dismiss();
-        Toast.makeText(context, "感谢分享哟！", Toast.LENGTH_SHORT).show();
-    }
+      }
+    });
 
-    public static void showUp(final Context context,final ShareMod shareMod) {
-        ShareSDK.initSDK(context);
-
-        View v = LayoutInflater.from(context).inflate(R.layout.layout_share, null, false);
-        final AlertDialog dialog = new AlertDialog.Builder(context)
-                .setView(v)
-                .create();
-        dialog.show();
-        ShareButton weibo = (ShareButton) v.findViewById(R.id.action_share_weibo);
-        ShareButton wechat = (ShareButton) v.findViewById(R.id.action_share_wechat);
-        ShareButton wechatTimeline = (ShareButton) v.findViewById(R.id.action_share_wechat_timeline);
-        ShareButton qq = (ShareButton) v.findViewById(R.id.action_share_qq);
-        ShareButton link = (ShareButton) v.findViewById(R.id.action_share_this);
-        ShareButton qzone = (ShareButton) v.findViewById(R.id.action_share_qzone);
-
-        TextView cancel = (TextView) v.findViewById(R.id.cancel);
-
-        final Handler showMsg = new Handler(new Handler.Callback() {
-            @Override
-            public boolean handleMessage(Message msg) {
-                Toast.makeText(context, msg.obj.toString(), Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-
-        final PlatformActionListener platformActionListener = new PlatformActionListener() {
-            @Override
-            public void onComplete(Platform platform, int i, HashMap<String, Object> stringObjectHashMap) {
-                Message msg = Message.obtain(showMsg);
-                msg.obj = "(๑•̀ㅂ•́)و分享成功！Ye";
-                msg.sendToTarget();
-            }
-
-            @Override
-            public void onError(Platform platform, int i, Throwable throwable) {
-                LogUitl.e("@@@"+throwable.getMessage()+","+platform.getName());
-                Message msg = Message.obtain(showMsg);
-                msg.obj = "(⊙﹏⊙) 好像出了错误";
-                msg.sendToTarget();
-            }
-
-            @Override
-            public void onCancel(Platform platform, int i) {
-                Message msg = Message.obtain(showMsg);
-                msg.obj = "o(TヘTo) 取消了耶...";
-                msg.sendToTarget();
-            }
-        };
-
-
-        weibo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
-                Platform pf = ShareSDK.getPlatform(context, SinaWeibo.NAME);
-                sp.setText(shareMod.text);
-                sp.setUrl(shareMod.url);
-//                sp.setImageUrl(shareMod.imageUrl);
-                sp.setImageData(shareMod.imageData);
-                sp.setShareType(Platform.SHARE_IMAGE);
-                pf.setPlatformActionListener(platformActionListener);
-                pf.share(sp);
-                shareAction(context, dialog);
-            }
-        });
-
-        wechat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Platform plat = ShareSDK.getPlatform(context, Wechat.NAME);
-                Wechat.ShareParams sp = new Wechat.ShareParams();
-                sp.setTitle(shareMod.title);
-                sp.setText(shareMod.text);
-                sp.setImageUrl(shareMod.imageUrl);
-                Bitmap imageData = BitmapFactory.decodeResource(
-                        context.getResources(), R.drawable.logo);
-                sp.setImageData(shareMod.imageData);
-                sp.setUrl(shareMod.url);
-                sp.setShareType(Platform.SHARE_IMAGE);
-                plat.setPlatformActionListener(platformActionListener);
-                plat.share(sp);
-                shareAction(context, dialog);
-            }
-        });
-
-        wechatTimeline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Platform plat = ShareSDK.getPlatform(context, WechatMoments.NAME);
-                WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
-                sp.title = shareMod.title;
-                sp.text = shareMod.text;
-                sp.imageUrl = shareMod.imageUrl;
-                sp.url = shareMod.url;
-                sp.imageData=shareMod.imageData;
-                sp.shareType = Platform.SHARE_IMAGE;
-                plat.setPlatformActionListener(platformActionListener);
-                plat.share(sp);
-                shareAction(context, dialog);
-            }
-        });
-
-        qq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Platform plat = ShareSDK.getPlatform(context, QQ.NAME);
-                QQ.ShareParams sp = new QQ.ShareParams();
-                sp.setTitle(shareMod.title);
-                sp.setText(shareMod.text);
-                sp.setImageUrl(shareMod.imageUrl);
-                sp.setTitleUrl(shareMod.titleUrl);
-                sp.setImageData(shareMod.imageData);
-                sp.setShareType(QQ.SHARE_IMAGE);
-                plat.setPlatformActionListener(platformActionListener);
-                plat.share(sp);
-                shareAction(context, dialog);
-            }
-        });
-
-        qzone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Platform plat = ShareSDK.getPlatform(context, QZone.NAME);
-                QZone.ShareParams sp = new QZone.ShareParams();
-                sp.setTitle(shareMod.title);
-                sp.setText(shareMod.text);
-                sp.setImageUrl(shareMod.imageUrl);
-                sp.setTitleUrl(shareMod.titleUrl);
-                sp.setImageData(shareMod.imageData);
-                sp.setShareType(QZone.SHARE_IMAGE);
-                plat.setPlatformActionListener(platformActionListener);
-                plat.share(sp);
-                shareAction(context, dialog);
-            }
-        });
-
-        link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharImageUtils.share(AndroidUtils.IMAGE_CACHE_PATH + "/" + SharImageUtils.sharePicName, "分享",context);
-                dialog.dismiss();
-            }
-        });
-
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-    }
+    cancel.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        dialog.dismiss();
+      }
+    });
+  }
 }

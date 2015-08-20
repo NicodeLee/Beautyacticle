@@ -17,129 +17,114 @@ import java.util.Map;
 import de.greenrobot.event.EventBus;
 
 public abstract class BaseFragment extends Fragment {
-	private Context context;
+  private Context context;
 
-    @Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		context = getActivity().getApplicationContext();
-	}
+  @Override public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    context = getActivity().getApplicationContext();
+  }
 
-//    public ScaleInAnimationAdapter getAnimaAdapter(RecyclerView recyclerView,RecyclerView.Adapter adapter){
-//        recyclerView.setItemAnimator(new FadeInAnimator());
-//        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);
-//        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
-//        return scaleAdapter;
-//    }
+  //    public ScaleInAnimationAdapter getAnimaAdapter(RecyclerView recyclerView,RecyclerView.Adapter adapter){
+  //        recyclerView.setItemAnimator(new FadeInAnimator());
+  //        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);
+  //        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
+  //        return scaleAdapter;
+  //    }
 
-
-	// http://stackoverflow.com/questions/15207305/getting-the-error-java-lang-illegalstateexception-activity-has-been-destroyed
-	@Override
-	public void onDetach() {
-		super.onDetach();
-		try {
-			Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-			childFragmentManager.setAccessible(true);
-			childFragmentManager.set(this, null);
-
-		} catch (NoSuchFieldException e) {
-			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-    public FragmentActivity mActivity;
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        mActivity = (FragmentActivity) activity;
+  // http://stackoverflow.com/questions/15207305/getting-the-error-java-lang-illegalstateexception-activity-has-been-destroyed
+  @Override public void onDetach() {
+    super.onDetach();
+    try {
+      Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+      childFragmentManager.setAccessible(true);
+      childFragmentManager.set(this, null);
+    } catch (NoSuchFieldException e) {
+      throw new RuntimeException(e);
+    } catch (IllegalAccessException e) {
+      throw new RuntimeException(e);
     }
+  }
 
+  public FragmentActivity mActivity;
 
+  @Override public void onAttach(Activity activity) {
+    super.onAttach(activity);
+    mActivity = (FragmentActivity) activity;
+  }
 
+  public APP getApp() {
+    return (APP) getActivity().getApplication();
+  }
 
-    public APP getApp() {
-        return (APP) getActivity().getApplication();
+  public void showToast(String message) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+  }
+
+  public void skipIntent(Class clz, HashMap<String, Object> map, boolean isFinish) {
+    Intent intent = new Intent(getActivity(), clz);
+    if (map != null) {
+      Iterator it = map.entrySet().iterator();
+
+      while (it.hasNext()) {
+
+        Map.Entry entry = (Map.Entry) it.next();
+
+        String key = (String) entry.getKey();
+
+        Serializable value = (Serializable) entry.getValue();
+
+        intent.putExtra(key, value);
+      }
     }
+    startActivity(intent);
+    if (isFinish) getActivity().finish();
+  }
 
-    public void showToast(String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+  public void skipIntent(Class clz, HashMap<String, Object> map, int code) {
+    Intent intent = new Intent(getActivity(), clz);
+    if (map != null) {
+      Iterator it = map.entrySet().iterator();
+
+      while (it.hasNext()) {
+
+        Map.Entry entry = (Map.Entry) it.next();
+
+        String key = (String) entry.getKey();
+
+        Serializable value = (Serializable) entry.getValue();
+
+        intent.putExtra(key, value);
+      }
     }
+    startActivityForResult(intent, code);
+  }
 
-    public void skipIntent(Class clz, HashMap<String, Object> map,
-                           boolean isFinish) {
-        Intent intent = new Intent(getActivity(), clz);
-        if (map != null) {
-            Iterator it = map.entrySet().iterator();
+  public void skipIntent(Class clz, int code, boolean isFinish) {
+    Intent intent = new Intent(getActivity(), clz);
+    startActivityForResult(intent, code);
+    if (isFinish) getActivity().finish();
+  }
 
-            while (it.hasNext()) {
+  public void skipIntent(Class clz, boolean isFinish) {
+    Intent intent = new Intent(getActivity(), clz);
+    startActivity(intent);
+    if (isFinish) getActivity().finish();
+  }
 
-                Map.Entry entry = (Map.Entry) it.next();
+  public Object getExtra(String name) {
+    return getActivity().getIntent().getSerializableExtra(name);
+  }
 
-                String key = (String) entry.getKey();
+  @Override public void onStart() {
+    EventBus.getDefault().registerSticky(this);
+    super.onStart();
+  }
 
-                Serializable value = (Serializable) entry.getValue();
+  @Override public void onStop() {
+    EventBus.getDefault().unregister(this);
+    super.onStop();
+  }
 
-                intent.putExtra(key, value);
-            }
-        }
-        startActivity(intent);
-        if (isFinish)
-            getActivity().finish();
-    }
-
-    public void skipIntent(Class clz, HashMap<String, Object> map, int code) {
-        Intent intent = new Intent(getActivity(), clz);
-        if (map != null) {
-            Iterator it = map.entrySet().iterator();
-
-            while (it.hasNext()) {
-
-                Map.Entry entry = (Map.Entry) it.next();
-
-                String key = (String) entry.getKey();
-
-                Serializable value = (Serializable) entry.getValue();
-
-                intent.putExtra(key, value);
-            }
-        }
-        startActivityForResult(intent, code);
-    }
-
-    public void skipIntent(Class clz, int code, boolean isFinish) {
-        Intent intent = new Intent(getActivity(), clz);
-        startActivityForResult(intent, code);
-        if (isFinish)
-            getActivity().finish();
-    }
-
-    public void skipIntent(Class clz, boolean isFinish) {
-        Intent intent = new Intent(getActivity(), clz);
-        startActivity(intent);
-        if (isFinish)
-            getActivity().finish();
-    }
-
-
-    public Object getExtra(String name) {
-        return getActivity().getIntent().getSerializableExtra(name);
-    }
-
-    @Override
-    public void onStart() {
-        EventBus.getDefault().registerSticky(this);
-        super.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
-    }
-
-    public void onEvent(Object event) {
-    }
+  public void onEvent(Object event) {
+  }
 }
