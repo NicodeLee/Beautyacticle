@@ -31,6 +31,10 @@
 
 感谢[daimajia](https://github.com/daimajia)引用了他部分代码
 
+Code style
+-----------
+https://github.com/square/java-code-styles
+
 ##License
 -------
 
