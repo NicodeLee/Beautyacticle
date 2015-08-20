@@ -59,10 +59,10 @@
     <SinaWeibo
         Id="1"
         SortId="1"
-        AppKey="141612438"
-        AppSecret="8ce44518c4ba1460c1a1eda156ae2ace"
+        AppKey="1327382510"
+        AppSecret="64c5026dae6fa6a96afe7498827fb3f7"
         RedirectUrl="https://api.weibo.com/oauth2/default.html"
-        ShareByAppClient="false"
+        ShareByAppClient="true"
         Enable="true" />
 
     <TencentWeibo
@@ -77,8 +77,8 @@
     <QZone
         Id="3"
         SortId="3"
-        AppId="1104721518"
-        AppKey="wXzSTmXvoJrf18RU"
+        AppId="1104820740"
+        AppKey="vxEPAQHYaJIoph8p"
         ShareByAppClient="false"
         Enable="true" />
     
@@ -97,32 +97,32 @@
     <Wechat
         Id="4"
         SortId="4"
-        AppId="wx74acbd10b0e67012"
-        AppSecret="2ff97d67ea4e31ee9b2570a3e5b3f7b0"
+        AppId="wxe228ea2fe5756e2e"
+        AppSecret="d6b402de9882126968ac6853c6f5fa98"
         BypassApproval="false"
         Enable="true" />
 
     <WechatMoments
         Id="5"
         SortId="5"
-        AppId="wx74acbd10b0e67012"
-        AppSecret="2ff97d67ea4e31ee9b2570a3e5b3f7b0"
+        AppId="wxe228ea2fe5756e2e"
+        AppSecret="d6b402de9882126968ac6853c6f5fa98"
         BypassApproval="false"
         Enable="true" />
 
     <WechatFavorite
         Id="6"
         SortId="6"
-        AppId="wx74acbd10b0e67012"
-        AppSecret="2ff97d67ea4e31ee9b2570a3e5b3f7b0"
+        AppId="wxe228ea2fe5756e2e"
+        AppSecret="d6b402de9882126968ac6853c6f5fa98"
         Enable="false" />
 
 
 	<QQ
         Id="7"
         SortId="7"
-        AppId="1104721518"
-        AppKey="KEY:wXzSTmXvoJrf18RU"
+        AppId="1104820740"
+        AppKey="KEY:vxEPAQHYaJIoph8p"
         ShareByAppClient="true"
         Enable="true" />
     

@@ -22,6 +22,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import com.michael.easydialog.EasyDialog;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseFragment;
+import com.nicodelee.beautyarticle.mode.ShareMod;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nicodelee.beautyarticle.utils.SharImageUtils;
@@ -76,10 +77,10 @@ public class FunFragment extends BaseFragment {
         famFun.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
             @Override public void onMenuToggle(boolean opened) {
                 if (opened){
-                    showTip();
+//                    showTip();
                     new WeakHandler().postDelayed(new Runnable() {
                         @Override public void run() {
-                         easyDialog.dismiss();
+//                         easyDialog.dismiss();
                         }
                     },900);
                 }
@@ -104,7 +105,13 @@ public class FunFragment extends BaseFragment {
                 famFun.close(true);
                 bitmap = layoutToImage.convertlayout();
                 if (SharImageUtils.saveBitmap(bitmap, SharImageUtils.sharePicName)){
-                    ShareHelper.showUp(mActivity);
+                    ShareMod shareMod = new ShareMod();
+                    shareMod.title = "title";
+                    shareMod.text = "text";
+                    shareMod.imageUrl = AndroidUtils.IMAGE_CACHE_PATH + "/" + SharImageUtils.sharePicName;
+                    shareMod.url = "fir.im/beautyacticle";
+                    shareMod.imageData = bitmap;
+                    ShareHelper.showUp(mActivity,shareMod);
                 }
 
                 break;

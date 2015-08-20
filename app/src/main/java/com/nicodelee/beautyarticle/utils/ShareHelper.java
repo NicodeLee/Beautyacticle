@@ -1,18 +1,18 @@
 package com.nicodelee.beautyarticle.utils;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.nicodelee.beautyarticle.R;
+import com.nicodelee.beautyarticle.mode.ShareMod;
 import com.nicodelee.beautyarticle.viewhelper.ShareButton;
 
 import java.util.HashMap;
@@ -26,6 +26,10 @@ import cn.sharesdk.tencent.qzone.QZone;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
+/**
+ * see:http://wiki.mob.com/%E4%B8%8D%E5%90%8C%E5%B9%B3%E5%8F%B0%E5%88%86%E4%BA%AB%E5%86%85%E5%AE%B9%E7%9A%84%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E/
+ */
+
 public class ShareHelper {
 
     private static void shareAction(Context context, AlertDialog dialog) {
@@ -33,14 +37,14 @@ public class ShareHelper {
         Toast.makeText(context, "感谢分享哟！", Toast.LENGTH_SHORT).show();
     }
 
-    public static void showUp(final Context context) {
-        View v = LayoutInflater.from(context).inflate(R.layout.layout_share, null, false);
+    public static void showUp(final Context context,final ShareMod shareMod) {
+        ShareSDK.initSDK(context);
 
+        View v = LayoutInflater.from(context).inflate(R.layout.layout_share, null, false);
         final AlertDialog dialog = new AlertDialog.Builder(context)
                 .setView(v)
                 .create();
         dialog.show();
-        ShareSDK.initSDK(context);
         ShareButton weibo = (ShareButton) v.findViewById(R.id.action_share_weibo);
         ShareButton wechat = (ShareButton) v.findViewById(R.id.action_share_wechat);
         ShareButton wechatTimeline = (ShareButton) v.findViewById(R.id.action_share_wechat_timeline);
@@ -68,7 +72,7 @@ public class ShareHelper {
 
             @Override
             public void onError(Platform platform, int i, Throwable throwable) {
-                Log.e("Error", throwable.getMessage());
+                LogUitl.e("@@@"+throwable.getMessage()+","+platform.getName());
                 Message msg = Message.obtain(showMsg);
                 msg.obj = "(⊙﹏⊙) 好像出了错误";
                 msg.sendToTarget();
@@ -88,11 +92,11 @@ public class ShareHelper {
             public void onClick(View v) {
                 SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
                 Platform pf = ShareSDK.getPlatform(context, SinaWeibo.NAME);
-//                String toSend = "「" + animation.Name + "」 " + animation.OriginVideoUrl + " " + animation.Brief;
-//                toSend = toSend.substring(0, 140);
-//                sp.setText(toSend);
-//                sp.setUrl(animation.OriginVideoUrl);
-//                sp.setImageUrl(animation.DetailPic);
+                sp.setText(shareMod.text);
+                sp.setUrl(shareMod.url);
+//                sp.setImageUrl(shareMod.imageUrl);
+                sp.setImageData(shareMod.imageData);
+                sp.setShareType(Platform.SHARE_IMAGE);
                 pf.setPlatformActionListener(platformActionListener);
                 pf.share(sp);
                 shareAction(context, dialog);
@@ -104,11 +108,14 @@ public class ShareHelper {
             public void onClick(View v) {
                 Platform plat = ShareSDK.getPlatform(context, Wechat.NAME);
                 Wechat.ShareParams sp = new Wechat.ShareParams();
-//                sp.setTitle(animation.Name);
-//                sp.setText(animation.Brief);
-//                sp.setImageUrl(animation.HomePic);
-//                sp.setUrl(animation.getShareUrl());
-                sp.setShareType(Platform.SHARE_WEBPAGE);
+                sp.setTitle(shareMod.title);
+                sp.setText(shareMod.text);
+                sp.setImageUrl(shareMod.imageUrl);
+                Bitmap imageData = BitmapFactory.decodeResource(
+                        context.getResources(), R.drawable.logo);
+                sp.setImageData(shareMod.imageData);
+                sp.setUrl(shareMod.url);
+                sp.setShareType(Platform.SHARE_IMAGE);
                 plat.setPlatformActionListener(platformActionListener);
                 plat.share(sp);
                 shareAction(context, dialog);
@@ -120,11 +127,12 @@ public class ShareHelper {
             public void onClick(View v) {
                 Platform plat = ShareSDK.getPlatform(context, WechatMoments.NAME);
                 WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
-//                sp.title = animation.Name;
-//                sp.text = animation.Brief;
-//                sp.imageUrl = animation.HomePic;
-//                sp.url = animation.getShareUrl();
-                sp.shareType = Platform.SHARE_WEBPAGE;
+                sp.title = shareMod.title;
+                sp.text = shareMod.text;
+                sp.imageUrl = shareMod.imageUrl;
+                sp.url = shareMod.url;
+                sp.imageData=shareMod.imageData;
+                sp.shareType = Platform.SHARE_IMAGE;
                 plat.setPlatformActionListener(platformActionListener);
                 plat.share(sp);
                 shareAction(context, dialog);
@@ -136,11 +144,12 @@ public class ShareHelper {
             public void onClick(View v) {
                 Platform plat = ShareSDK.getPlatform(context, QQ.NAME);
                 QQ.ShareParams sp = new QQ.ShareParams();
-//                sp.setTitle(animation.Name);
-//                sp.setText(animation.Brief);
-//                sp.setImageUrl(animation.HomePic);
-//                sp.setTitleUrl(animation.getShareUrl());
-                sp.setShareType(QQ.SHARE_WEBPAGE);
+                sp.setTitle(shareMod.title);
+                sp.setText(shareMod.text);
+                sp.setImageUrl(shareMod.imageUrl);
+                sp.setTitleUrl(shareMod.titleUrl);
+                sp.setImageData(shareMod.imageData);
+                sp.setShareType(QQ.SHARE_IMAGE);
                 plat.setPlatformActionListener(platformActionListener);
                 plat.share(sp);
                 shareAction(context, dialog);
@@ -152,11 +161,12 @@ public class ShareHelper {
             public void onClick(View v) {
                 Platform plat = ShareSDK.getPlatform(context, QZone.NAME);
                 QZone.ShareParams sp = new QZone.ShareParams();
-//                sp.setTitle(animation.Name);
-//                sp.setText(animation.Brief);
-//                sp.setImageUrl(animation.HomePic);
-//                sp.setTitleUrl(animation.getShareUrl());
-                sp.setShareType(QZone.SHARE_WEBPAGE);
+                sp.setTitle(shareMod.title);
+                sp.setText(shareMod.text);
+                sp.setImageUrl(shareMod.imageUrl);
+                sp.setTitleUrl(shareMod.titleUrl);
+                sp.setImageData(shareMod.imageData);
+                sp.setShareType(QZone.SHARE_IMAGE);
                 plat.setPlatformActionListener(platformActionListener);
                 plat.share(sp);
                 shareAction(context, dialog);

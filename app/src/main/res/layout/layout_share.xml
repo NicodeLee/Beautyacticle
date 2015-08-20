@@ -21,13 +21,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="125dp"
         android:weightSum="3">
 
         <com.nicodelee.beautyarticle.viewhelper.ShareButton
             android:id="@+id/action_share_weibo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:layout_weight="1"
             app:description="新浪微博"
             app:icons="@drawable/ic_share_sina_weibo" />
@@ -44,6 +46,8 @@
             android:id="@+id/action_share_wechat_timeline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:layout_weight="1"
             app:description="朋友圈"
             app:icons="@drawable/ic_share_wechat_timeline" />
@@ -52,13 +56,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="125dp"
         android:weightSum="3">
 
         <com.nicodelee.beautyarticle.viewhelper.ShareButton
             android:id="@+id/action_share_qq"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:layout_weight="1"
             app:description="QQ好友"
             app:icons="@drawable/ic_share_tencent_qq" />
@@ -75,6 +81,8 @@
             android:id="@+id/action_share_this"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:layout_weight="1"
             app:description="系统分享"
             app:icons="@drawable/ic_share_sharethis" />
@@ -90,9 +98,9 @@
         android:id="@+id/cancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
         android:background="@drawable/custom_press_bg"
         android:gravity="center"
+        android:padding="15dp"
         android:text="取消"
         android:textColor="@android:color/darker_gray"
         android:textSize="26sp" />
