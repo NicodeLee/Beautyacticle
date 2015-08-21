@@ -16,9 +16,11 @@ import android.widget.EditText;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.BindString;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.github.clans.fab.FloatingActionMenu;
-import com.michael.easydialog.EasyDialog;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ShareMod;
@@ -32,14 +34,8 @@ import com.nicodelee.beautyarticle.viewhelper.VerticalTextView;
 import com.nicodelee.utils.WeakHandler;
 import com.nicodelee.view.CircularImage;
 import com.squareup.picasso.Picasso;
-
 import java.io.File;
 import java.util.ArrayList;
-
-import butterknife.Bind;
-import butterknife.BindString;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 import static butterknife.ButterKnife.findById;
@@ -78,12 +74,6 @@ public class FunFragment extends BaseFragment {
     famFun.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
       @Override public void onMenuToggle(boolean opened) {
         if (opened) {
-          //                    showTip();
-          new WeakHandler().postDelayed(new Runnable() {
-            @Override public void run() {
-              //                         easyDialog.dismiss();
-            }
-          }, 900);
         }
       }
     });
@@ -95,7 +85,7 @@ public class FunFragment extends BaseFragment {
     tvDesc.setTypeface(face);
     tvDesc.setText(acticle);
     tvTime.setText(TimeUtils.dateToCnDate(TimeUtils.getCurentData()));
-    rlFun.setLayoutParams(new LayoutParams(DevicesUtil.screenWidth, LayoutParams.WRAP_CONTENT));
+    rlFun.setLayoutParams(new LayoutParams(DevicesUtil.screenWidth, LayoutParams.MATCH_PARENT));
     layoutToImage = new LayoutToImage(scFun);
   }
 
@@ -159,23 +149,7 @@ public class FunFragment extends BaseFragment {
             .getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.showSoftInput(etTitle, 0);
       }
-    }, 300);
-  }
-
-  private EasyDialog easyDialog;
-
-  private void showTip() {
-    easyDialog = new EasyDialog(mActivity).setLayoutResourceId(R.layout.layout_tip_text)
-        .setBackgroundColor(mActivity.getResources().getColor(R.color.green))
-        .setLocationByAttachedView(ivFun)
-        .setGravity(EasyDialog.GRAVITY_TOP)
-        .setAnimationAlphaShow(600, 0.0f, 1.0f)
-        .setAnimationAlphaDismiss(600, 1.0f, 0.0f)
-        .setTouchOutsideDismiss(true)
-        .setMatchParent(false)
-        .setMarginLeftAndRight(24, 24)
-        .setOutsideColor(mActivity.getResources().getColor(R.color.transparent))
-        .show();
+    }, 200);
   }
 
   @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
