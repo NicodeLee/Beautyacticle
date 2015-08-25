@@ -19,10 +19,9 @@
 
 ## Thanks
 - [butterknife](https://github.com/JakeWharton/butterknife)
+- [retrofit](https://github.com/square/retrofit)
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [Android-Universal-Image-Loader](https://github.com/nostra13/Android-Universal-Image-Loader)
-- [jackson](https://github.com/FasterXML/jackson)
-- [android-async-http](https://github.com/loopj/android-async-http)
 - [Android-AppMsg](https://github.com/johnkil/Android-AppMsg)
 - [NumberProgressBar](https://github.com/daimajia/NumberProgressBar)
 - [SwipeBackLayout](https://github.com/ikew0ng/SwipeBackLayout)

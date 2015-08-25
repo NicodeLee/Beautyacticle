@@ -71,12 +71,6 @@ public class FunFragment extends BaseFragment {
   private void init() {
     inflater = LayoutInflater.from(mActivity);
     famFun.setClosedOnTouchOutside(true);
-    famFun.setOnMenuToggleListener(new FloatingActionMenu.OnMenuToggleListener() {
-      @Override public void onMenuToggle(boolean opened) {
-        if (opened) {
-        }
-      }
-    });
 
     tvTitle.setText(acticleTitle);
     tvDesc.setTextSize(DevicesUtil.sp2px(mActivity, 18));
@@ -95,10 +89,12 @@ public class FunFragment extends BaseFragment {
         bitmap = layoutToImage.convertlayout();
         if (SharImageUtils.saveBitmap(bitmap, SharImageUtils.sharePicName)) {
           ShareMod shareMod = new ShareMod();
+          String url = "http://fir.im/beautyacticle";
           shareMod.title = "title";
           shareMod.text = "text";
+          shareMod.titleUrl = url;
           shareMod.imageUrl = AndroidUtils.IMAGE_CACHE_PATH + "/" + SharImageUtils.sharePicName;
-          shareMod.url = "fir.im/beautyacticle";
+          shareMod.url = url;
           shareMod.imageData = bitmap;
           ShareHelper.showUp(mActivity, shareMod);
         }

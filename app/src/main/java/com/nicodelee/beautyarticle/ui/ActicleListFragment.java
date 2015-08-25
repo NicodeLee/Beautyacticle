@@ -8,28 +8,33 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.adapter.MainRecyclerViewAdapter;
+import com.nicodelee.beautyarticle.api.BeautyApi;
+import com.nicodelee.beautyarticle.api.RetrofitHelper;
 import com.nicodelee.beautyarticle.app.BaseFragment;
-import com.nicodelee.beautyarticle.http.AsyncHandlerTextBase;
-import com.nicodelee.beautyarticle.http.HttpHelper;
-import com.nicodelee.beautyarticle.http.JsonUtil;
-import com.nicodelee.beautyarticle.http.URLUtils;
+import com.nicodelee.beautyarticle.api.URLUtils;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod$Table;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.viewhelper.EndlessRecyclerOnScrollListener;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.utils.ListUtils;
 import com.nicodelee.utils.WeakHandler;
 import com.raizlabs.android.dbflow.sql.language.Select;
-
-import org.apache.http.Header;
-
+import com.raizlabs.android.dbflow.structure.ModelAdapter;
 import java.util.ArrayList;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import retrofit.converter.GsonConverter;
 
 public class ActicleListFragment extends BaseFragment
     implements SwipeRefreshLayout.OnRefreshListener {
@@ -68,6 +73,7 @@ public class ActicleListFragment extends BaseFragment
 
   private void setupRecyclerView() {
     rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+
     if (isInDB()) {
       macticleMods = (ArrayList<ActicleMod>) new Select().from(ActicleMod.class)
           .orderBy(false, ActicleMod$Table.ID)
@@ -84,60 +90,57 @@ public class ActicleListFragment extends BaseFragment
   }
 
   private void getActicle(final int page, int id) {
+
     mSwipeLayout.setRefreshing(true);
-    new HttpHelper.Builder().toUrl(URLUtils.ACTICLE)
-        .addParams("page", page + "")
-        .addParams("id", id + "")
-        .executeGet(new AsyncHandlerTextBase() {
-          @Override public void onSuccess(int statusCode, Header[] headers, String result) {
-            super.onSuccess(statusCode, headers, result);
 
-            final ArrayList<ActicleMod> acticleMods = JsonUtil.jsonToList(result, ActicleMod.class);
-            mSwipeLayout.setRefreshing(false);
+    BeautyApi beautyApi = new RetrofitHelper().getRestAdapter().create(BeautyApi.class);
 
-            if (ListUtils.isEmpty(acticleMods)) {
-              if (page > 0) {
-                showToast("全部加载完毕");
-                isHasMore = false;
-              } else if (page < 0) {
-                showToast("小编正为你编辑更多文章");
-              }
-              return;
-            }
+    beautyApi.getActicle(page, id, new Callback<ArrayList<ActicleMod>>() {
+      @Override public void success(final ArrayList<ActicleMod> acticleMods, Response response) {
+        mSwipeLayout.setRefreshing(false);
 
-            //page = 0 首次 <0 刷新 >0 加载更多
-            if (page == 0) {
-              macticleMods = acticleMods;
-              mActcleAdapter = new MainRecyclerViewAdapter(mActivity, macticleMods);
-              rv.setAdapter(mActcleAdapter);
-            } else if (page > 0) {
-              macticleMods.addAll(acticleMods);
-              mActcleAdapter.notifyItemInserted(macticleMods.size());
-            } else if (page < 0) {
-              for (ActicleMod mainMod : acticleMods) {
-                macticleMods.add(0, mainMod);
-              }
-              //                            mActcleAdapter.notifyItemRangeChanged(0,acticleMods.size());
-              mActcleAdapter.notifyDataSetChanged();
-            }
-
-            new WeakHandler().post(new Runnable() {
-              @Override public void run() {
-                ActicleMod acticleMod;
-                for (ActicleMod mainMod : acticleMods) {
-                  acticleMod = mainMod;
-                  acticleMod.save();
-                }
-              }
-            });
+        if (ListUtils.isEmpty(acticleMods)) {
+          if (page > 0) {
+            showToast("全部加载完毕");
+            isHasMore = false;
+          } else if (page < 0) {
+            showToast("小编正为你编辑更多文章");
           }
+          return;
+        }
 
-          @Override public void onFailure(int statusCode, Header[] headers, String result,
-              Throwable throwable) {
-            mSwipeLayout.setRefreshing(false);
+        //page = 0 首次 <0 刷新 >0 加载更多
+        if (page == 0) {
+          macticleMods = acticleMods;
+          mActcleAdapter = new MainRecyclerViewAdapter(mActivity, macticleMods);
+          rv.setAdapter(mActcleAdapter);
+        } else if (page > 0) {
+          macticleMods.addAll(acticleMods);
+          mActcleAdapter.notifyItemInserted(macticleMods.size());
+        } else if (page < 0) {
+          for (ActicleMod mainMod : acticleMods) {
+            macticleMods.add(0, mainMod);
           }
-        })
-        .build();
+          //                            mActcleAdapter.notifyItemRangeChanged(0,acticleMods.size());
+          mActcleAdapter.notifyDataSetChanged();
+        }
+
+        new WeakHandler().post(new Runnable() {
+          @Override public void run() {
+            ActicleMod acticleMod;
+            for (ActicleMod mainMod : acticleMods) {
+              acticleMod = mainMod;
+              acticleMod.save();
+            }
+          }
+        });
+      }
+
+      @Override public void failure(RetrofitError error) {
+        mSwipeLayout.setRefreshing(false);
+        LogUitl.e("error:" + error + ",url:" + error.getUrl());
+      }
+    });
   }
 
   @Override public void onRefresh() {

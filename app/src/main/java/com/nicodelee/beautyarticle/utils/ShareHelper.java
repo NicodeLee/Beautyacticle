@@ -87,8 +87,8 @@ public class ShareHelper {
         Platform pf = ShareSDK.getPlatform(context, SinaWeibo.NAME);
         sp.setText(shareMod.text);
         sp.setUrl(shareMod.url);
-        //                sp.setImageUrl(shareMod.imageUrl);
         sp.setImageData(shareMod.imageData);
+        sp.setImagePath(shareMod.imageUrl);
         sp.setShareType(Platform.SHARE_IMAGE);
         pf.setPlatformActionListener(platformActionListener);
         pf.share(sp);
@@ -135,9 +135,8 @@ public class ShareHelper {
         QQ.ShareParams sp = new QQ.ShareParams();
         sp.setTitle(shareMod.title);
         sp.setText(shareMod.text);
-        sp.setImageUrl(shareMod.imageUrl);
         sp.setTitleUrl(shareMod.titleUrl);
-        sp.setImageData(shareMod.imageData);
+        sp.setImagePath(shareMod.imageUrl);
         sp.setShareType(QQ.SHARE_IMAGE);
         plat.setPlatformActionListener(platformActionListener);
         plat.share(sp);
@@ -154,6 +153,7 @@ public class ShareHelper {
         sp.setImageUrl(shareMod.imageUrl);
         sp.setTitleUrl(shareMod.titleUrl);
         sp.setImageData(shareMod.imageData);
+        sp.setImagePath(shareMod.imageUrl);
         sp.setShareType(QZone.SHARE_IMAGE);
         plat.setPlatformActionListener(platformActionListener);
         plat.share(sp);
@@ -163,8 +163,7 @@ public class ShareHelper {
 
     link.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        SharImageUtils.share(AndroidUtils.IMAGE_CACHE_PATH + "/" + SharImageUtils.sharePicName,
-            "分享", context);
+        SharImageUtils.share(shareMod.imageUrl, "分享", context);
         dialog.dismiss();
       }
     });
