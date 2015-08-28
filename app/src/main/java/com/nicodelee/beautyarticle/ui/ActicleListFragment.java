@@ -86,7 +86,7 @@ public class ActicleListFragment extends BaseFragment
   }
 
   private boolean isInDB() {
-    return new Select().count().from(ActicleMod.class).count() > 0;
+      return new Select().count().from(ActicleMod.class).count() > 0;
   }
 
   private void getActicle(final int page, int id) {

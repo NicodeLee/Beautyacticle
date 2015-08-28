@@ -11,101 +11,111 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import android.widget.Toast;
+import com.nicodelee.view.photoview.PhotoView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import de.greenrobot.event.EventBus;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.logging.Logger;
+import me.nereo.multi_image_selector.view.DetailViewPager;
 
 public class PreviewPicturesActivity extends Activity {
-    ViewPager pager;
-    MyPagerAdapter adapter;
-    private ArrayList<String> picList = new ArrayList<>();
-    private TextView tvCancel, tvSend;
+  DetailViewPager pager;
+  MyPagerAdapter adapter;
+  private ArrayList<String> picList = new ArrayList<>();
+  private int index;
+  private TextView tvCancel, tvSend;
 
-    public static void preViewSingle(Activity activity, String url, int requestCode) {
-        Intent intent = new Intent(activity, PreviewPicturesActivity.class);
-        ArrayList<String> pic = new ArrayList<>();
-        pic.add(url);
-        intent.putExtra("pics", pic);
-        activity.startActivityForResult(intent, requestCode);
+  public static void preViewSingle(Activity activity, String url, int requestCode) {
+    Intent intent = new Intent(activity, PreviewPicturesActivity.class);
+    ArrayList<String> pic = new ArrayList<>();
+    pic.add(url);
+    intent.putExtra("pics", pic);
+    activity.startActivityForResult(intent, requestCode);
+  }
+
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_preview_pictures);
+    pager = (DetailViewPager) findViewById(R.id.pager);
+    tvCancel = (TextView) findViewById(R.id.tv_cancel);
+    tvSend = (TextView) findViewById(R.id.tv_send);
+
+    picList = getIntent().getStringArrayListExtra("pics");
+    index = getIntent().getIntExtra("index", 0);
+    if (picList.size() != 0) {
+      adapter = new MyPagerAdapter();
+      pager.setAdapter(adapter);
+      pager.setCurrentItem(index);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preview_pictures);
-        pager = (ViewPager) findViewById(R.id.pager);
-        tvCancel = (TextView) findViewById(R.id.tv_cancel);
-        tvSend = (TextView) findViewById(R.id.tv_send);
+    pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+      @Override
+      public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-        picList = getIntent().getStringArrayListExtra("pics");
-        if (picList.size() != 0) {
-            adapter = new MyPagerAdapter();
-            pager.setAdapter(adapter);
-        }
+      }
 
-        Log.i("PreView", picList.toString());
+      @Override public void onPageSelected(int position) {
+        index = position;
+      }
 
-        tvCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
+      @Override public void onPageScrollStateChanged(int state) {
+
+      }
+    });
+
+    tvCancel.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        finish();
+      }
+    });
+
+    tvSend.setOnClickListener(new View.OnClickListener() {
+      @Override public void onClick(View v) {
+        Intent intent = new Intent();
+        intent.putExtra("pics", picList);
+        intent.putExtra("index", index);
+        setResult(RESULT_OK, intent);
+        finish();
+      }
+    });
+  }
+
+  private class MyPagerAdapter extends PagerAdapter {
+
+    @Override public int getCount() {
+      return picList.size();
+    }
+
+    @Override public boolean isViewFromObject(View view, Object o) {
+      return view.equals(o);
+    }
+
+    @Override public Object instantiateItem(ViewGroup container, int position) {
+      View view = View.inflate(PreviewPicturesActivity.this, R.layout.item_image, null);
+      PhotoView imageView = (PhotoView) view.findViewById(R.id.iv_pic);
+
+      Picasso.with(PreviewPicturesActivity.this).load(new File(picList.get(position)))
+          //                    .placeholder(R.drawable.default_error)
+          .centerInside().resize(800, 1500)
+          //.error(R.drawable.default_error)
+          .into(imageView, new Callback() {
+            @Override public void onSuccess() {
+              //                            attacher = new PhotoViewAttacher(bgPic);
             }
-        });
 
-        tvSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("pics", picList);
-                setResult(RESULT_OK, intent);
-                finish();
+            @Override public void onError() {
             }
-        });
+          });
+      container.addView(view, 0);
+      return view;
     }
 
-    private class MyPagerAdapter extends PagerAdapter {
-
-        @Override
-        public int getCount() {
-            return picList.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object o) {
-            return view.equals(o);
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            View view = View.inflate(PreviewPicturesActivity.this, R.layout.item_image, null);
-            ImageView imageView = (ImageView) view.findViewById(R.id.iv_pic);
-
-            Picasso.with(PreviewPicturesActivity.this).load(new File(picList.get(position)))
-//                    .placeholder(R.drawable.default_error)
-                    .centerInside()
-                    .resize(800, 1500)
-                            //.error(R.drawable.default_error)
-                    .into(imageView, new Callback() {
-                        @Override
-                        public void onSuccess() {
-//                            attacher = new PhotoViewAttacher(bgPic);
-                        }
-
-                        @Override
-                        public void onError() {
-                        }
-                    });
-            container.addView(view, 0);
-            return view;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-            System.gc();
-        }
+    @Override public void destroyItem(ViewGroup container, int position, Object object) {
+      container.removeView((View) object);
     }
-
+  }
 }

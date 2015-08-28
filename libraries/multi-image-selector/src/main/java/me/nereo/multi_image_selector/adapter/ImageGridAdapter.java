@@ -108,6 +108,10 @@ public class ImageGridAdapter extends BaseAdapter {
         return null;
     }
 
+    public List<Image> getmImages() {
+        return mImages;
+    }
+
     /**
      * 设置数据集
      *
@@ -123,6 +127,7 @@ public class ImageGridAdapter extends BaseAdapter {
         }
         notifyDataSetChanged();
     }
+
 
     /**
      * 重置每个Column的Size

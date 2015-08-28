@@ -26,6 +26,7 @@ import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ShareMod;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.utils.SharImageUtils;
 import com.nicodelee.beautyarticle.utils.ShareHelper;
 import com.nicodelee.beautyarticle.utils.TimeUtils;
@@ -150,21 +151,18 @@ public class FunFragment extends BaseFragment {
 
   @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == REQUEST_IMAGE) {
-      if (resultCode == mActivity.RESULT_OK) {
-        ArrayList<String> mSelectPath =
-            data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-        StringBuilder sb = new StringBuilder();
-        for (String p : mSelectPath) {
-          sb.append(p);
-        }
+    if (resultCode == mActivity.RESULT_OK && requestCode == REQUEST_IMAGE) {
 
-        File imageFile = new File(sb.toString());
-        Picasso.with(mActivity).load(imageFile).placeholder(
-            me.nereo.multi_image_selector.R.drawable.default_error)
-            //.error(R.drawable.default_error)
-            .resize(300, 300).centerCrop().into(ivFun);
-      }
+      ArrayList<String> mSelectPath =
+          data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+      File imageFile = new File(mSelectPath.get(0));
+
+      Picasso.with(mActivity)
+          .load(imageFile)
+          .placeholder(me.nereo.multi_image_selector.R.drawable.default_error)
+          .resize(300, 300)
+          .centerCrop()
+          .into(ivFun);
     }
   }
 }

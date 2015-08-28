@@ -15,6 +15,7 @@
         android:columnWidth="@dimen/image_size"
         android:horizontalSpacing="@dimen/space_size"
         android:numColumns="auto_fit"
+        android:fastScrollEnabled="true"
         android:paddingBottom="?android:attr/actionBarSize"
         android:verticalSpacing="@dimen/space_size" />
 
@@ -54,7 +55,7 @@
             android:minWidth="1dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:textColor="#3464af"
+            android:textColor="#ff009688"
             android:textSize="16dp"
             tools:text="预览" />
 

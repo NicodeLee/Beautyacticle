@@ -15,3 +15,62 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+#-keep class butterknife.** { *; }
+#-dontwarn butterknife.internal.**
+#-keep class **$$ViewBinder { *; }
+#
+#-keepclasseswithmembernames class * {
+#    @butterknife.* <fields>;
+#}
+#
+#-keepclasseswithmembernames class * {
+#    @butterknife.* <methods>;
+#}
+#
+#-keep public class com.nicodelee.beautyarticle.R$*{
+#		public static final int *;
+#}
+#
+## Keep the support library
+#-keep class android.support.** { *; }
+#-keep interface android.support.** { *; }
+#
+## Gson specific classes
+#-keep class sun.misc.Unsafe { *; }
+#-keep class com.google.gson.stream.** { *; }
+#
+#-keepclassmembers enum * {
+#    public static **[] values();
+#    public static ** valueOf(java.lang.String);
+#}
+#
+#-keep class * implements android.os.Parcelable {
+#  public static final android.os.Parcelable$Creator *;
+#}
+#
+#-dontwarn retrofit.**
+#-keep class retrofit.** { *; }
+#-keepclasseswithmembers class * {
+#    @retrofit.http.* <methods>;
+#}
+#
+#-keep class sun.misc.Unsafe { *; }
+#
+#-dontwarn java.lang.invoke.*
+#
+## 使用注解
+#-keepattributes *Annotation*,Signature
+#
+## 保持混淆时类的实名及行号(——————— 调试时打开 ———————)
+#-keepattributes SourceFile,LineNumberTable
+#
+## 枚举需要keep see http://proguard.sourceforge.net/manual/examples.html#enumerations
+#-keepclassmembers enum * {
+#    **[] $VALUES;
+#    public *;
+#}
+#
+##shareSDK
+#-keep class cn.sharesdk.**{*;}
+#-keep class com.sina.**{*;}
+#-keep class **.R
