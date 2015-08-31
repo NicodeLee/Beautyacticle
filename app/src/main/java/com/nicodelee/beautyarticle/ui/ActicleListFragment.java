@@ -10,16 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.adapter.MainRecyclerViewAdapter;
 import com.nicodelee.beautyarticle.api.BeautyApi;
 import com.nicodelee.beautyarticle.api.RetrofitHelper;
+import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
-import com.nicodelee.beautyarticle.api.URLUtils;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod$Table;
 import com.nicodelee.beautyarticle.utils.LogUitl;
@@ -28,13 +24,10 @@ import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.utils.ListUtils;
 import com.nicodelee.utils.WeakHandler;
 import com.raizlabs.android.dbflow.sql.language.Select;
-import com.raizlabs.android.dbflow.structure.ModelAdapter;
 import java.util.ArrayList;
 import retrofit.Callback;
-import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-import retrofit.converter.GsonConverter;
 
 public class ActicleListFragment extends BaseFragment
     implements SwipeRefreshLayout.OnRefreshListener {
@@ -61,14 +54,16 @@ public class ActicleListFragment extends BaseFragment
     setupRecyclerView();
     linearLayoutManager = new LinearLayoutManager(mActivity);
     rv.setLayoutManager(linearLayoutManager);
-    rv.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
-      @Override public void onLoadMore() {
-        int size = macticleMods.size();
-        if (isHasMore && !mSwipeLayout.isRefreshing()) {
-          getActicle(1, (int) macticleMods.get(size - 1).id);
-        }
-      }
-    });
+    rv.addOnScrollListener(
+        new EndlessRecyclerOnScrollListener(linearLayoutManager, APP.getInstance().imageLoader,
+            false, true) {
+          @Override public void onLoadMore() {
+            int size = macticleMods.size();
+            if (isHasMore && !mSwipeLayout.isRefreshing()) {
+              getActicle(1, (int) macticleMods.get(size - 1).id);
+            }
+          }
+        });
   }
 
   private void setupRecyclerView() {
@@ -86,7 +81,7 @@ public class ActicleListFragment extends BaseFragment
   }
 
   private boolean isInDB() {
-      return new Select().count().from(ActicleMod.class).count() > 0;
+    return new Select().count().from(ActicleMod.class).count() > 0;
   }
 
   private void getActicle(final int page, int id) {

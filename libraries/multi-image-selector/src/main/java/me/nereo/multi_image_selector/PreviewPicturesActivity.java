@@ -5,21 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
-import android.widget.Toast;
 import com.nicodelee.view.photoview.PhotoView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-
-import de.greenrobot.event.EventBus;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import me.nereo.multi_image_selector.view.DetailViewPager;
 
 public class PreviewPicturesActivity extends Activity {
