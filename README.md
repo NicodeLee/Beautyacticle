@@ -4,6 +4,7 @@
 > 做一个好用的文字APP
 
 直接下载：http://fir.im/beautyacticle
+或者：http://www.pgyer.com/beautyacticle
 
 - Material Design
 - 精选好图好文，带缓存
