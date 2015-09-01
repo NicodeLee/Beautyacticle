@@ -49,7 +49,6 @@ public class MainRecyclerViewAdapter
     @Bind(R.id.main_desc) TextView tvDesc;
     @Bind(R.id.main_ic) ImageView ivIcon;
     @Bind(R.id.rl_msg) RelativeLayout rlMsg;
-    @Bind(R.id.rl_loading) RelativeLayout rlLoading;
     @Bind(R.id.number_progress_bar) NumberProgressBar progressBar;
     public final View mView;
 
@@ -101,15 +100,15 @@ public class MainRecyclerViewAdapter
 
           @Override public void onLoadingStarted(String imageUri, View view) {
             holder.progressBar.setProgress(0);
-            holder.rlLoading.setVisibility(View.VISIBLE);
+            holder.progressBar.setVisibility(View.VISIBLE);
           }
 
           @Override public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-            holder.rlLoading.setVisibility(View.GONE);
+            holder.progressBar.setVisibility(View.GONE);
           }
 
           @Override public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-            holder.rlLoading.setVisibility(View.GONE);
+            holder.progressBar.setVisibility(View.GONE);
             if (loadedImage != null) {
               ImageView imageView = (ImageView) view;
               boolean firstDisplay = !displayedImages.contains(imageUri);

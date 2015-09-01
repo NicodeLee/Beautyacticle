@@ -25,7 +25,7 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
 
   public EndlessRecyclerOnScrollListener(LinearLayoutManager linearLayoutManager,
       ImageLoader imageLoader, boolean pauseOnScroll, boolean pauseOnSettling) {
-    this(linearLayoutManager,imageLoader, pauseOnScroll, pauseOnSettling, null);
+    this(linearLayoutManager, imageLoader, pauseOnScroll, pauseOnSettling, null);
     this.mLinearLayoutManager = linearLayoutManager;
   }
 
@@ -68,15 +68,12 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
   }
 
   @Override public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-    Log.v("SCR", "onScrollStateChanged");
     switch (newState) {
       case RecyclerView.SCROLL_STATE_IDLE:
-        Log.d("SCR", "onScrollStateChanged :  + SCROLL_STATE_IDLE");
         imageLoader.resume();
         stopped = false;
         break;
       case RecyclerView.SCROLL_STATE_DRAGGING:
-        Log.d("SCR", "onScrollStateChanged :  + SCROLL_STATE_DRAGGING");
         if (pauseOnScroll) {
           imageLoader.pause();
           stopped = true;
@@ -86,7 +83,6 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
         }
         break;
       case RecyclerView.SCROLL_STATE_SETTLING:
-        Log.d("SCR", "onScrollStateChanged :  + SCROLL_STATE_SETTLING");
         if (pauseOnSettling) {
           imageLoader.pause();
           stopped = true;

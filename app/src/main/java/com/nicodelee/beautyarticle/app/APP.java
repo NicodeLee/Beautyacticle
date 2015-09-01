@@ -32,7 +32,7 @@ public class APP extends Application {
     super.onCreate();
     FlowManager.init(this);
     CalligraphyConfig.initDefault(
-        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/Roboto-Light.ttf")
+        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/beauty.ttf")
             .setFontAttrId(R.attr.fontPath)
             .build());
     app = this;

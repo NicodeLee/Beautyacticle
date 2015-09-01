@@ -9,7 +9,7 @@ def keyStore = file('beautiful.keystore')
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion "23.0.0"
 
     defaultConfig {
         applicationId "com.nicodelee.beautyarticle"
@@ -91,7 +91,6 @@ dependencies {
     compile 'com.android.support:support-v13:' + SUPPORT_VERSION
     compile 'com.android.support:design:' + SUPPORT_VERSION
     compile 'com.android.support:appcompat-v7:' + SUPPORT_VERSION
-    compile 'com.android.support:cardview-v7:' + SUPPORT_VERSION
     compile 'com.android.support:recyclerview-v7:' + SUPPORT_VERSION
 
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
@@ -105,6 +104,9 @@ dependencies {
     compile 'com.daimajia.numberprogressbar:library:1.2@aar'
     compile 'com.github.clans:fab:1.5.5'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
+
+//    apt 'com.google.dagger:dagger-compiler:2.0.1'
+//    compile 'com.google.dagger:dagger:2.0.1'
 
     compile project(':libraries:CommLib')
     compile project(':libraries:MeterialSettingLib')

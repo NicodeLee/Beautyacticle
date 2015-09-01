@@ -58,7 +58,7 @@
             android:paddingRight="10dp"
             android:paddingBottom="25dp"
             android:paddingTop="20dp"
-            android:textColor="@color/black"
+            android:textColor="#696D6F"
             android:textSize="18sp" />
 
     </android.support.v4.widget.NestedScrollView>

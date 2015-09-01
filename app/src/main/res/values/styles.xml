@@ -24,11 +24,11 @@
 
 
     <style name="FontActicle">
-        <item name="fontPath">fonts/Roboto-Light.ttf</item>
+        <item name="fontPath">fonts/beauty.ttf</item>
     </style>
 
     <style name="FontComm">
-        <item name="fontPath">fonts/Roboto-Regular.ttf</item>
+        <item name="fontPath">fonts/beauty.ttf</item>
     </style>
 
     <style name="FontFun">

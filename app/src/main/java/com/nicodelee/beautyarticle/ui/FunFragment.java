@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,8 +133,10 @@ public class FunFragment extends BaseFragment {
 
             title = etTitle.getText().toString().trim();
             desc = etDesc.getText().toString().trim();
-            tvTitle.setText(title);
-            tvDesc.setText(desc);
+            if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(desc)){
+              tvTitle.setText(title);
+              tvDesc.setText(desc);
+            }
             dialog.dismiss();
           }
         })
