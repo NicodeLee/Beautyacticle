@@ -21,6 +21,7 @@
 ## Thanks
 - [butterknife](https://github.com/JakeWharton/butterknife)
 - [retrofit](https://github.com/square/retrofit)
+- [dagger2](https://github.com/google/dagger)
 - [EventBus](https://github.com/greenrobot/EventBus)
 - [Android-Universal-Image-Loader](https://github.com/nostra13/Android-Universal-Image-Loader)
 - [Android-AppMsg](https://github.com/johnkil/Android-AppMsg)

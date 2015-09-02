@@ -10,9 +10,6 @@ import android.widget.ScrollView;
 
 /**
  * A ScrollView which can scroll to (0,0) when pull down or up.
- *
- * @author markmjw
- * @date 2014-04-30
  */
 public class StretchScrollView extends ScrollView {
     private static final int MSG_REST_POSITION = 0x01;

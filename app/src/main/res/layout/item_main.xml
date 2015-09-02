@@ -6,7 +6,7 @@
     android:background="@drawable/custom_press_bg"
     >
 
-  <ImageView
+  <com.nicodelee.beautyarticle.viewhelper.OverlayImageView
       android:id="@+id/main_ic"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"

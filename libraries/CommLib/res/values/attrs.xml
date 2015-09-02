@@ -2,14 +2,6 @@
 <resources>
     
 
-     <declare-styleable name="HorizontalListView">
-        <attr name="dividerWidth" format="dimension" />
-        <attr name="android:divider" />
-        <attr name="android:requiresFadingEdge" />
-        <attr name="android:fadingEdgeLength" />
-    </declare-styleable>
-
-
     <declare-styleable name="SelectableRoundedImageView">
         <attr name="sriv_left_top_corner_radius" format="dimension" />
         <attr name="sriv_right_top_corner_radius" format="dimension" />
