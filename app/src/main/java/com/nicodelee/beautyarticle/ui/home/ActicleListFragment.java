@@ -1,4 +1,4 @@
-package com.nicodelee.beautyarticle.ui;
+package com.nicodelee.beautyarticle.ui.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -152,5 +152,10 @@ public class ActicleListFragment extends BaseFragment
 
   public void onEvent(String select) {
     linearLayoutManager.scrollToPosition(0);
+  }
+
+  @Override public void onDestroyView() {
+    super.onDestroyView();
+    ButterKnife.unbind(this);
   }
 }

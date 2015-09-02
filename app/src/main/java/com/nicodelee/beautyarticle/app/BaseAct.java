@@ -1,4 +1,4 @@
-package com.nicodelee.beautyarticle.ui;
+package com.nicodelee.beautyarticle.app;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.devspark.appmsg.AppMsg;
 import com.nicodelee.beautyarticle.R;
-import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.view.LoadingDialog;
 
 import java.io.Serializable;

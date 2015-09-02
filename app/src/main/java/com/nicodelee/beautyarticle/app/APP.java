@@ -4,8 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
-
 import com.nicodelee.beautyarticle.R;
+import com.nicodelee.beautyarticle.internal.di.components.ApplicationComponent;
+import com.nicodelee.beautyarticle.internal.di.components.DaggerApplicationComponent;
+import com.nicodelee.beautyarticle.internal.di.modules.ApplicationModule;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
@@ -16,20 +18,21 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 import com.raizlabs.android.dbflow.config.FlowManager;
-
 import java.io.File;
-
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class APP extends Application {
-  private static APP app;
 
+  private static APP app;
   public static APP getInstance() {
     return app;
   }
 
+  private ApplicationComponent applicationComponent;
+
   @Override public void onCreate() {
     super.onCreate();
+    initialzeInjector();
     FlowManager.init(this);
     CalligraphyConfig.initDefault(
         new CalligraphyConfig.Builder().setDefaultFontPath("fonts/beauty.ttf")
@@ -39,6 +42,16 @@ public class APP extends Application {
     initImageLoader(getApplicationContext());
     AndroidUtils.init(this);
     DevicesUtil.getScreenConfig(this);
+  }
+
+  public ApplicationComponent getApplicationComponent() {
+    return this.applicationComponent;
+  }
+
+  private void initialzeInjector(){
+    this.applicationComponent = DaggerApplicationComponent.builder()
+        .applicationModule(new ApplicationModule(this))
+        .build();
   }
 
   private void initImageLoader(Context context) {

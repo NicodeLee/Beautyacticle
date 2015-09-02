@@ -67,4 +67,9 @@ public class ArticleFragment extends BaseFragment {
     APP.getInstance().imageLoader.displayImage(mod.image, ivActicle, APP.options,
         new UILUtils.AnimateFirstDisplayListener());
   }
+
+  @Override public void onDestroyView() {
+    super.onDestroyView();
+    ButterKnife.unbind(this);
+  }
 }

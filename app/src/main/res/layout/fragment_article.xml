@@ -52,12 +52,12 @@
             android:layout_height="wrap_content"
             style="@style/FontActicle"
             android:layout_marginTop="10dp"
-            android:lineSpacingExtra="3dp"
-            android:lineSpacingMultiplier="1.5"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingBottom="25dp"
-            android:paddingTop="20dp"
+            android:lineSpacingExtra="2dp"
+            android:lineSpacingMultiplier="1.2"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="24dp"
+            android:paddingTop="24dp"
             android:textColor="#696D6F"
             android:textSize="18sp" />
 

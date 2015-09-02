@@ -1,116 +1,49 @@
 package com.nicodelee.beautyarticle.app;
 
-import android.app.ActionBar;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.Utils;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
-import com.nicodelee.view.LoadingDialog;
+public class BaseSwiBackAct extends BaseAct implements SwipeBackActivityBase {
+  private SwipeBackActivityHelper mHelper;
 
-import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import de.greenrobot.event.EventBus;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
-public class BaseSwiBackAct extends SwipeBackActivity {
-
-  public LoadingDialog loadingDialog;
-  public Intent intent;
-  private static BaseSwiBackAct Cot;
-  public ActionBar ab;
-
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Cot = this;
-    intent = getIntent();
-    loadingDialog = new LoadingDialog(this);
+    mHelper = new SwipeBackActivityHelper(this);
+    mHelper.onActivityCreate();
   }
 
-  @Override protected void attachBaseContext(Context newBase) {
-    super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+  @Override
+  protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    mHelper.onPostCreate();
   }
 
-  public APP getApp() {
-    return (APP) getApplication();
+  @Override
+  public View findViewById(int id) {
+    View v = super.findViewById(id);
+    if (v == null && mHelper != null)
+      return mHelper.findViewById(id);
+    return v;
   }
 
-  public void showToast(String message) {
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+  @Override
+  public SwipeBackLayout getSwipeBackLayout() {
+    return mHelper.getSwipeBackLayout();
   }
 
-  public void showShortToast(String message) {
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+  @Override
+  public void setSwipeBackEnable(boolean enable) {
+    getSwipeBackLayout().setEnableGesture(enable);
   }
 
-  public <T> T findViewByIdExt(int id) {
-    return (T) super.findViewById(id);
-  }
-
-  public void skipIntent(Class clz, HashMap<String, Object> map, boolean isFinish) {
-    Intent intent = new Intent(this, clz);
-    if (map != null) {
-      Iterator it = map.entrySet().iterator();
-
-      while (it.hasNext()) {
-
-        Map.Entry entry = (Map.Entry) it.next();
-
-        String key = (String) entry.getKey();
-
-        Serializable value = (Serializable) entry.getValue();
-
-        intent.putExtra(key, value);
-      }
-    }
-    startActivity(intent);
-    if (isFinish) finish();
-  }
-
-  public void skipIntent(Class clz, HashMap<String, Object> map, int code) {
-    Intent intent = new Intent(this, clz);
-    if (map != null) {
-      Iterator it = map.entrySet().iterator();
-      while (it.hasNext()) {
-        Map.Entry entry = (Map.Entry) it.next();
-        String key = (String) entry.getKey();
-        Serializable value = (Serializable) entry.getValue();
-        intent.putExtra(key, value);
-      }
-    }
-    startActivityForResult(intent, code);
-  }
-
-  public void skipIntent(Class clz, int code, boolean isFinish) {
-    Intent intent = new Intent(this, clz);
-    startActivityForResult(intent, code);
-    if (isFinish) finish();
-  }
-
-  public void skipIntent(Class clz, boolean isFinish) {
-    Intent intent = new Intent(this, clz);
-    startActivity(intent);
-    if (isFinish) finish();
-  }
-
-  public Object getExtra(String name) {
-    return getIntent().getSerializableExtra(name);
-  }
-
-  @Override protected void onStart() {
-    EventBus.getDefault().registerSticky(this);
-    super.onStart();
-  }
-
-  @Override public void onStop() {
-    EventBus.getDefault().unregister(this);
-    super.onStop();
-  }
-
-  public void onEvent(int event) {
+  @Override
+  public void scrollToFinishActivity() {
+    Utils.convertActivityToTranslucent(this);
+    getSwipeBackLayout().scrollToFinishActivity();
   }
 }

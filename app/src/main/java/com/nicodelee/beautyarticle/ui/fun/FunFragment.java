@@ -1,4 +1,4 @@
-package com.nicodelee.beautyarticle.ui;
+package com.nicodelee.beautyarticle.ui.fun;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,7 +27,6 @@ import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ShareMod;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
-import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nicodelee.beautyarticle.utils.SharImageUtils;
 import com.nicodelee.beautyarticle.utils.ShareHelper;
 import com.nicodelee.beautyarticle.utils.TimeUtils;

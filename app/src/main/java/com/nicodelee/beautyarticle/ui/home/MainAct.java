@@ -1,7 +1,6 @@
-package com.nicodelee.beautyarticle.ui;
+package com.nicodelee.beautyarticle.ui.home;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -11,8 +10,8 @@ import android.view.MenuItem;
 
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.adapter.MainTabPageAdapter;
-import com.nicodelee.beautyarticle.app.MainBase;
-import com.nicodelee.beautyarticle.utils.LogUitl;
+import com.nicodelee.beautyarticle.ui.fun.FunFragment;
+import com.nicodelee.beautyarticle.ui.setting.SettingAct;
 
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;

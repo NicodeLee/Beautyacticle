@@ -7,14 +7,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
-
+import de.greenrobot.event.EventBus;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
-import de.greenrobot.event.EventBus;
 
 public abstract class BaseFragment extends Fragment {
   private Context context;
@@ -23,13 +21,6 @@ public abstract class BaseFragment extends Fragment {
     super.onCreate(savedInstanceState);
     context = getActivity().getApplicationContext();
   }
-
-  //    public ScaleInAnimationAdapter getAnimaAdapter(RecyclerView recyclerView,RecyclerView.Adapter adapter){
-  //        recyclerView.setItemAnimator(new FadeInAnimator());
-  //        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);
-  //        ScaleInAnimationAdapter scaleAdapter = new ScaleInAnimationAdapter(alphaAdapter);
-  //        return scaleAdapter;
-  //    }
 
   // http://stackoverflow.com/questions/15207305/getting-the-error-java-lang-illegalstateexception-activity-has-been-destroyed
   @Override public void onDetach() {

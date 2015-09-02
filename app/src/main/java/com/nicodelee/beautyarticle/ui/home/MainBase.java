@@ -1,4 +1,4 @@
-package com.nicodelee.beautyarticle.app;
+package com.nicodelee.beautyarticle.ui.home;
 
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 
 import com.nicodelee.beautyarticle.R;
-import com.nicodelee.beautyarticle.ui.BaseAct;
+import com.nicodelee.beautyarticle.app.BaseAct;
 import com.nicodelee.beautyarticle.utils.IsExit;
 
 import butterknife.Bind;

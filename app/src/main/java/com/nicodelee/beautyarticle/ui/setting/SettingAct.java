@@ -1,4 +1,4 @@
-package com.nicodelee.beautyarticle.ui;
+package com.nicodelee.beautyarticle.ui.setting;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -7,10 +7,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.kenumir.materialsettings.MaterialSettings;
-import com.kenumir.materialsettings.items.CheckboxItem;
 import com.kenumir.materialsettings.items.DividerItem;
 import com.kenumir.materialsettings.items.HeaderItem;
-import com.kenumir.materialsettings.items.SwitcherItem;
 import com.kenumir.materialsettings.items.TextItem;
 import com.kenumir.materialsettings.storage.PreferencesStorageInterface;
 import com.kenumir.materialsettings.storage.StorageInterface;
@@ -18,7 +16,6 @@ import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.utils.FileUtil;
 import com.nicodelee.beautyarticle.viewhelper.SampleDialog;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.raizlabs.android.dbflow.sql.language.Delete;
 import com.raizlabs.android.dbflow.sql.language.Select;
 

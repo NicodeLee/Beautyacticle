@@ -81,10 +81,6 @@ public class AndroidUtils {
     return uniqueId;
   }
 
-  public static void toastShow(Context context, String message) {
-    Toast.makeText(context, message, 1).show();
-  }
-
   public static boolean sdCardIsAvailable() {
     String status = Environment.getExternalStorageState();
     if (!status.equals(Environment.MEDIA_MOUNTED)) return false;
@@ -208,21 +204,6 @@ public class AndroidUtils {
     }
   }
 
-  /**
-   * 鑾峰彇鐘舵�鏍忛珮搴�
-   *
-   * @return
-   */
-  /*
-	 * public int getStatusBarHeight(Context context) { Class<?> c = null;
-	 * Object obj = null; java.lang.reflect.Field field = null; int x = 0; int
-	 * statusBarHeight = 0; try { c =
-	 * Class.forName("com.android.internal.R$dimen"); obj = c.newInstance();
-	 * field = c.getField("status_bar_height"); x =
-	 * Integer.parseInt(field.get(obj).toString()); statusBarHeight =
-	 * context.getResources().getDimensionPixelSize(x); return statusBarHeight;
-	 * } catch (Exception e) { e.printStackTrace(); } return statusBarHeight; }
-	 */
 
   /**
    *
@@ -259,33 +240,10 @@ public class AndroidUtils {
   }
 
   private static void deleteFileFromLocal(String requestPath) {
-    // TODO Auto-generated method stub
     File file = new File(requestPath);
     if (file.exists()) {
       file.delete();
     }
   }
 
-  public static String paseContent(Activity ctx, String uriStr) {
-    Uri uri = Uri.parse(uriStr);
-    String[] proj = { MediaStore.Images.Media.DATA };
-    Cursor actualimagecursor = ctx.managedQuery(uri, proj, null, null, null);
-    int actual_image_column_index =
-        actualimagecursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-    actualimagecursor.moveToFirst();
-    String img_path = actualimagecursor.getString(actual_image_column_index);
-    return img_path;
-    // File file = new File(img_path);
-    // Uri fileUri = Uri.fromFile(file);
-  }
-
-  // 从url获取文件名
-  public static String getNameFromUrl(String Url) {
-    return Url.substring(Url.lastIndexOf("/") + 1);
-  }
-
-  // 从url获取文件后缀
-  public static String getSuffitFromUrl(String Url) {
-    return Url.substring(Url.lastIndexOf(".") + 1);
-  }
 }
