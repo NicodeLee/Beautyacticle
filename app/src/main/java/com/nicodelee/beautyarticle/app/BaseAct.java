@@ -121,6 +121,6 @@ public abstract class BaseAct extends AppCompatActivity {
     super.onStop();
   }
 
-  public void onEvent(int event) {
+  public void onEvent(Object event) {
   }
 }

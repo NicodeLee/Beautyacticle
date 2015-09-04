@@ -204,6 +204,14 @@
     <color name="blue_semi_transparent">#805677fc</color>
     <color name="blue_semi_transparent_pressed">#80738ffe</color>
 
+    <color name="base">#FFFFFB</color>
+    <color name="overlay">#AA1C1C1C</color>
+    <color name="text">#1C1C1C</color>
+    <color name="handle">#86C166</color>
+    <color name="frame">#86C166</color>
+    <color name="guide">#AA86C166</color>
+    <color name="menu_bg">#FFFFFB</color>
+
     <drawable name="dr_white">#ffffff</drawable>
     <drawable name="dr_text_disabled">#e4e4e4</drawable>
 

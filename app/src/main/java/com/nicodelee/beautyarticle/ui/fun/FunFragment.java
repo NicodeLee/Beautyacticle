@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.github.clans.fab.FloatingActionMenu;
 import com.nicodelee.beautyarticle.R;
+import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ShareMod;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
@@ -34,9 +35,12 @@ import com.nicodelee.beautyarticle.viewhelper.LayoutToImage;
 import com.nicodelee.beautyarticle.viewhelper.VerticalTextView;
 import com.nicodelee.utils.WeakHandler;
 import com.nicodelee.view.CircularImage;
+import com.nicodelee.view.CropImageView;
 import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.ArrayList;
+
+import de.greenrobot.event.EventBus;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
 import static butterknife.ButterKnife.findById;
@@ -157,14 +161,21 @@ public class FunFragment extends BaseFragment {
 
       ArrayList<String> mSelectPath =
           data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-      File imageFile = new File(mSelectPath.get(0));
+//      File imageFile = new File(mSelectPath.get(0));
 
-      Picasso.with(mActivity)
-          .load(imageFile)
-          .placeholder(me.nereo.multi_image_selector.R.drawable.default_error)
-          .resize(300, 300)
-          .centerCrop()
-          .into(ivFun);
+      EventBus.getDefault().postSticky((mSelectPath.get(0)));
+
+      skipIntent(CorpAct.class,false);
+//      Picasso.with(mActivity)
+//          .load(imageFile)
+//          .placeholder(me.nereo.multi_image_selector.R.drawable.default_error)
+//          .resize(300, 300)
+//          .centerCrop()
+//          .into(ivFun);
     }
+  }
+
+  public void onEvent(Bitmap corpBitmap) {
+     ivFun.setImageBitmap(corpBitmap);
   }
 }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/corp_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="好了"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        />
+
+    <com.nicodelee.view.CropImageView
+        android:id="@+id/cropImageView"
+        android:layout_above="@+id/corp_done"
+        android:paddingTop="32dp"
+        android:paddingBottom="48dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        custom:cropMode="ratio_1_1"
+        custom:backgroundColor="@color/base"
+        custom:handleColor="@color/handle"
+        custom:guideColor="@color/guide"
+        custom:overlayColor="@color/overlay"
+        custom:frameColor="@color/frame"
+        custom:handleSize="8dp"
+        custom:touchPadding="8dp"
+        custom:handleShowMode="show_always"
+        custom:guideShowMode="show_on_touch"
+        custom:minFrameSize="50dp"
+        custom:frameStrokeWeight="1dp"
+        custom:guideStrokeWeight="1dp"
+        />
+
+
+</RelativeLayout>

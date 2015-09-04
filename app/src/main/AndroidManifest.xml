@@ -41,6 +41,7 @@
 
         <activity android:name=".ui.setting.SettingAct" android:screenOrientation="portrait" android:theme="@style/MaterialSettingsTheme" />
 
+        <activity android:name=".ui.fun.CorpAct" android:screenOrientation="portrait"></activity>
         <activity
             android:name="me.nereo.multi_image_selector.PreviewPicturesActivity"
             android:configChanges="orientation|screenSize" />
