@@ -54,7 +54,7 @@ public class ArticleFragment extends BaseFragment {
   @Override public boolean onOptionsItemSelected(MenuItem item) {
     switch (item.getItemId()) {
       case android.R.id.home:
-        getActivity().finish();
+        mActivity.finish();
         return true;
     }
     return super.onOptionsItemSelected(item);

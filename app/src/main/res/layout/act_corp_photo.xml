@@ -2,21 +2,53 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     xmlns:custom="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:id="@+id/corp_done"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/corp_ll"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="好了"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        />
+        android:layout_marginBottom="12dp"
+        >
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/corp_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="取消"
+            android:drawableLeft="@drawable/crop__ic_cancel"
+            android:paddingLeft="24dp"
+            android:background="@drawable/custom_press_bg"
+            />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/crop__divider"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            />
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/corp_done"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:drawableLeft="@drawable/crop__ic_done"
+            android:paddingLeft="24dp"
+            android:gravity="center"
+            android:background="@drawable/custom_press_bg"
+            android:text="好了"
+            />
+    </LinearLayout>
+
 
     <com.nicodelee.view.CropImageView
         android:id="@+id/cropImageView"
-        android:layout_above="@+id/corp_done"
+        android:layout_above="@+id/corp_ll"
         android:paddingTop="32dp"
         android:paddingBottom="48dp"
         android:paddingLeft="16dp"
