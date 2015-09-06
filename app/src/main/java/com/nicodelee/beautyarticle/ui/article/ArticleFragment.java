@@ -11,17 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.utils.UILUtils;
-
 import java.util.ArrayList;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 public class ArticleFragment extends BaseFragment {
 
@@ -63,9 +60,9 @@ public class ArticleFragment extends BaseFragment {
   public void onEvent(ArrayList<ActicleMod> eventList) {
     ActicleMod mod = eventList.get(position);
     collapsingToolbar.setTitle(mod.title + "");
-    tvDetail.setText(mod.details + "");
     APP.getInstance().imageLoader.displayImage(mod.image, ivActicle, APP.options,
         new UILUtils.AnimateFirstDisplayListener());
+    tvDetail.setText(mod.details);
   }
 
   @Override public void onDestroyView() {

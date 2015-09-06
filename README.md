@@ -12,7 +12,8 @@
 
 ###后续
 - 更好的图文排版
-- 选图自定义圆形剪裁
+- 更多制作的模板
+- 尝试mvp/mvc架构
 
 <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/d.gif" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo1.png" alt="screenshot" title="screenshot" width="270" height="486" />
 
@@ -30,7 +31,7 @@
 - [DBFlow](https://github.com/Raizlabs/DBFlow)
 
 
-感谢[daimajia](https://github.com/daimajia)引用了他部分代码
+感谢[daimajia](https://github.com/daimajia)
 
 Code style
 -----------

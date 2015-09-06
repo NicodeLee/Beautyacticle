@@ -1,74 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    xmlns:custom="http://schemas.android.com/apk/res-auto">
+    >
 
-    <LinearLayout
-        android:id="@+id/corp_ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="12dp"
-        >
-        <TextView
-            android:layout_weight="1"
-            android:id="@+id/corp_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:text="取消"
-            android:drawableLeft="@drawable/crop__ic_cancel"
-            android:paddingLeft="24dp"
-            android:background="@drawable/custom_press_bg"
-            />
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/crop__divider"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            />
-
-        <TextView
-            android:layout_weight="1"
-            android:id="@+id/corp_done"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:drawableLeft="@drawable/crop__ic_done"
-            android:paddingLeft="24dp"
-            android:gravity="center"
-            android:background="@drawable/custom_press_bg"
-            android:text="好了"
-            />
-    </LinearLayout>
-
-
-    <com.nicodelee.view.CropImageView
-        android:id="@+id/cropImageView"
-        android:layout_above="@+id/corp_ll"
-        android:paddingTop="32dp"
-        android:paddingBottom="48dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        custom:cropMode="ratio_1_1"
-        custom:backgroundColor="@color/base"
-        custom:handleColor="@color/handle"
-        custom:guideColor="@color/guide"
-        custom:overlayColor="@color/overlay"
-        custom:frameColor="@color/frame"
-        custom:handleSize="8dp"
-        custom:touchPadding="8dp"
-        custom:handleShowMode="show_always"
-        custom:guideShowMode="show_on_touch"
-        custom:minFrameSize="50dp"
-        custom:frameStrokeWeight="1dp"
-        custom:guideStrokeWeight="1dp"
+  <LinearLayout
+      android:id="@+id/corp_ll"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:layout_alignParentBottom="true"
+      >
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/corp_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="取消"
+        android:drawableLeft="@drawable/crop__ic_cancel"
+        android:paddingLeft="24dp"
+        android:background="@drawable/custom_press_bg"
         />
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/crop__divider"
+        android:padding="8dp"
+        />
+
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/corp_done"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:drawableLeft="@drawable/crop__ic_done"
+        android:paddingLeft="24dp"
+        android:gravity="center"
+        android:background="@drawable/custom_press_bg"
+        android:text="好了"
+        />
+  </LinearLayout>
+
+
+  <com.nicodelee.view.CropImageView
+      android:id="@+id/cropImageView"
+      android:layout_above="@+id/corp_ll"
+      android:paddingTop="48dp"
+      android:paddingBottom="48dp"
+      android:paddingLeft="4dp"
+      android:paddingRight="4dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      custom:cropMode="ratio_1_1"
+      custom:backgroundColor="@color/black"
+      custom:handleColor="@color/handle"
+      custom:guideColor="@color/guide"
+      custom:overlayColor="@color/overlay"
+      custom:frameColor="@color/frame"
+      custom:handleSize="8dp"
+      custom:touchPadding="8dp"
+      custom:handleShowMode="show_always"
+      custom:guideShowMode="show_on_touch"
+      custom:minFrameSize="50dp"
+      custom:frameStrokeWeight="1dp"
+      custom:guideStrokeWeight="1dp"
+      />
 
 
 </RelativeLayout>

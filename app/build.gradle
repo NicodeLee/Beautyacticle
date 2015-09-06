@@ -39,7 +39,8 @@ android {
                 variant.outputs.each { output ->
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        def fileName = "Beautyarticle-V${defaultConfig.versionName}_${releaseTime()}.apk"
+                        def fileName = "Beautyarticle-V${defaultConfig.versionName}.apk"
+//                        def fileName = "Beautyarticle-V${defaultConfig.versionName}_${releaseTime()}.apk"
                         output.outputFile = new File(outputFile.parent, fileName)
                     }
                 }
@@ -108,6 +109,7 @@ dependencies {
     apt 'com.google.dagger:dagger-compiler:2.0.1'
     compile 'com.google.dagger:dagger:2.0.1'
     compile 'javax.annotation:javax.annotation-api:1.2'
+
 
     compile project(':libraries:CommLib')
     compile project(':libraries:MeterialSettingLib')
