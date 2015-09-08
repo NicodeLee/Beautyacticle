@@ -6,17 +6,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.widget.Toast;
-
 import com.devspark.appmsg.AppMsg;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.view.LoadingDialog;
-
+import de.greenrobot.event.EventBus;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
-import de.greenrobot.event.EventBus;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public abstract class BaseAct extends AppCompatActivity {
@@ -30,10 +27,6 @@ public abstract class BaseAct extends AppCompatActivity {
     Cot = this;
     intent = getIntent();
     loadingDialog = new LoadingDialog(this);
-  }
-
-  public <T> T findViewByIdExt(int id) {
-    return (T) super.findViewById(id);
   }
 
   @Override protected void attachBaseContext(Context newBase) {

@@ -10,39 +10,32 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 public class BaseSwiBackAct extends BaseAct implements SwipeBackActivityBase {
   private SwipeBackActivityHelper mHelper;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     mHelper = new SwipeBackActivityHelper(this);
     mHelper.onActivityCreate();
   }
 
-  @Override
-  protected void onPostCreate(Bundle savedInstanceState) {
+  @Override protected void onPostCreate(Bundle savedInstanceState) {
     super.onPostCreate(savedInstanceState);
     mHelper.onPostCreate();
   }
 
-  @Override
-  public View findViewById(int id) {
+  @Override public View findViewById(int id) {
     View v = super.findViewById(id);
-    if (v == null && mHelper != null)
-      return mHelper.findViewById(id);
+    if (v == null && mHelper != null) return mHelper.findViewById(id);
     return v;
   }
 
-  @Override
-  public SwipeBackLayout getSwipeBackLayout() {
+  @Override public SwipeBackLayout getSwipeBackLayout() {
     return mHelper.getSwipeBackLayout();
   }
 
-  @Override
-  public void setSwipeBackEnable(boolean enable) {
+  @Override public void setSwipeBackEnable(boolean enable) {
     getSwipeBackLayout().setEnableGesture(enable);
   }
 
-  @Override
-  public void scrollToFinishActivity() {
+  @Override public void scrollToFinishActivity() {
     Utils.convertActivityToTranslucent(this);
     getSwipeBackLayout().scrollToFinishActivity();
   }

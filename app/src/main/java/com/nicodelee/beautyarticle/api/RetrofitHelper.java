@@ -30,4 +30,10 @@ public class RetrofitHelper {
         .setEndpoint(URLUtils.BASE_URL)
         .build();
   }
+
+  public BeautyApi getBeautyApi() {
+    return new RestAdapter.Builder().setConverter(new GsonConverter(getGson()))
+        .setEndpoint(URLUtils.BASE_URL)
+        .build().create(BeautyApi.class);
+  }
 }

@@ -13,7 +13,6 @@ import butterknife.ButterKnife;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.adapter.MainRecyclerViewAdapter;
 import com.nicodelee.beautyarticle.api.BeautyApi;
-import com.nicodelee.beautyarticle.api.RetrofitHelper;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
@@ -25,12 +24,15 @@ import com.nicodelee.utils.ListUtils;
 import com.nicodelee.utils.WeakHandler;
 import com.raizlabs.android.dbflow.sql.language.Select;
 import java.util.ArrayList;
+import javax.inject.Inject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class ActicleListFragment extends BaseFragment
     implements SwipeRefreshLayout.OnRefreshListener {
+
+  @Inject BeautyApi mbeautyApi;
 
   @Bind(R.id.recyclerview) RecyclerView rv;
   @Bind(R.id.swipe_container) MySwipeRefreshLayout mSwipeLayout;
@@ -44,6 +46,7 @@ public class ActicleListFragment extends BaseFragment
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_main_list, container, false);
     ButterKnife.bind(this, view);
+    APP.from(getActivity()).getApplicationComponent().inject(this);
     return view;
   }
 
@@ -87,10 +90,7 @@ public class ActicleListFragment extends BaseFragment
   private void getActicle(final int page, int id) {
 
     mSwipeLayout.setRefreshing(true);
-
-    BeautyApi beautyApi = new RetrofitHelper().getRestAdapter().create(BeautyApi.class);
-
-    beautyApi.getActicle(page, id, new Callback<ArrayList<ActicleMod>>() {
+    mbeautyApi.getActicle(page, id, new Callback<ArrayList<ActicleMod>>() {
       @Override public void success(final ArrayList<ActicleMod> acticleMods, Response response) {
         mSwipeLayout.setRefreshing(false);
 
@@ -151,7 +151,7 @@ public class ActicleListFragment extends BaseFragment
   }
 
   public void onEvent(String select) {
-    linearLayoutManager.scrollToPosition(0);
+    if (select.equals("Reselected")) linearLayoutManager.scrollToPosition(0);
   }
 
   @Override public void onDestroyView() {

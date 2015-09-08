@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.internal.di.components.ApplicationComponent;
 import com.nicodelee.beautyarticle.internal.di.components.DaggerApplicationComponent;
@@ -33,7 +34,7 @@ public class APP extends Application {
   @Override public void onCreate() {
     super.onCreate();
     initialzeInjector();
-    FlowManager.init(this);
+    FlowManager.init(this);//DbFlow
     CalligraphyConfig.initDefault(
         new CalligraphyConfig.Builder().setDefaultFontPath("fonts/beauty.ttf")
             .setFontAttrId(R.attr.fontPath)
@@ -45,13 +46,18 @@ public class APP extends Application {
   }
 
   public ApplicationComponent getApplicationComponent() {
-    return this.applicationComponent;
+    return applicationComponent;
+  }
+
+  public static APP from(@NonNull Context context) {
+    return (APP) context.getApplicationContext();
   }
 
   private void initialzeInjector(){
     this.applicationComponent = DaggerApplicationComponent.builder()
         .applicationModule(new ApplicationModule(this))
         .build();
+    applicationComponent.inject(this);
   }
 
   private void initImageLoader(Context context) {

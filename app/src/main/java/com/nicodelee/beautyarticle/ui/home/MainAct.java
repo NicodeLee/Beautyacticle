@@ -8,13 +8,23 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import android.view.View;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.adapter.MainTabPageAdapter;
+import com.nicodelee.beautyarticle.api.BeautyApi;
+import com.nicodelee.beautyarticle.app.APP;
+import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.ui.fun.FunFragment;
 import com.nicodelee.beautyarticle.ui.setting.SettingAct;
 
 import butterknife.ButterKnife;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 import de.greenrobot.event.EventBus;
+import java.util.ArrayList;
+import javax.inject.Inject;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class MainAct extends MainBase {
 
@@ -39,7 +49,10 @@ public class MainAct extends MainBase {
     }
     tabLayout.setupWithViewPager(viewPager);
     tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+      boolean isoneSelect = false;
       @Override public void onTabSelected(TabLayout.Tab tab) {
+        if (tab.getPosition() == 0) isoneSelect = true;
         viewPager.setCurrentItem(tab.getPosition());
       }
 
@@ -47,9 +60,12 @@ public class MainAct extends MainBase {
       }
 
       @Override public void onTabReselected(TabLayout.Tab tab) {
-        if (tab.getPosition() == 0) EventBus.getDefault().postSticky("Reselected");
+        if (tab.getPosition() == 0 && !isoneSelect) EventBus.getDefault().postSticky("Reselected");
+
+        isoneSelect = false;
       }
     });
+
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
