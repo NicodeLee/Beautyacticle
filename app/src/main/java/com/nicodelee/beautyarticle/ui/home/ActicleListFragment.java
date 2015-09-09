@@ -142,9 +142,9 @@ public class ActicleListFragment extends BaseFragment
     new WeakHandler().postDelayed(new Runnable() {
       @Override public void run() {
         if (ListUtils.isEmpty(macticleMods)) {
-          getActicle(0, 0);//首次获取数据
+          getActicle(0, 0);//first time
         } else {
-          getActicle(-1, (int) macticleMods.get(0).id);
+          getActicle(-1, (int) macticleMods.get(0).id);//update
         }
       }
     }, 300);

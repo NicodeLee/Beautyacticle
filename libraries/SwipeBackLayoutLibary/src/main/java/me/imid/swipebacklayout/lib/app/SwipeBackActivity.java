@@ -2,13 +2,14 @@
 package me.imid.swipebacklayout.lib.app;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.Utils;
 
-public class SwipeBackActionBarAct extends AppCompatActivity implements SwipeBackActivityBase {
+public class SwipeBackActivity extends AppCompatActivity implements SwipeBackActivityBase {
     private SwipeBackActivityHelper mHelper;
 
     @Override
@@ -16,6 +17,7 @@ public class SwipeBackActionBarAct extends AppCompatActivity implements SwipeBac
         super.onCreate(savedInstanceState);
         mHelper = new SwipeBackActivityHelper(this);
         mHelper.onActivityCreate();
+        mHelper.getSwipeBackLayout().setSensitivity(this,0.5f);
     }
 
     @Override

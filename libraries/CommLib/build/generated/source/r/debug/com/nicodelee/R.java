@@ -26,7 +26,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int barColor=0x7f010010;
+        public static int barColor=0x7f010011;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -34,7 +34,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int barSpinCycleTime=0x7f010014;
+        public static int barSpinCycleTime=0x7f010015;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -44,7 +44,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int barWidth=0x7f010017;
+        public static int barWidth=0x7f010018;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -54,7 +54,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int circleRadius=0x7f010015;
+        public static int circleRadius=0x7f010016;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -77,6 +77,7 @@ containing a value of this type.
 <tr><td><code>ratio_9_16</code></td><td>5</td><td></td></tr>
 <tr><td><code>ratio_free</code></td><td>6</td><td></td></tr>
 <tr><td><code>ratio_custom</code></td><td>7</td><td></td></tr>
+<tr><td><code>circle</code></td><td>8</td><td></td></tr>
 </table>
          */
         public static int cropMode=0x7f010001;
@@ -87,7 +88,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int fillRadius=0x7f010016;
+        public static int fillRadius=0x7f010017;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -172,7 +173,7 @@ containing a value of this type.
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static int header=0x7f010019;
+        public static int header=0x7f01001a;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -182,7 +183,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int headerHeight=0x7f01001a;
+        public static int headerHeight=0x7f01001b;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -192,11 +193,19 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int headerVisibleHeight=0x7f01001b;
+        public static int headerVisibleHeight=0x7f01001c;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static int imgSrc=0x7f010000;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int initialFrameScale=0x7f01000f;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -204,7 +213,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int linearProgress=0x7f010018;
+        public static int linearProgress=0x7f010019;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -231,7 +240,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int progressIndeterminate=0x7f01000f;
+        public static int progressIndeterminate=0x7f010010;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -240,7 +249,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int rimColor=0x7f010011;
+        public static int rimColor=0x7f010012;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -250,7 +259,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int rimWidth=0x7f010012;
+        public static int rimWidth=0x7f010013;
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -258,7 +267,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int spinSpeed=0x7f010013;
+        public static int spinSpeed=0x7f010014;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -267,7 +276,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int sriv_border_color=0x7f010021;
+        public static int sriv_border_color=0x7f010022;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -277,7 +286,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int sriv_border_width=0x7f010020;
+        public static int sriv_border_width=0x7f010021;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -287,7 +296,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int sriv_left_bottom_corner_radius=0x7f01001e;
+        public static int sriv_left_bottom_corner_radius=0x7f01001f;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -297,7 +306,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int sriv_left_top_corner_radius=0x7f01001c;
+        public static int sriv_left_top_corner_radius=0x7f01001d;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -305,7 +314,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int sriv_mutate_background=0x7f010022;
+        public static int sriv_mutate_background=0x7f010023;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -313,7 +322,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int sriv_oval=0x7f010023;
+        public static int sriv_oval=0x7f010024;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -323,7 +332,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int sriv_right_bottom_corner_radius=0x7f01001f;
+        public static int sriv_right_bottom_corner_radius=0x7f010020;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -333,7 +342,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static int sriv_right_top_corner_radius=0x7f01001d;
+        public static int sriv_right_top_corner_radius=0x7f01001e;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -349,20 +358,21 @@ containing a value of this type.
         public static int dialog_bg_frame=0x7f020000;
     }
     public static final class id {
-        public static int loginpay_text=0x7f04000d;
-        public static int mypaydialog=0x7f04000b;
-        public static int not_show=0x7f040008;
-        public static int progressBar1=0x7f04000c;
-        public static int ratio_16_9=0x7f040000;
-        public static int ratio_1_1=0x7f040001;
-        public static int ratio_3_4=0x7f040002;
-        public static int ratio_4_3=0x7f040003;
-        public static int ratio_9_16=0x7f040004;
-        public static int ratio_custom=0x7f040005;
-        public static int ratio_fit_image=0x7f040006;
-        public static int ratio_free=0x7f040007;
-        public static int show_always=0x7f040009;
-        public static int show_on_touch=0x7f04000a;
+        public static int circle=0x7f040000;
+        public static int loginpay_text=0x7f04000e;
+        public static int mypaydialog=0x7f04000c;
+        public static int not_show=0x7f040009;
+        public static int progressBar1=0x7f04000d;
+        public static int ratio_16_9=0x7f040001;
+        public static int ratio_1_1=0x7f040002;
+        public static int ratio_3_4=0x7f040003;
+        public static int ratio_4_3=0x7f040004;
+        public static int ratio_9_16=0x7f040005;
+        public static int ratio_custom=0x7f040006;
+        public static int ratio_fit_image=0x7f040007;
+        public static int ratio_free=0x7f040008;
+        public static int show_always=0x7f04000a;
+        public static int show_on_touch=0x7f04000b;
     }
     public static final class layout {
         public static int loginpaydialog=0x7f030000;
@@ -386,6 +396,7 @@ containing a value of this type.
            <tr><td><code>{@link #CropImageView_handleShowMode com.nicodelee:handleShowMode}</code></td><td></td></tr>
            <tr><td><code>{@link #CropImageView_handleSize com.nicodelee:handleSize}</code></td><td></td></tr>
            <tr><td><code>{@link #CropImageView_imgSrc com.nicodelee:imgSrc}</code></td><td></td></tr>
+           <tr><td><code>{@link #CropImageView_initialFrameScale com.nicodelee:initialFrameScale}</code></td><td></td></tr>
            <tr><td><code>{@link #CropImageView_minFrameSize com.nicodelee:minFrameSize}</code></td><td></td></tr>
            <tr><td><code>{@link #CropImageView_overlayColor com.nicodelee:overlayColor}</code></td><td></td></tr>
            <tr><td><code>{@link #CropImageView_touchPadding com.nicodelee:touchPadding}</code></td><td></td></tr>
@@ -402,6 +413,7 @@ containing a value of this type.
            @see #CropImageView_handleShowMode
            @see #CropImageView_handleSize
            @see #CropImageView_imgSrc
+           @see #CropImageView_initialFrameScale
            @see #CropImageView_minFrameSize
            @see #CropImageView_overlayColor
            @see #CropImageView_touchPadding
@@ -410,7 +422,7 @@ containing a value of this type.
             0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
             0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
             0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
-            0x7f01000c, 0x7f01000d, 0x7f01000e
+            0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f
         };
         /**
           <p>This symbol is the offset where the {@link com.nicodelee.R.attr#backgroundColor}
@@ -460,6 +472,7 @@ containing a value of this type.
 <tr><td><code>ratio_9_16</code></td><td>5</td><td></td></tr>
 <tr><td><code>ratio_free</code></td><td>6</td><td></td></tr>
 <tr><td><code>ratio_custom</code></td><td>7</td><td></td></tr>
+<tr><td><code>circle</code></td><td>8</td><td></td></tr>
 </table>
           @attr name com.nicodelee:cropMode
         */
@@ -604,6 +617,20 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         */
         public static int CropImageView_imgSrc = 0;
         /**
+          <p>This symbol is the offset where the {@link com.nicodelee.R.attr#initialFrameScale}
+          attribute's value can be found in the {@link #CropImageView} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.nicodelee:initialFrameScale
+        */
+        public static int CropImageView_initialFrameScale = 15;
+        /**
           <p>This symbol is the offset where the {@link com.nicodelee.R.attr#minFrameSize}
           attribute's value can be found in the {@link #CropImageView} array.
 
@@ -679,9 +706,9 @@ containing a value of this type.
            @see #ProgressWheel_spinSpeed
          */
         public static final int[] ProgressWheel = {
-            0x7f01000f, 0x7f010010, 0x7f010011, 0x7f010012,
-            0x7f010013, 0x7f010014, 0x7f010015, 0x7f010016,
-            0x7f010017, 0x7f010018
+            0x7f010010, 0x7f010011, 0x7f010012, 0x7f010013,
+            0x7f010014, 0x7f010015, 0x7f010016, 0x7f010017,
+            0x7f010018, 0x7f010019
         };
         /**
           <p>This symbol is the offset where the {@link com.nicodelee.R.attr#barColor}
@@ -846,7 +873,7 @@ containing a value of this type.
            @see #PullScrollView_headerVisibleHeight
          */
         public static final int[] PullScrollView = {
-            0x7f010019, 0x7f01001a, 0x7f01001b
+            0x7f01001a, 0x7f01001b, 0x7f01001c
         };
         /**
           <p>This symbol is the offset where the {@link com.nicodelee.R.attr#header}
@@ -917,9 +944,9 @@ containing a value of this type.
            @see #SelectableRoundedImageView_sriv_right_top_corner_radius
          */
         public static final int[] SelectableRoundedImageView = {
-            0x0101011d, 0x7f01001c, 0x7f01001d, 0x7f01001e,
-            0x7f01001f, 0x7f010020, 0x7f010021, 0x7f010022,
-            0x7f010023
+            0x0101011d, 0x7f01001d, 0x7f01001e, 0x7f01001f,
+            0x7f010020, 0x7f010021, 0x7f010022, 0x7f010023,
+            0x7f010024
         };
         /**
           <p>This symbol is the offset where the {@link android.R.attr#scaleType}

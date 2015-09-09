@@ -1563,19 +1563,17 @@ public class ViewDragHelper {
         return null;
     }
 
-    //TODO 滑动区域不能全屏问题
     private int getEdgeTouched(int x, int y) {
         int result = 0;
 
         if (x < mParentView.getLeft() + mEdgeSize)
-//            result = EDGE_LEFT;
-            result |= EDGE_LEFT;
+            result = EDGE_LEFT;
         if (y < mParentView.getTop() + mEdgeSize)
-            result |= EDGE_TOP;
+            result = EDGE_TOP;
         if (x > mParentView.getRight() - mEdgeSize)
-            result |= EDGE_RIGHT;
+            result = EDGE_RIGHT;
         if (y > mParentView.getBottom() - mEdgeSize)
-            result |= EDGE_BOTTOM;
+            result = EDGE_BOTTOM;
 
         return result;
     }

@@ -29,6 +29,7 @@
 - [NumberProgressBar](https://github.com/daimajia/NumberProgressBar)
 - [SwipeBackLayout](https://github.com/ikew0ng/SwipeBackLayout)
 - [DBFlow](https://github.com/Raizlabs/DBFlow)
+- [SimpleCropView](https://github.com/IsseiAoki/SimpleCropView)
 
 
 感谢[daimajia](https://github.com/daimajia)

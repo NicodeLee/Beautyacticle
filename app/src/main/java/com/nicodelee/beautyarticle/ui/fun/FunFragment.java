@@ -136,7 +136,7 @@ public class FunFragment extends BaseFragment {
 
             title = etTitle.getText().toString().trim();
             desc = etDesc.getText().toString().trim();
-            if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(desc)){
+            if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(desc)) {
               tvTitle.setText(title);
               tvDesc.setText(desc);
             }
@@ -158,24 +158,14 @@ public class FunFragment extends BaseFragment {
   @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (resultCode == mActivity.RESULT_OK && requestCode == REQUEST_IMAGE) {
-
       ArrayList<String> mSelectPath =
           data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-//      File imageFile = new File(mSelectPath.get(0));
-
       EventBus.getDefault().postSticky((mSelectPath.get(0)));
-
-      skipIntent(CorpAct.class,false);
-//      Picasso.with(mActivity)
-//          .load(imageFile)
-//          .placeholder(me.nereo.multi_image_selector.R.drawable.default_error)
-//          .resize(300, 300)
-//          .centerCrop()
-//          .into(ivFun);
+      skipIntent(CorpAct.class, false);
     }
   }
 
   public void onEvent(Bitmap corpBitmap) {
-     ivFun.setImageBitmap(corpBitmap);
+    ivFun.setImageBitmap(corpBitmap);
   }
 }

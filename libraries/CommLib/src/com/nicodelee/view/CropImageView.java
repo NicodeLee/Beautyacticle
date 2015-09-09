@@ -7,7 +7,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PointF;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -18,7 +22,6 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.ImageView;
-
 import com.nicodelee.R;
 
 public class CropImageView extends ImageView {
@@ -29,6 +32,7 @@ public class CropImageView extends ImageView {
   private static final int MIN_FRAME_SIZE_IN_DP = 50;
   private static final int FRAME_STROKE_WEIGHT_IN_DP = 1;
   private static final int GUIDE_STROKE_WEIGHT_IN_DP = 1;
+  private static final float DEFAULT_INITIAL_FRAME_SCALE = 0.75f;
 
   private final int TRANSPARENT;
   private final int TRANSLUCENT_WHITE = 0xBBFFFFFF;
@@ -53,6 +57,7 @@ public class CropImageView extends ImageView {
   private RectF mImageRect;
   private PointF mCenter = new PointF();
   private float mLastX, mLastY;
+  private PointF mCircleHandlePos = new PointF();
 
   // Instance variables for customizable attributes //////////////////////////////////////////////
 
@@ -75,6 +80,7 @@ public class CropImageView extends ImageView {
   private int mFrameColor;
   private int mHandleColor;
   private int mGuideColor;
+  private float mInitialFrameScale; // 0.01 ~ 1.0, 0.75 is default value
 
   // Constructor /////////////////////////////////////////////////////////////////////////////////
 
@@ -137,6 +143,7 @@ public class CropImageView extends ImageView {
     ss.isCropEnabled = this.mIsCropEnabled;
     ss.handleColor = this.mHandleColor;
     ss.guideColor = this.mGuideColor;
+    ss.initialFrameScale = this.mInitialFrameScale;
     return ss;
   }
 
@@ -160,6 +167,7 @@ public class CropImageView extends ImageView {
     this.mIsCropEnabled = ss.isCropEnabled;
     this.mHandleColor = ss.handleColor;
     this.mGuideColor = ss.guideColor;
+    this.mInitialFrameScale = ss.initialFrameScale;
     setImageBitmap(ss.image);
     requestLayout();
   }
@@ -241,6 +249,9 @@ public class CropImageView extends ImageView {
       mGuideStrokeWeight = ta.getDimensionPixelSize(R.styleable.CropImageView_guideStrokeWeight,
           (int) (GUIDE_STROKE_WEIGHT_IN_DP * mDensity));
       mIsCropEnabled = ta.getBoolean(R.styleable.CropImageView_cropEnabled, true);
+      mInitialFrameScale = constrain(
+          ta.getFloat(R.styleable.CropImageView_initialFrameScale, DEFAULT_INITIAL_FRAME_SCALE),
+          0.01f, 1.0f, DEFAULT_INITIAL_FRAME_SCALE);
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
@@ -252,18 +263,33 @@ public class CropImageView extends ImageView {
 
   private void drawEditFrame(Canvas canvas) {
     if (!mIsCropEnabled) return;
-    mPaintTransparent.setFilterBitmap(true);
-    mPaintTransparent.setColor(mOverlayColor);
-    mPaintTransparent.setStyle(Paint.Style.FILL);
 
-    canvas.drawRect(mImageRect.left, mImageRect.top, mImageRect.right, mFrameRect.top,
-        mPaintTransparent);
-    canvas.drawRect(mImageRect.left, mFrameRect.bottom, mImageRect.right, mImageRect.bottom,
-        mPaintTransparent);
-    canvas.drawRect(mImageRect.left, mFrameRect.top, mFrameRect.left, mFrameRect.bottom,
-        mPaintTransparent);
-    canvas.drawRect(mFrameRect.right, mFrameRect.top, mImageRect.right, mFrameRect.bottom,
-        mPaintTransparent);
+    if (mCropMode == CropMode.CIRCLE) {
+      mPaintTransparent.setFilterBitmap(true);
+      mPaintTransparent.setColor(mOverlayColor);
+      mPaintTransparent.setStyle(Paint.Style.FILL);
+
+      Path path = new Path();
+      path.addRect(mImageRect.left, mImageRect.top, mImageRect.right, mImageRect.bottom,
+          Path.Direction.CW);
+      path.addCircle((mFrameRect.left + mFrameRect.right) / 2,
+          (mFrameRect.top + mFrameRect.bottom) / 2, (mFrameRect.right - mFrameRect.left) / 2,
+          Path.Direction.CCW);
+      canvas.drawPath(path, mPaintTransparent);
+    } else {
+      mPaintTransparent.setFilterBitmap(true);
+      mPaintTransparent.setColor(mOverlayColor);
+      mPaintTransparent.setStyle(Paint.Style.FILL);
+
+      canvas.drawRect(mImageRect.left, mImageRect.top, mImageRect.right, mFrameRect.top,
+          mPaintTransparent);
+      canvas.drawRect(mImageRect.left, mFrameRect.bottom, mImageRect.right, mImageRect.bottom,
+          mPaintTransparent);
+      canvas.drawRect(mImageRect.left, mFrameRect.top, mFrameRect.left, mFrameRect.bottom,
+          mPaintTransparent);
+      canvas.drawRect(mFrameRect.right, mFrameRect.top, mImageRect.right, mFrameRect.bottom,
+          mPaintTransparent);
+    }
 
     mPaintFrame.setAntiAlias(true);
     mPaintFrame.setFilterBitmap(true);
@@ -782,7 +808,11 @@ public class CropImageView extends ImageView {
     }
     float w = r - l;
     float h = b - t;
-    mFrameRect = new RectF(l + w / 8, t + h / 8, r - w / 8, b - h / 8);
+    float cx = l + w / 2;
+    float cy = t + h / 2;
+    float sw = w * mInitialFrameScale;
+    float sh = h * mInitialFrameScale;
+    mFrameRect = new RectF(cx - sw / 2, cy - sh / 2, cx + sw / 2, cy + sh / 2);
     invalidate();
   }
 
@@ -801,6 +831,7 @@ public class CropImageView extends ImageView {
       case RATIO_9_16:
         return 9.0f;
       case RATIO_1_1:
+      case CIRCLE:
         return 1.0f;
       case RATIO_CUSTOM:
         return mCustomRatio.x;
@@ -824,6 +855,7 @@ public class CropImageView extends ImageView {
       case RATIO_9_16:
         return 16.0f;
       case RATIO_1_1:
+      case CIRCLE:
         return 1.0f;
       case RATIO_CUSTOM:
         return mCustomRatio.y;
@@ -845,6 +877,7 @@ public class CropImageView extends ImageView {
       case RATIO_9_16:
         return 9.0f;
       case RATIO_1_1:
+      case CIRCLE:
         return 1.0f;
       case RATIO_CUSTOM:
         return mCustomRatio.x;
@@ -866,6 +899,7 @@ public class CropImageView extends ImageView {
       case RATIO_9_16:
         return 16.0f;
       case RATIO_1_1:
+      case CIRCLE:
         return 1.0f;
       case RATIO_CUSTOM:
         return mCustomRatio.y;
@@ -873,7 +907,6 @@ public class CropImageView extends ImageView {
         return 1.0f;
     }
   }
-
   // Utility methods /////////////////////////////////////////////////////////////////////////////
 
   private float getDensity() {
@@ -885,6 +918,11 @@ public class CropImageView extends ImageView {
 
   private float sq(float value) {
     return value * value;
+  }
+
+  private float constrain(float val, float min, float max, float defaultVal) {
+    if (val < min || val > max) return defaultVal;
+    return val;
   }
 
   // Public methods //////////////////////////////////////////////////////////////////////////////
@@ -930,6 +968,21 @@ public class CropImageView extends ImageView {
   }
 
   /**
+   * Rotate image.
+   *
+   * @param degrees angle of ration in degrees.
+   */
+  public void rotateImage(RotateDegrees degrees) {
+    int angle = degrees.getValue();
+
+    Matrix matrix = new Matrix();
+    matrix.postRotate(angle);
+    mBitmap =
+        Bitmap.createBitmap(mBitmap, 0, 0, mBitmap.getWidth(), mBitmap.getHeight(), matrix, true);
+    setImageBitmap(mBitmap);
+  }
+
+  /**
    * Get cropped image bitmap
    *
    * @return cropped image bitmap
@@ -946,7 +999,37 @@ public class CropImageView extends ImageView {
       w = r - l;
       h = b - t;
     }
-    return Bitmap.createBitmap(mBitmap, x, y, w, h, null, false);
+    Bitmap cropped = Bitmap.createBitmap(mBitmap, x, y, w, h, null, false);
+    if (mCropMode != CropMode.CIRCLE) return cropped;
+    return getCircularBitmap(cropped);
+  }
+
+  /**
+   * Crop the square image in a circular
+   *
+   * @param square image bitmap
+   * @return circular image bitmap
+   */
+  public Bitmap getCircularBitmap(Bitmap square) {
+    if (square == null) return null;
+    Bitmap output =
+        Bitmap.createBitmap(square.getWidth(), square.getHeight(), Bitmap.Config.ARGB_8888);
+
+    final Rect rect = new Rect(0, 0, square.getWidth(), square.getHeight());
+    Canvas canvas = new Canvas(output);
+
+    int halfWidth = square.getWidth() / 2;
+    int halfHeight = square.getHeight() / 2;
+
+    final Paint paint = new Paint();
+    paint.setAntiAlias(true);
+    paint.setFilterBitmap(true);
+
+    canvas.drawCircle(halfWidth, halfHeight, Math.min(halfWidth, halfHeight), paint);
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+
+    canvas.drawBitmap(square, rect, rect, paint);
+    return output;
   }
 
   /**
@@ -1136,6 +1219,15 @@ public class CropImageView extends ImageView {
     mIsEnabled = enabled;
   }
 
+  /**
+   * Set initial scale of the frame.(0.01 ~ 1.0)
+   *
+   * @param initialScale initial scale
+   */
+  public void setInitialFrameScale(float initialScale) {
+    mInitialFrameScale = constrain(initialScale, 0.01f, 1.0f, DEFAULT_INITIAL_FRAME_SCALE);
+  }
+
   private void setScale(float mScale) {
     this.mScale = mScale;
   }
@@ -1160,7 +1252,7 @@ public class CropImageView extends ImageView {
 
   public enum CropMode {
     RATIO_FIT_IMAGE(0), RATIO_4_3(1), RATIO_3_4(2), RATIO_1_1(3), RATIO_16_9(4), RATIO_9_16(
-        5), RATIO_FREE(6), RATIO_CUSTOM(7);
+        5), RATIO_FREE(6), RATIO_CUSTOM(7), CIRCLE(8);
     private final int ID;
 
     private CropMode(final int id) {
@@ -1182,6 +1274,20 @@ public class CropImageView extends ImageView {
 
     public int getId() {
       return ID;
+    }
+  }
+
+  public enum RotateDegrees {
+    ROTATE_90D(90), ROTATE_180D(180), ROTATE_270D(270);
+
+    private final int VALUE;
+
+    private RotateDegrees(final int value) {
+      this.VALUE = value;
+    }
+
+    public int getValue() {
+      return VALUE;
     }
   }
 
@@ -1207,6 +1313,7 @@ public class CropImageView extends ImageView {
     boolean isCropEnabled;
     int handleColor;
     int guideColor;
+    float initialFrameScale;
 
     SavedState(Parcelable superState) {
       super(superState);
@@ -1233,6 +1340,7 @@ public class CropImageView extends ImageView {
       isCropEnabled = (in.readInt() != 0);
       handleColor = in.readInt();
       guideColor = in.readInt();
+      initialFrameScale = in.readFloat();
     }
 
     @Override public void writeToParcel(Parcel out, int flag) {
@@ -1256,6 +1364,7 @@ public class CropImageView extends ImageView {
       out.writeInt(isCropEnabled ? 1 : 0);
       out.writeInt(handleColor);
       out.writeInt(guideColor);
+      out.writeFloat(initialFrameScale);
     }
   }
 }

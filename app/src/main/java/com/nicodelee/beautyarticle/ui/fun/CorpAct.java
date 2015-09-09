@@ -38,7 +38,7 @@ public class CorpAct extends BaseAct {
   }
 
   public void onEvent(String imagePath) {
-    mCropImageView.setCropMode(CropImageView.CropMode.RATIO_1_1);
+    mCropImageView.setCropMode(CropImageView.CropMode.CIRCLE);
     mCropImageView.setImageBitmap(new BitmapHelper().getBitmapByPath(imagePath));
   }
 

@@ -14,6 +14,7 @@ public class BaseSwiBackAct extends BaseAct implements SwipeBackActivityBase {
     super.onCreate(savedInstanceState);
     mHelper = new SwipeBackActivityHelper(this);
     mHelper.onActivityCreate();
+    mHelper.getSwipeBackLayout().setSensitivity(this,0.5f);
   }
 
   @Override protected void onPostCreate(Bundle savedInstanceState) {
