@@ -30,6 +30,7 @@
 - [SwipeBackLayout](https://github.com/ikew0ng/SwipeBackLayout)
 - [DBFlow](https://github.com/Raizlabs/DBFlow)
 - [SimpleCropView](https://github.com/IsseiAoki/SimpleCropView)
+- [LeakCanary](https://github.com/square/leakcanary)
 
 
 感谢[daimajia](https://github.com/daimajia)

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
+import com.squareup.leakcanary.RefWatcher;
 import de.greenrobot.event.EventBus;
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -20,6 +21,8 @@ public abstract class BaseFragment extends Fragment {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     context = getActivity().getApplicationContext();
+    RefWatcher refWatcher = APP.getRefWatcher(getActivity());
+    refWatcher.watch(this);
   }
 
   // http://stackoverflow.com/questions/15207305/getting-the-error-java-lang-illegalstateexception-activity-has-been-destroyed

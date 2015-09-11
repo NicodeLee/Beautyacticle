@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.devspark.appmsg.AppMsg;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.view.LoadingDialog;
+import com.squareup.leakcanary.RefWatcher;
 import de.greenrobot.event.EventBus;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -20,13 +21,13 @@ public abstract class BaseAct extends AppCompatActivity {
 
   public LoadingDialog loadingDialog;
   public Intent intent;
-  private static BaseAct Cot;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    Cot = this;
     intent = getIntent();
     loadingDialog = new LoadingDialog(this);
+    //RefWatcher refWatcher = APP.getRefWatcher(this);
+    //refWatcher.watch(this);
   }
 
   @Override protected void attachBaseContext(Context newBase) {

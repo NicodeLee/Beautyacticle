@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.github.clans.fab.FloatingActionMenu;
 import com.nicodelee.beautyarticle.R;
-import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ShareMod;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
@@ -35,9 +34,6 @@ import com.nicodelee.beautyarticle.viewhelper.LayoutToImage;
 import com.nicodelee.beautyarticle.viewhelper.VerticalTextView;
 import com.nicodelee.utils.WeakHandler;
 import com.nicodelee.view.CircularImage;
-import com.nicodelee.view.CropImageView;
-import com.squareup.picasso.Picasso;
-import java.io.File;
 import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
@@ -161,7 +157,7 @@ public class FunFragment extends BaseFragment {
       ArrayList<String> mSelectPath =
           data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
       EventBus.getDefault().postSticky((mSelectPath.get(0)));
-      skipIntent(CorpAct.class, false);
+      skipIntent(CropAct.class, false);
     }
   }
 

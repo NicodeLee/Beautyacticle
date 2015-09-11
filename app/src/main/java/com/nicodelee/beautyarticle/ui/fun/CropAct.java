@@ -11,6 +11,7 @@ import com.nicodelee.beautyarticle.app.BaseAct;
 import com.nicodelee.beautyarticle.utils.BitmapHelper;
 import com.nicodelee.view.CropImageView;
 
+import com.nostra13.universalimageloader.core.assist.ImageSize;
 import java.lang.ref.SoftReference;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +24,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by alee on 2015/9/4.
  */
-public class CorpAct extends BaseAct {
+public class CropAct extends BaseAct {
 
   @Bind(R.id.cropImageView) CropImageView mCropImageView;
 
@@ -39,7 +40,9 @@ public class CorpAct extends BaseAct {
 
   public void onEvent(String imagePath) {
     mCropImageView.setCropMode(CropImageView.CropMode.CIRCLE);
-    mCropImageView.setImageBitmap(new BitmapHelper().getBitmapByPath(imagePath));
+    mCropImageView.setImageBitmap(
+        APP.getInstance().imageLoader.loadImageSync("file:///" + imagePath,
+            new ImageSize(750, 1000)));
   }
 
   @OnClick({ R.id.corp_done, R.id.corp_cancel }) public void Click(View view) {
