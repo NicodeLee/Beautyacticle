@@ -24,4 +24,6 @@
     <color name="dialog_bg_color">#FFF5F5F5</color>
     <color name="default_divider">@color/ms_gray6</color>
     <color name="default_divider_dark">#FF757575</color>
+    <color name="colorPrimaryDark">#00796b</color>
+    <color name="statusBarColor">#00796b</color>
 </resources>

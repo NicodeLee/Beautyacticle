@@ -18,7 +18,7 @@
 		<item name="msItem">@style/MaterialSettingsTheme_Item</item>
 		<item name="android:windowBackground">?msWindowBg</item>
 		<item name="colorPrimary">?msColorPrimary</item>
-		<item name="colorPrimaryDark">?msColorPrimaryDark</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">?msColorAccent</item>
 		<item name="android:windowIsTranslucent">true</item>
 	</style>

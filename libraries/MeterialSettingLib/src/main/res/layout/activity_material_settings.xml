@@ -1,60 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:orientation="vertical"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-	<android.support.v7.widget.Toolbar
-		android:id="@+id/toolbar"
-		android:layout_height="?attr/actionBarSize"
-		android:layout_width="match_parent"
-		android:background="?attr/colorPrimary"
-		app:theme="?attr/msToolbarTheme"
-		app:popupTheme="?attr/msToolbarThemePopup"/>
+  <android.support.v7.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_height="?attr/actionBarSize"
+      android:layout_width="match_parent"
+      android:background="?attr/colorPrimary"
+      app:theme="?attr/msToolbarTheme"
+      app:popupTheme="?attr/msToolbarThemePopup"
+      />
 
-	<FrameLayout
-		android:id="@+id/material_settings_top_frame"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+  <FrameLayout
+      android:id="@+id/material_settings_top_frame"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      />
 
-	<ScrollView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
-			<FrameLayout
-				android:id="@+id/material_settings_top_frame_inside"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"/>
+      <FrameLayout
+          android:id="@+id/material_settings_top_frame_inside"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          />
 
-			<LinearLayout
-				android:id="@+id/material_settings_content"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical"
-				android:paddingLeft="@dimen/activity_settings_padding_horizontal"
-				android:paddingRight="@dimen/activity_settings_padding_horizontal"
-				android:paddingTop="@dimen/activity_settings_padding_vertical"
-				android:paddingBottom="@dimen/activity_settings_padding_vertical"/>
+      <LinearLayout
+          android:id="@+id/material_settings_content"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:paddingLeft="@dimen/activity_settings_padding_horizontal"
+          android:paddingRight="@dimen/activity_settings_padding_horizontal"
+          android:paddingTop="@dimen/activity_settings_padding_vertical"
+          android:paddingBottom="@dimen/activity_settings_padding_vertical"
+          />
 
-			<FrameLayout
-				android:id="@+id/material_settings_bottom_frame_inside"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"/>
+      <FrameLayout
+          android:id="@+id/material_settings_bottom_frame_inside"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          />
 
-		</LinearLayout>
+    </LinearLayout>
 
-	</ScrollView>
+  </ScrollView>
 
-	<FrameLayout
-		android:id="@+id/material_settings_bottom_frame"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"/>
+  <FrameLayout
+      android:id="@+id/material_settings_bottom_frame"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      />
 
 </LinearLayout>

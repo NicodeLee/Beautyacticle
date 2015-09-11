@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="MaterialSettingsTheme"
+      parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="msColorPrimary">@color/accent</item>
+    <item name="msColorPrimaryDark">@color/accent</item>
+    <item name="msColorAccent">@color/accent</item>
+    <item name="msWindowBg">@color/ms_white</item>
+    <item name="msToolbarTheme">@style/MaterialSettingsTheme_Toolbar</item>
+    <item name="msToolbarThemePopup">@style/MaterialSettingsTheme_Toolbar_Popup</item>
+    <item name="msDivider">@style/MaterialSettingsTheme_Divider</item>
+    <item name="msColorHeader">@color/accent</item>
+    <item name="msColorTextTitle">@color/ms_black</item>
+    <item name="msColorTextSubTitle">@color/ms_gray_dark</item>
+    <item name="msTextStyle">@style/MaterialSettingsTheme_Text</item>
+    <item name="msSubTextStyle">@style/MaterialSettingsTheme_SubText</item>
+    <item name="msHeaderStyle">@style/MaterialSettingsTheme_Header</item>
+    <item name="msItem">@style/MaterialSettingsTheme_Item</item>
+    <item name="android:windowBackground">?msWindowBg</item>
+    <item name="colorPrimary">?msColorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">?msColorAccent</item>
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    <item name="android:windowNoTitle">true</item>
+  </style>
+</resources>

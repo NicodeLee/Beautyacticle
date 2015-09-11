@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <style name="AppTheme" parent="Base.Theme.DesignDemo">
+      <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+      <item name="android:statusBarColor">@android:color/transparent</item>
+      <item name="android:windowIsTranslucent">true</item>
+    </style>
+  <!--  <item name="android:windowTranslucentStatus">true</item> -->
+  <!-- <item name="android:windowNoTitle">true</item>-->
+
+  <style name="Act" parent="Base.Theme.DesignDemo">
+    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+
+  </style>
+
+  <style name="ActTheme" parent="Base.Theme.DesignDemo">
+    <item name="android:windowIsTranslucent">false</item>
+    <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+    <item name="android:windowTranslucentStatus">true</item>
+  </style>
+
+</resources>

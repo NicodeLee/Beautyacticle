@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import java.io.File;
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * 多图选择
  * Created by Nereo on 2015/4/7.
  */
-public class MultiImageSelectorActivity extends FragmentActivity
+public class MultiImageSelectorActivity extends AppCompatActivity
     implements MultiImageSelectorFragment.Callback {
 
   /**

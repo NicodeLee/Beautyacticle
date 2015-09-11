@@ -36,7 +36,7 @@ public class APP extends Application {
     initialzeInjector();
     FlowManager.init(this);//DbFlow
     CalligraphyConfig.initDefault(
-        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/beauty.ttf")
+        new CalligraphyConfig.Builder().setDefaultFontPath("fonts/Roboto-Light.ttf")
             .setFontAttrId(R.attr.fontPath)
             .build());
     app = this;

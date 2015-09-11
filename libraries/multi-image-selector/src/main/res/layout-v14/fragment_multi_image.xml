@@ -3,18 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/black">
 
     <GridView
         android:id="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/footer"
-        android:background="@android:color/white"
+        android:background="@android:color/black"
         android:clipToPadding="false"
         android:columnWidth="@dimen/image_size"
         android:horizontalSpacing="@dimen/space_size"
         android:numColumns="auto_fit"
+        android:fastScrollEnabled="true"
+        android:fadeScrollbars="true"
         android:paddingBottom="?android:attr/actionBarSize"
         android:verticalSpacing="@dimen/space_size" />
 
@@ -23,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:layout_alignParentBottom="true"
-        android:background="@android:color/white"
+        android:background="#212121"
         android:clickable="true">
 
         <Button
@@ -39,7 +41,7 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:singleLine="true"
-            android:textColor="#222"
+            android:textColor="@android:color/white"
             android:textSize="16sp"
             tools:text="所有图片" />
 
@@ -54,10 +56,11 @@
             android:minWidth="1dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:textColor="#3464af"
+            android:textColor="@android:color/white"
             android:textSize="16dp"
             tools:text="预览" />
 
     </RelativeLayout>
+
 
 </RelativeLayout>

@@ -5,17 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.nicodelee.view.photoview.PhotoView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.ArrayList;
 import me.nereo.multi_image_selector.view.DetailViewPager;
+import uk.co.senab.photoview.PhotoView;
 
-public class PreviewPicturesActivity extends Activity {
+public class PreviewPicturesActivity extends AppCompatActivity {
   DetailViewPager pager;
   MyPagerAdapter adapter;
   private ArrayList<String> picList = new ArrayList<>();

@@ -40,7 +40,7 @@ android {
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
                         def fileName = "Beautyarticle-V${defaultConfig.versionName}.apk"
-//                        def fileName = "Beautyarticle-V${defaultConfig.versionName}_${releaseTime()}.apk"
+                        //                        def fileName = "Beautyarticle-V${defaultConfig.versionName}_${releaseTime()}.apk"
                         output.outputFile = new File(outputFile.parent, fileName)
                     }
                 }

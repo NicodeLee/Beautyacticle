@@ -23,4 +23,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile project(':libraries:CommLib')
+    compile 'com.github.chrisbanes.photoview:library:1.2.+'
 }
