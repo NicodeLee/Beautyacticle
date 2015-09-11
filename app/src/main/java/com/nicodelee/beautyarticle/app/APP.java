@@ -3,6 +3,7 @@ package com.nicodelee.beautyarticle.app;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.internal.di.components.ApplicationComponent;
@@ -54,7 +55,7 @@ public class APP extends Application {
     DevicesUtil.getScreenConfig(this);
   }
 
-  public static RefWatcher getRefWatcher(Context context){
+  public static RefWatcher getRefWatcher(Context context) {
     return app.refWatcher;
   }
 
@@ -74,16 +75,17 @@ public class APP extends Application {
 
   private void initImageLoader(Context context) {
     ImageLoaderConfiguration.Builder config =
-        new ImageLoaderConfiguration
-            .Builder(context)
-            .threadPriority(Thread.NORM_PRIORITY - 2)
+        new ImageLoaderConfiguration.Builder(context).threadPriority(Thread.NORM_PRIORITY - 2)
             .denyCacheImageMultipleSizesInMemory()
             .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-            .diskCacheSize(50 * 1024 * 1024) // 50 MiB
-                .imageDownloader(new BaseImageDownloader(context))//or use okhttp
-            //.dskCache(new UnlimitedDiskCache(new File(AndroidUtils.PIC_CACHE_PATH)))
-            .tasksProcessingOrder(QueueProcessingType.LIFO).writeDebugLogs(); // Remove for release app
-
+            .diskCacheSize(50 * 1024 * 1024).imageDownloader(
+            new BaseImageDownloader(context))//or use okhttp
+            .diskCache(new UnlimitedDiskCache(new File(
+                Environment.getExternalStorageDirectory().getAbsolutePath()
+                    + "/Beautyacticle/pic")))
+            .tasksProcessingOrder(QueueProcessingType.LIFO)
+            .diskCacheFileCount(200)
+            .writeDebugLogs();
 
     ImageLoader.getInstance().init(config.build());
   }
@@ -93,9 +95,11 @@ public class APP extends Application {
       new DisplayImageOptions.Builder().showImageOnLoading(R.color.loading_cl).showImageForEmptyUri(
           R.color.loading_cl)
           //			.showImageOnFail(R.drawable.head_null)
-          .showImageOnFail(R.color.loading_cl).cacheInMemory(true)
-          // default
-          .cacheOnDisc(true).considerExifParams(true).bitmapConfig(Bitmap.Config.RGB_565)
+          .showImageOnFail(R.color.loading_cl)
+          .cacheInMemory(true)
+          .cacheOnDisk(true)
+          .considerExifParams(true)
+          .bitmapConfig(Bitmap.Config.RGB_565)
           // .imageScaleType(ImageScaleType.EXACTLY)
           //			.showImageForEmptyUri(R.drawable.image_loader_empty)
           //			.showImageOnFail(R.drawable.image_loader_fail)

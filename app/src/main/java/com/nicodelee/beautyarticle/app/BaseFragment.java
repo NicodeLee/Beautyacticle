@@ -21,8 +21,8 @@ public abstract class BaseFragment extends Fragment {
   @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     context = getActivity().getApplicationContext();
-    RefWatcher refWatcher = APP.getRefWatcher(getActivity());
-    refWatcher.watch(this);
+    //RefWatcher refWatcher = APP.getRefWatcher(getActivity());
+    //refWatcher.watch(this);
   }
 
   // http://stackoverflow.com/questions/15207305/getting-the-error-java-lang-illegalstateexception-activity-has-been-destroyed
