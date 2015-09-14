@@ -9,7 +9,6 @@ import android.widget.Toast;
 import com.devspark.appmsg.AppMsg;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.view.LoadingDialog;
-import com.squareup.leakcanary.RefWatcher;
 import de.greenrobot.event.EventBus;
 import java.io.Serializable;
 import java.util.HashMap;

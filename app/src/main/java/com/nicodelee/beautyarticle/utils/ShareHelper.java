@@ -163,7 +163,7 @@ public class ShareHelper {
 
     link.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        SharImageUtils.share(shareMod.imageUrl, "分享", context);
+        new SharImageHelper().share(shareMod.imageUrl, "分享", context);
         dialog.dismiss();
       }
     });

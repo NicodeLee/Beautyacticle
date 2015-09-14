@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
+import com.nicodelee.beautyarticle.mode.ShareMod;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -13,11 +14,23 @@ import java.io.IOException;
 /**
  * Created by Nicodelee on 15/8/1.
  */
-public class SharImageUtils {
+public class SharImageHelper {
 
   public static String sharePicName = "beautyacticle.png";
 
-  public static void share(String imgPath, String content, Context context) {
+  public ShareMod getShareMod(Bitmap bitmap) {
+    ShareMod shareMod = new ShareMod();
+    String url = "http://fir.im/beautyacticle";
+    shareMod.title = "分享最美";
+    shareMod.text = "#最美文字#";
+    shareMod.titleUrl = url;
+    shareMod.imageUrl = AndroidUtils.IMAGE_CACHE_PATH + "/" + sharePicName;
+    shareMod.url = url;
+    shareMod.imageData = bitmap;
+    return  shareMod;
+  }
+
+  public void share(String imgPath, String content, Context context) {
     File f = new File(imgPath);
     Uri uri = Uri.fromFile(f);
     Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -37,7 +50,7 @@ public class SharImageUtils {
   }
 
   /** 保存方法 */
-  public static boolean saveBitmap(Bitmap bitmap, String picName) {
+  public boolean saveBitmap(Bitmap bitmap, String picName) {
     File f = new File(AndroidUtils.IMAGE_CACHE_PATH, picName);
     if (f.exists()) {
       f.delete();

@@ -11,6 +11,7 @@ import com.nicodelee.beautyarticle.internal.di.components.DaggerApplicationCompo
 import com.nicodelee.beautyarticle.internal.di.modules.ApplicationModule;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
+import com.nicodelee.beautyarticle.viewhelper.OkHttpImageDownloader;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -20,8 +21,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.raizlabs.android.dbflow.config.FlowManager;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
+import com.squareup.okhttp.OkHttpClient;
 import java.io.File;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
@@ -33,7 +33,7 @@ public class APP extends Application {
     return app;
   }
 
-  private RefWatcher refWatcher;
+  //private RefWatcher refWatcher;
 
   private ApplicationComponent applicationComponent;
 
@@ -49,15 +49,15 @@ public class APP extends Application {
 
     initImageLoader(getApplicationContext());
 
-    refWatcher = LeakCanary.install(this);
+    //refWatcher = LeakCanary.install(this);
 
     AndroidUtils.init(this);
     DevicesUtil.getScreenConfig(this);
   }
 
-  public static RefWatcher getRefWatcher(Context context) {
-    return app.refWatcher;
-  }
+  //public static RefWatcher getRefWatcher(Context context) {
+  //  return app.refWatcher;
+  //}
 
   public ApplicationComponent getApplicationComponent() {
     return applicationComponent;
@@ -78,8 +78,8 @@ public class APP extends Application {
         new ImageLoaderConfiguration.Builder(context).threadPriority(Thread.NORM_PRIORITY - 2)
             .denyCacheImageMultipleSizesInMemory()
             .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-            .diskCacheSize(50 * 1024 * 1024).imageDownloader(
-            new BaseImageDownloader(context))//or use okhttp
+            .diskCacheSize(50 * 1024 * 1024)
+            .imageDownloader(new OkHttpImageDownloader(context,new OkHttpClient()))
             .diskCache(new UnlimitedDiskCache(new File(
                 Environment.getExternalStorageDirectory().getAbsolutePath()
                     + "/Beautyacticle/pic")))

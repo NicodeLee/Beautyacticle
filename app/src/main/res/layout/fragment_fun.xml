@@ -86,6 +86,14 @@
         >
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fb_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/open_more"
+            fab:fab_label="更多"
+            />
+
+        <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fb_make"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
-import com.squareup.leakcanary.RefWatcher;
 import de.greenrobot.event.EventBus;
 import java.io.Serializable;
 import java.lang.reflect.Field;

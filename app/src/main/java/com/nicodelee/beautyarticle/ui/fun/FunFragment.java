@@ -27,7 +27,7 @@ import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ShareMod;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
-import com.nicodelee.beautyarticle.utils.SharImageUtils;
+import com.nicodelee.beautyarticle.utils.SharImageHelper;
 import com.nicodelee.beautyarticle.utils.ShareHelper;
 import com.nicodelee.beautyarticle.utils.TimeUtils;
 import com.nicodelee.beautyarticle.viewhelper.LayoutToImage;
@@ -80,24 +80,19 @@ public class FunFragment extends BaseFragment {
     tvDesc.setTypeface(face);
     tvDesc.setText(acticle);
     tvTime.setText(TimeUtils.dateToCnDate(TimeUtils.getCurentData()));
+
     rlFun.setLayoutParams(new LayoutParams(DevicesUtil.screenWidth, LayoutParams.MATCH_PARENT));
     layoutToImage = new LayoutToImage(scFun);
   }
 
-  @OnClick({ R.id.fb_share, R.id.fb_make, R.id.iv_fun }) public void Click(View view) {
+  @OnClick({ R.id.fb_share, R.id.fb_make, R.id.iv_fun, R.id.fb_more })
+  public void Click(View view) {
     switch (view.getId()) {
       case R.id.fb_share:
         bitmap = layoutToImage.convertlayout();
-        if (SharImageUtils.saveBitmap(bitmap, SharImageUtils.sharePicName)) {
-          ShareMod shareMod = new ShareMod();
-          String url = "http://fir.im/beautyacticle";
-          shareMod.title = "title";
-          shareMod.text = "text";
-          shareMod.titleUrl = url;
-          shareMod.imageUrl = AndroidUtils.IMAGE_CACHE_PATH + "/" + SharImageUtils.sharePicName;
-          shareMod.url = url;
-          shareMod.imageData = bitmap;
-          ShareHelper.showUp(mActivity, shareMod);
+        SharImageHelper sharImageHelper = new SharImageHelper();
+        if (sharImageHelper.saveBitmap(bitmap, SharImageHelper.sharePicName)) {
+          ShareHelper.showUp(mActivity, sharImageHelper.getShareMod(bitmap));
         }
         famFun.close(true);
 
@@ -105,6 +100,9 @@ public class FunFragment extends BaseFragment {
       case R.id.fb_make:
         famFun.close(true);
         showEdDialig();
+        break;
+      case R.id.fb_more:
+        showToast("快马加鞭开发中");
         break;
       case R.id.iv_fun:
         int selectedMode = MultiImageSelectorActivity.MODE_SINGLE;
