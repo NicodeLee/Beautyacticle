@@ -24,6 +24,7 @@ import com.nicodelee.utils.ListUtils;
 import com.nicodelee.utils.WeakHandler;
 import com.raizlabs.android.dbflow.sql.language.Select;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -54,15 +55,15 @@ public class ActicleListFragment extends BaseFragment
     super.onViewCreated(view, savedInstanceState);
     macticleMods = new ArrayList<ActicleMod>();
     mSwipeLayout.setOnRefreshListener(this);
-    setupRecyclerView();
     linearLayoutManager = new LinearLayoutManager(mActivity);
     rv.setLayoutManager(linearLayoutManager);
+    setupRecyclerView();
     rv.addOnScrollListener(
         new EndlessRecyclerOnScrollListener(linearLayoutManager, APP.getInstance().imageLoader,
             false, true) {
           @Override public void onLoadMore() {
             int size = macticleMods.size();
-            if (isHasMore && !mSwipeLayout.isRefreshing()) {
+            if (isHasMore && !mSwipeLayout.isRefreshing() && size > 0) {
               getActicle(1, (int) macticleMods.get(size - 1).id);
             }
           }
@@ -70,7 +71,6 @@ public class ActicleListFragment extends BaseFragment
   }
 
   private void setupRecyclerView() {
-    rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
 
     if (isInDB()) {
       macticleMods = (ArrayList<ActicleMod>) new Select().from(ActicleMod.class)
@@ -93,7 +93,6 @@ public class ActicleListFragment extends BaseFragment
     mbeautyApi.getActicle(page, id, new Callback<ArrayList<ActicleMod>>() {
       @Override public void success(final ArrayList<ActicleMod> acticleMods, Response response) {
         mSwipeLayout.setRefreshing(false);
-
         if (ListUtils.isEmpty(acticleMods)) {
           if (page > 0) {
             showToast("全部加载完毕");
@@ -150,8 +149,12 @@ public class ActicleListFragment extends BaseFragment
     }, 300);
   }
 
-  public void onEvent(String select) {
-    if (select.equals("Reselected")) linearLayoutManager.scrollToPosition(0);
+  public void onEvent(String msg) {
+    if (msg.equals("Reselected")) {
+      linearLayoutManager.scrollToPosition(0);
+    } else if (msg.equals("clear")) {
+      mActcleAdapter.clearData();
+    }
   }
 
   @Override public void onDestroyView() {

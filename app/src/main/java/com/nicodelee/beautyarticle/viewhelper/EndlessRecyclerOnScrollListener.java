@@ -3,6 +3,7 @@ package com.nicodelee.beautyarticle.viewhelper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener {
@@ -46,6 +47,7 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
 
     if (mLinearLayoutManager == null) return;
 
+
     visibleItemCount = recyclerView.getChildCount();
     totalItemCount = mLinearLayoutManager.getItemCount();
     firstVisibleItem = mLinearLayoutManager.findFirstVisibleItemPosition();
@@ -59,12 +61,13 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
     if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
       // End has been reached
       // Do something
-      //            current_page++;
+      // current_page++;
 
       onLoadMore();
 
       loading = true;
     }
+
   }
 
   @Override public void onScrollStateChanged(RecyclerView recyclerView, int newState) {

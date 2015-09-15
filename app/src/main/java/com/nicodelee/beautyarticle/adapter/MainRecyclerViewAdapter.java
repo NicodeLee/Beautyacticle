@@ -141,4 +141,16 @@ public class MainRecyclerViewAdapter
   @Override public int getItemCount() {
     return ListUtils.getSize(mylist);
   }
+
+  public void clearData() {
+    int size = this.mylist.size();
+    if (size > 0) {
+      for (int i = 0; i < size; i++) {
+        this.mylist.remove(0);
+      }
+
+      this.notifyItemRangeRemoved(0, size);
+    }
+  }
+
 }

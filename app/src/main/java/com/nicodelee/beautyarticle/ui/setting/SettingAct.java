@@ -18,6 +18,7 @@ import com.nicodelee.beautyarticle.utils.FileUtil;
 import com.nicodelee.beautyarticle.viewhelper.SampleDialog;
 import com.raizlabs.android.dbflow.sql.language.Delete;
 import com.raizlabs.android.dbflow.sql.language.Select;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by Nicodelee on 15/3/31.
@@ -29,19 +30,9 @@ public class SettingAct extends MaterialSettings implements SampleDialog.OnDialo
 
     addItem(new HeaderItem(this).setTitle("常用"));
 
-    //        addItem(new CheckboxItem(this, "key1").setTitle("无图模式").setSubtitle("更省流量").setOnCheckedChangeListener(new CheckboxItem.OnCheckedChangeListener() {
-    //            @Override
-    //            public void onCheckedChange(CheckboxItem cbi, boolean isChecked) {
-    //                Toast.makeText(SettingAct.this, "CHECKED: " + isChecked, Toast.LENGTH_SHORT).show();
-    //            }
-    //        }));
-
-    //        addItem(new DividerItem(this));
-    //        addItem(new SwitcherItem(this, "key1a").setTitle("开启文章推送"));
-    //        addItem(new DividerItem(this));
     long dataSize = new Select().count().from(ActicleMod.class).count();
     final TextItem clearDataItem = new TextItem(this, "key1");
-    addItem(clearDataItem.setTitle("清除数据（重启生效）")
+    addItem(clearDataItem.setTitle("清除数据")
         .setSubtitle(dataSize + "条")
         .setOnclick(new TextItem.OnClickListener() {
           @Override public void onClick(TextItem v) {
@@ -52,9 +43,10 @@ public class SettingAct extends MaterialSettings implements SampleDialog.OnDialo
                 })
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                   @Override public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(SettingAct.this, "清除中...", Toast.LENGTH_SHORT).show();
                     new Delete().table(ActicleMod.class);
                     clearDataItem.updateSubTitle(0 + "条");
+                    Toast.makeText(SettingAct.this, "清除中...", Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().postSticky("clear");
                   }
                 })
                 .create()
@@ -65,7 +57,7 @@ public class SettingAct extends MaterialSettings implements SampleDialog.OnDialo
     long cacheSize =
         FileUtil.getDirectorySize(APP.getInstance().imageLoader.getDiskCache().getDirectory());
     final TextItem clearImageItem = new TextItem(this, "key2");
-    addItem(clearImageItem.setTitle("清除图片（重启生效）")
+    addItem(clearImageItem.setTitle("清除图片")
         .setSubtitle(FileUtil.humanReadableByteCount(cacheSize, false))
         .setOnclick(new TextItem.OnClickListener() {
           @Override public void onClick(TextItem v) {
@@ -76,10 +68,11 @@ public class SettingAct extends MaterialSettings implements SampleDialog.OnDialo
                 })
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                   @Override public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(SettingAct.this, "清除中...", Toast.LENGTH_SHORT).show();
                     APP.getInstance().imageLoader.clearMemoryCache();
                     APP.getInstance().imageLoader.clearDiskCache();
                     clearImageItem.updateSubTitle(0 + "M");
+                    Toast.makeText(SettingAct.this, "清除中...", Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().postSticky("clear");
                   }
                 })
                 .create()

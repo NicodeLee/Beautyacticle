@@ -109,7 +109,11 @@ public abstract class BaseFragment extends Fragment {
   }
 
   @Override public void onStart() {
-    EventBus.getDefault().registerSticky(this);
+    if (isStickyAvailable()) {
+      EventBus.getDefault().register(this);
+    } else {
+      EventBus.getDefault().registerSticky(this);
+    }
     super.onStart();
   }
 
@@ -119,5 +123,9 @@ public abstract class BaseFragment extends Fragment {
   }
 
   public void onEvent(Object event) {
+  }
+
+  protected boolean isStickyAvailable() {
+    return false;
   }
 }

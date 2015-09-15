@@ -104,8 +104,12 @@ public abstract class BaseAct extends AppCompatActivity {
     return getIntent().getSerializableExtra(name);
   }
 
-  @Override protected void onStart() {
-    EventBus.getDefault().registerSticky(this);
+  @Override public void onStart() {
+    if (isStickyAvailable()) {
+      EventBus.getDefault().register(this);
+    } else {
+      EventBus.getDefault().registerSticky(this);
+    }
     super.onStart();
   }
 
@@ -115,5 +119,9 @@ public abstract class BaseAct extends AppCompatActivity {
   }
 
   public void onEvent(Object event) {
+  }
+
+  protected boolean isStickyAvailable() {
+    return false;
   }
 }
