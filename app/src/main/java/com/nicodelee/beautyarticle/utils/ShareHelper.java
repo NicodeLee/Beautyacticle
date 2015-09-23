@@ -68,7 +68,7 @@ public class ShareHelper {
       }
 
       @Override public void onError(Platform platform, int i, Throwable throwable) {
-        LogUitl.e("@@@" + throwable.getMessage() + "," + platform.getName());
+        L.e("@@@" + throwable.getMessage() + "," + platform.getName());
         Message msg = Message.obtain(showMsg);
         msg.obj = context.getString(R.string.share_error);
         msg.sendToTarget();

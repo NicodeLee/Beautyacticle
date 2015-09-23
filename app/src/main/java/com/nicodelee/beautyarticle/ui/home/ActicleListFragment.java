@@ -17,14 +17,13 @@ import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod$Table;
-import com.nicodelee.beautyarticle.utils.LogUitl;
+import com.nicodelee.beautyarticle.utils.L;
 import com.nicodelee.beautyarticle.viewhelper.EndlessRecyclerOnScrollListener;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.utils.ListUtils;
 import com.nicodelee.utils.WeakHandler;
 import com.raizlabs.android.dbflow.sql.language.Select;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -90,6 +89,9 @@ public class ActicleListFragment extends BaseFragment
   private void getActicle(final int page, int id) {
 
     mSwipeLayout.setRefreshing(true);
+
+    //Subscription subscription = Observable.zip(mbeautyApi.getActicle(page,id),acticles -> );
+
     mbeautyApi.getActicle(page, id, new Callback<ArrayList<ActicleMod>>() {
       @Override public void success(final ArrayList<ActicleMod> acticleMods, Response response) {
         mSwipeLayout.setRefreshing(false);
@@ -132,7 +134,7 @@ public class ActicleListFragment extends BaseFragment
 
       @Override public void failure(RetrofitError error) {
         mSwipeLayout.setRefreshing(false);
-        LogUitl.e("error:" + error + ",url:" + error.getUrl());
+        L.e("error:" + error + ",url:" + error.getUrl());
       }
     });
   }

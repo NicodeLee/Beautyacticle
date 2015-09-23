@@ -2,8 +2,6 @@ package com.nicodelee.beautyarticle.viewhelper;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import com.nicodelee.beautyarticle.utils.LogUitl;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener {

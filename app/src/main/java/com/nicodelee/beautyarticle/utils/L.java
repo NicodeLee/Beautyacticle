@@ -5,10 +5,10 @@ import com.nicodelee.beautyarticle.BuildConfig;
 /**
  * Wrapper API for sending log output.
  */
-public class LogUitl {
+public class L {
   protected static final String TAG = "beautyarticle";
 
-  private LogUitl() {
+  private L() {
   }
 
   /**

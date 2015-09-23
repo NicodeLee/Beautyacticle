@@ -23,4 +23,6 @@ import com.raizlabs.android.dbflow.annotation.Table;
   @Column(name = "pub_date") public String pub_date;
 
   @Column(name = "author") public String author;
+
+  @Column(name = "type") public String type;
 }

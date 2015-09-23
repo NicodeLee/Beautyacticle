@@ -277,6 +277,4 @@ public class StringUtils {
         return new String(source);
     }
 
-
-    //以上来自作者，后续会增强
 }

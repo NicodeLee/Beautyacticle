@@ -46,25 +46,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <TextView
-            android:id="@+id/tv_acticle_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/FontActicle"
-            android:layout_marginTop="10dp"
-            android:lineSpacingExtra="2dp"
-            android:lineSpacingMultiplier="1.2"
-            android:paddingLeft="12dp"
-            android:paddingRight="12dp"
-            android:paddingBottom="24dp"
-            android:paddingTop="24dp"
-            android:textColor="#696D6F"
-            android:textSize="18sp" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <WebView
+                android:id="@+id/wv_acticle_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+            <TextView
+                android:id="@+id/tv_acticle_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                style="@style/FontActicle"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="2dp"
+                android:lineSpacingMultiplier="1.2"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="24dp"
+                android:paddingTop="24dp"
+                android:textColor="#696D6F"
+                android:textSize="16sp" />
+        </FrameLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fb_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
