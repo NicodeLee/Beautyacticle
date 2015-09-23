@@ -7,11 +7,11 @@
 或者：http://www.pgyer.com/beautyacticle
 
 - Material Design
-- 精选好图好文，带缓存
-- 文艺的装逼（图4）
+- 精选好图好文，支持本地缓存
+- 文章支持MarkDown排版
+- 文艺范分享图文
 
 ###后续
-- 更好的图文排版
 - 更多制作的模板
 - 尝试mvp/mvc架构
 
@@ -33,7 +33,7 @@
 - [LeakCanary](https://github.com/square/leakcanary)
 
 
-感谢[daimajia](https://github.com/daimajia)
+- [daimajia](https://github.com/daimajia)
 
 Code style
 -----------
