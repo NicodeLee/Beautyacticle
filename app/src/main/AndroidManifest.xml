@@ -33,6 +33,7 @@
         <activity android:name=".ui.setting.SettingAct" android:screenOrientation="portrait" android:theme="@style/MaterialSettingsTheme" />
 
         <activity android:name=".ui.fun.CropAct" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.fun.FunTemplateAct" android:screenOrientation="portrait"></activity>
         <activity
             android:name="me.nereo.multi_image_selector.PreviewPicturesActivity"
             android:theme="@style/ActTheme"

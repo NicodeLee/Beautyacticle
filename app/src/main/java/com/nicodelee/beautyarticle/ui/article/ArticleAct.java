@@ -2,6 +2,7 @@ package com.nicodelee.beautyarticle.ui.article;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
@@ -58,7 +59,7 @@ public class ArticleAct extends BaseSwiBackAct {
 
   public class ArticleAdt extends FragmentPagerAdapter {
 
-    public ArticleAdt(android.support.v4.app.FragmentManager fragmentManager) {
+    public ArticleAdt(FragmentManager fragmentManager) {
       super(fragmentManager);
     }
 

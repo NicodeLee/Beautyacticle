@@ -1,24 +1,15 @@
 package com.nicodelee.beautyarticle.ui.fun;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-
-import com.nicodelee.beautyarticle.R;
-import com.nicodelee.beautyarticle.app.APP;
-import com.nicodelee.beautyarticle.app.BaseAct;
-import com.nicodelee.beautyarticle.utils.BitmapHelper;
-import com.nicodelee.view.CropImageView;
-
-import com.nostra13.universalimageloader.core.assist.ImageSize;
-import java.lang.ref.SoftReference;
-import java.util.HashMap;
-import java.util.Map;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import com.nicodelee.beautyarticle.R;
+import com.nicodelee.beautyarticle.app.APP;
+import com.nicodelee.beautyarticle.app.BaseAct;
+import com.nicodelee.view.CropImageView;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -32,10 +23,6 @@ public class CropAct extends BaseAct {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.act_corp_photo);
     ButterKnife.bind(this);
-    initView();
-  }
-
-  private void initView() {
   }
 
   public void onEvent(String imagePath) {

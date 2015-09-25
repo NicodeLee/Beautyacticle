@@ -23,10 +23,8 @@ import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
-import com.nicodelee.beautyarticle.utils.L;
 import com.nicodelee.beautyarticle.utils.UILUtils;
 import java.util.ArrayList;
-import org.w3c.dom.Text;
 
 public class ArticleFragment extends BaseFragment {
 
@@ -61,7 +59,9 @@ public class ArticleFragment extends BaseFragment {
     webSettings.setJavaScriptEnabled(true);
     webSettings.setLoadWithOverviewMode(true);//自适应
     webSettings.setUseWideViewPort(true);
-    webSettings.setJavaScriptCanOpenWindowsAutomatically(true);//允许js弹出窗口
+    webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+    webSettings.setAppCacheEnabled(true);
+    webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
     webView.setHorizontalScrollbarOverlay(false);
     webView.addJavascriptInterface(this, "handler");
   }

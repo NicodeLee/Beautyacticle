@@ -19,7 +19,7 @@
         <item name="colorPrimary">#ff009688</item>
         <item name="colorPrimaryDark">#00796B</item>
         <item name="colorAccent">#FFC107</item>
-        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
 

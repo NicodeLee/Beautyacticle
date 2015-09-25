@@ -87,6 +87,7 @@ public class FunFragment extends BaseFragment {
 
   @OnClick({ R.id.fb_share, R.id.fb_make, R.id.iv_fun, R.id.fb_more })
   public void Click(View view) {
+    famFun.close(true);
     switch (view.getId()) {
       case R.id.fb_share:
         bitmap = layoutToImage.convertlayout();
@@ -94,15 +95,14 @@ public class FunFragment extends BaseFragment {
         if (sharImageHelper.saveBitmap(bitmap, SharImageHelper.sharePicName)) {
           ShareHelper.showUp(mActivity, sharImageHelper.getShareMod(bitmap));
         }
-        famFun.close(true);
 
         break;
       case R.id.fb_make:
-        famFun.close(true);
         showEdDialig();
         break;
       case R.id.fb_more:
         showToast("快马加鞭开发中");
+        //skipIntent(FunTemplateAct.class,false);
         break;
       case R.id.iv_fun:
         int selectedMode = MultiImageSelectorActivity.MODE_SINGLE;
