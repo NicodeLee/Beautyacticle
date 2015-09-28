@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.nicodelee.beautyarticle.R;
@@ -17,6 +21,7 @@ import com.nicodelee.viewpager.TabletTransformer;
 public class FunTemplateAct extends BaseSwiBackAct {
 
   @Bind(R.id.vp_fun_template) ViewPager vpFun;
+  @Bind(R.id.toolbar) protected Toolbar toolbar;
 
   private FunTemplateAdt funTemplateAdt;
 
@@ -27,13 +32,20 @@ public class FunTemplateAct extends BaseSwiBackAct {
     initView();
   }
 
-  private void initView(){
+  private void initView() {
+
+    setSupportActionBar(toolbar);
+    final ActionBar ab = getSupportActionBar();
+    ab.setHomeAsUpIndicator(R.drawable.btn_back);
+    ab.setDisplayHomeAsUpEnabled(true);
+    ab.setTitle("选择模板");
+
     funTemplateAdt = new FunTemplateAdt(getSupportFragmentManager());
     vpFun.setAdapter(funTemplateAdt);
-    vpFun.setPageTransformer(true,new TabletTransformer());
+    vpFun.setPageTransformer(true, new TabletTransformer());
   }
 
-  class FunTemplateAdt extends FragmentPagerAdapter{
+  class FunTemplateAdt extends FragmentPagerAdapter {
 
     public FunTemplateAdt(FragmentManager fm) {
       super(fm);
@@ -41,7 +53,7 @@ public class FunTemplateAct extends BaseSwiBackAct {
 
     @Override public Fragment getItem(int position) {
       Bundle bundle = new Bundle();
-      bundle.putInt(SquareFragment.EXTRA_POSITION,position);
+      bundle.putInt(SquareFragment.EXTRA_POSITION, position);
       SquareFragment squareFragment = new SquareFragment();
       squareFragment.setArguments(bundle);
       return squareFragment;
@@ -52,7 +64,12 @@ public class FunTemplateAct extends BaseSwiBackAct {
     }
   }
 
-
-
-
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        finish();
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
+  }
 }

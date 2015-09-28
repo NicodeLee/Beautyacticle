@@ -8,6 +8,8 @@ import butterknife.OnClick;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseAct;
+import com.nicodelee.beautyarticle.bus.CropEvent;
+import com.nicodelee.beautyarticle.utils.DevicesUtil;
 import com.nicodelee.view.CropImageView;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 import de.greenrobot.event.EventBus;
@@ -25,11 +27,11 @@ public class CropAct extends BaseAct {
     ButterKnife.bind(this);
   }
 
-  public void onEvent(String imagePath) {
-    mCropImageView.setCropMode(CropImageView.CropMode.CIRCLE);
+  public void onEvent(CropEvent cropEvent) {
+    mCropImageView.setCropMode(cropEvent.getCropMode());
     mCropImageView.setImageBitmap(
-        APP.getInstance().imageLoader.loadImageSync("file:///" + imagePath,
-            new ImageSize(750, 1000)));
+        APP.getInstance().imageLoader.loadImageSync("file:///" + cropEvent.getImagePath(),
+            new ImageSize(DevicesUtil.screenWidth, DevicesUtil.screenHeight)));
   }
 
   @OnClick({ R.id.corp_done, R.id.corp_cancel }) public void Click(View view) {

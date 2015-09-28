@@ -5,6 +5,7 @@
       <item name="android:windowDrawsSystemBarBackgrounds">true</item>
       <item name="android:statusBarColor">@android:color/transparent</item>
       <item name="android:windowIsTranslucent">true</item>
+      <item name="actionMenuTextColor">@color/white</item>
     </style>
   <!--  <item name="android:windowTranslucentStatus">true</item> -->
   <!-- <item name="android:windowNoTitle">true</item>-->
@@ -20,6 +21,7 @@
     <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     <item name="android:statusBarColor">@android:color/transparent</item>
     <item name="android:windowTranslucentStatus">true</item>
+    <item name="actionMenuTextColor">@color/white</item>
   </style>
 
 </resources>

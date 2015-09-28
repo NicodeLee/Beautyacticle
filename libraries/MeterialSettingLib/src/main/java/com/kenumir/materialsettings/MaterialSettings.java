@@ -13,7 +13,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 public abstract class MaterialSettings extends SwipeBackActivity {
 
-  public static enum ContentFrames {
+  public enum ContentFrames {
     FRAME_TOP(0),
     FRAME_TOP_INSIDE(1),
     FRAME_BOTTOM(2),

@@ -24,6 +24,7 @@ import butterknife.OnClick;
 import com.github.clans.fab.FloatingActionMenu;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseFragment;
+import com.nicodelee.beautyarticle.bus.CropEvent;
 import com.nicodelee.beautyarticle.mode.ShareMod;
 import com.nicodelee.beautyarticle.utils.AndroidUtils;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
@@ -34,6 +35,7 @@ import com.nicodelee.beautyarticle.viewhelper.LayoutToImage;
 import com.nicodelee.beautyarticle.viewhelper.VerticalTextView;
 import com.nicodelee.utils.WeakHandler;
 import com.nicodelee.view.CircularImage;
+import com.nicodelee.view.CropImageView;
 import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
@@ -101,8 +103,8 @@ public class FunFragment extends BaseFragment {
         showEdDialig();
         break;
       case R.id.fb_more:
-        showToast("快马加鞭开发中");
-        //skipIntent(FunTemplateAct.class,false);
+        //showToast("快马加鞭开发中");
+        skipIntent(FunTemplateAct.class,false);
         break;
       case R.id.iv_fun:
         int selectedMode = MultiImageSelectorActivity.MODE_SINGLE;
@@ -154,7 +156,10 @@ public class FunFragment extends BaseFragment {
     if (resultCode == mActivity.RESULT_OK && requestCode == REQUEST_IMAGE) {
       ArrayList<String> mSelectPath =
           data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
-      EventBus.getDefault().postSticky((mSelectPath.get(0)));
+      CropEvent cropEvent = new CropEvent();
+      cropEvent.setCropMode(CropImageView.CropMode.CIRCLE);
+      cropEvent.setImagePath(mSelectPath.get(0));
+      EventBus.getDefault().postSticky(cropEvent);
       skipIntent(CropAct.class, false);
     }
   }
