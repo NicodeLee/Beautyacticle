@@ -26,10 +26,15 @@ import me.nereo.multi_image_selector.MultiImageSelectorActivity;
  */
 public class RectangleFragment extends TemplateBase {
 
+
+  public static final String EXTRA_POSITION = "ARTICLE_POSITION";
+  private int position;
+
   private Bitmap bitmap;
   @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_square, container, false);
+    position = getArguments().getInt(EXTRA_POSITION);
     ButterKnife.bind(this, view);
     initView();
     return view;
@@ -40,7 +45,11 @@ public class RectangleFragment extends TemplateBase {
     RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivFun.getLayoutParams();
     int width = DevicesUtil.screenWidth - DevicesUtil.dip2px(getActivity(),16f);
     params.width = width;
-    params.height = (int)(width * 1.3);
+    if (position == 1){
+      params.height = (int)(width * 1.3);
+    }else if (position == 2){
+      params.height = (int)(width * 0.75);
+    }
     ivFun.setLayoutParams(params);
     layoutToImage = new LayoutToImage(scFun);
   }
@@ -72,7 +81,12 @@ public class RectangleFragment extends TemplateBase {
       ArrayList<String> mSelectPath =
           data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
       CropEvent cropEvent = new CropEvent();
-      cropEvent.setCropMode(CropImageView.CropMode.RATIO_3_4);
+      if (position == 1){
+        cropEvent.setCropMode(CropImageView.CropMode.RATIO_3_4);
+      }else if (position == 2){
+        cropEvent.setCropMode(CropImageView.CropMode.RATIO_4_3);
+      }
+
       cropEvent.setImagePath(mSelectPath.get(0));
       EventBus.getDefault().postSticky(cropEvent);
       skipIntent(CropAct.class, false);

@@ -13,6 +13,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseSwiBackAct;
+import com.nicodelee.beautyarticle.ui.article.ArticleFragment;
 import com.nicodelee.viewpager.TabletTransformer;
 
 /**
@@ -57,14 +58,23 @@ public class FunTemplateAct extends BaseSwiBackAct {
           SquareFragment squareFragment = new SquareFragment();
           return squareFragment;
         case 1:
+          final Bundle bundle = new Bundle();
+          bundle.putInt(RectangleFragment.EXTRA_POSITION, position);
           RectangleFragment rectangleFragment = new RectangleFragment();
+          rectangleFragment.setArguments(bundle);
           return rectangleFragment;
+        case 2:
+          final Bundle bundle2 = new Bundle();
+          bundle2.putInt(RectangleFragment.EXTRA_POSITION, position);
+          RectangleFragment rectangleFragment2 = new RectangleFragment();
+          rectangleFragment2.setArguments(bundle2);
+          return rectangleFragment2;
       }
       return null;
     }
 
     @Override public int getCount() {
-      return 2;
+      return 3;
     }
   }
 
