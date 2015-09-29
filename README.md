@@ -3,8 +3,8 @@
 
 > 做一个好用的文字APP
 
-直接下载：http://fir.im/beautyacticle
-或者：http://www.pgyer.com/beautyacticle
+下载：http://fir.im/beautyacticle
+
 
 - Material Design
 - 精选好图好文，支持本地缓存
@@ -12,7 +12,7 @@
 - 文艺范分享图文
 
 ###后续
-- 更多制作的模板
+- 更多制作的模板（40%）
 - 尝试mvp/mvc架构
 
 <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/d.gif" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo1.png" alt="screenshot" title="screenshot" width="270" height="486" />

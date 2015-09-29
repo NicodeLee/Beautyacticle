@@ -79,6 +79,7 @@ public class FunFragment extends BaseFragment {
     tvDesc.setTextSize(DevicesUtil.sp2px(mActivity, 18));
     tvDesc.setLineWidth(DevicesUtil.dip2px(mActivity, 30));
     Typeface face = Typeface.createFromAsset(mActivity.getAssets(), "fonts/fun_font.TTF");
+    tvDesc.setTextColor(R.color.templage_text);
     tvDesc.setTypeface(face);
     tvDesc.setText(acticle);
     tvTime.setText(TimeUtils.dateToCnDate(TimeUtils.getCurentData()));

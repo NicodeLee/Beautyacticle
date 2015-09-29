@@ -38,7 +38,7 @@ public class RectangleFragment extends TemplateBase {
   private void initView() {
     inflater = LayoutInflater.from(mActivity);
     RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivFun.getLayoutParams();
-    int width = DevicesUtil.screenWidth - DevicesUtil.dip2px(getActivity(),24f);
+    int width = DevicesUtil.screenWidth - DevicesUtil.dip2px(getActivity(),16f);
     params.width = width;
     params.height = (int)(width * 1.3);
     ivFun.setLayoutParams(params);

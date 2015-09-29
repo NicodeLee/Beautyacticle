@@ -1,114 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/tools"
-    android:background="@color/white">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
 
-    <android.support.v4.widget.NestedScrollView
+  <android.support.v4.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior"
+      android:id="@+id/sc_fun"
+      android:background="@color/white"
+      >
+
+    <RelativeLayout
+        android:id="@+id/rl_fun"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/sc_fun"
         android:background="@color/white"
         >
 
-        <RelativeLayout
-            android:id="@+id/rl_fun"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            >
+      <com.nicodelee.view.CircularImage
+          android:id="@+id/iv_fun"
+          android:layout_width="200dp"
+          android:layout_height="200dp"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="32dp"
+          android:scaleType="centerCrop"
+          android:src="@drawable/head"
+          />
 
-            <com.nicodelee.view.CircularImage
-                android:id="@+id/iv_fun"
-                android:layout_width="180dp"
-                android:layout_height="180dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="32dp"
-                android:src="@drawable/head" />
+      <TextView
+          android:id="@+id/tv_title"
+          style="@style/FontFun"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/iv_fun"
+          android:layout_marginTop="24dp"
+          android:layout_toRightOf="@+id/tv_desc"
+          android:layout_marginLeft="32dp"
+          android:maxEms="1"
+          android:textColor="@color/templage_title"
+          android:textStyle="bold"
+          android:textSize="22sp"
+          />
 
-            <TextView
-                android:id="@+id/tv_title"
-                style="@style/FontFun"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/iv_fun"
-                android:layout_marginRight="32dp"
-                android:layout_marginTop="32dp"
-                android:maxEms="1"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="22sp" />
+      <com.nicodelee.beautyarticle.viewhelper.VerticalTextView
+          android:id="@+id/tv_desc"
+          style="@style/FontFun"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/iv_fun"
+          android:layout_marginTop="24dp"
+          android:layout_centerHorizontal="true"
+          />
 
-            <com.nicodelee.beautyarticle.viewhelper.VerticalTextView
-                android:id="@+id/tv_desc"
-                style="@style/FontFun"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_fun"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="30dp"
-                android:layout_toLeftOf="@+id/tv_title"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/tv_time"
-                style="@style/FontFun"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="24dp"
-                android:gravity="bottom"
-                android:maxEms="1"
-                android:textColor="@color/black"
-                android:layout_marginRight="16dp"
-                android:textSize="18sp" />
-        </RelativeLayout>
-    </android.support.v4.widget.NestedScrollView>
+      <TextView
+          android:id="@+id/tv_time"
+          style="@style/FontFun"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentLeft="true"
+          android:layout_marginBottom="16dp"
+          android:layout_marginLeft="24dp"
+          android:gravity="bottom"
+          android:maxEms="1"
+          android:textColor="@color/templage_time"
+          android:layout_marginRight="16dp"
+          android:textSize="16sp"
+          />
+    </RelativeLayout>
+  </android.support.v4.widget.NestedScrollView>
 
 
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/fl_menu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="60dp"
-        android:layout_marginRight="16dp"
-        fab:menu_labels_ellipsize="end"
-        fab:menu_labels_singleLine="true"
-        fab:menu_backgroundColor="#ccffffff"
-        >
+  <com.github.clans.fab.FloatingActionMenu
+      android:id="@+id/fl_menu"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentRight="true"
+      android:layout_marginBottom="60dp"
+      android:layout_marginRight="16dp"
+      fab:menu_labels_ellipsize="end"
+      fab:menu_labels_singleLine="true"
+      fab:menu_backgroundColor="#ccffffff"
+      >
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fb_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/open_more"
-            fab:fab_label="更多"
-            />
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fb_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/open_more"
+        fab:fab_label="更多"
+        />
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fb_make"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_edit"
-            fab:fab_label="制作"
-            />
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fb_make"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_edit"
+        fab:fab_label="制作"
+        />
 
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fb_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_share"
-            fab:fab_label="分享"/>
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/fb_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_share"
+        fab:fab_label="分享"
+        />
 
-    </com.github.clans.fab.FloatingActionMenu>
+  </com.github.clans.fab.FloatingActionMenu>
 
 
 </RelativeLayout>

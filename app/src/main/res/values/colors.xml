@@ -65,7 +65,6 @@
   <!-- 花白色 -->
 
   <color name="gold">#333333</color>
-  <!-- 对话框分隔线颜色 -->
 
   <color name="hotpink">#FF69B4</color>
   <!-- 热粉红色 -->
@@ -131,16 +130,11 @@
   <!-- 亮珊瑚色 -->
 
   <color name="palegoldenrod">#EEE8AA</color>
-  <!-- 苍麒麟色 -->
-
   <color name="violet">#EE82EE</color>
-  <!-- 紫罗兰色 -->
 
   <color name="aquamarine">#7fffd4</color>
-  <!-- 碧绿色 -->
 
   <color name="gainsboro">#333333</color>
-  <!-- 对话框小字体颜色 -->
 
   <color name="vifrification">#00000000</color>
   <color name="md__transparent">#00000000</color>
@@ -153,9 +147,7 @@
   <color name="columnscolor_ededed">#ededed</color>
   <color name="register">#0075a9</color>
   <color name="split_line">#d5d5d5</color>
-  <!-- 分割线颜色 -->
   <color name="slide_split_line">#2c5062</color>
-  <!-- 分割线颜色 -->
   <color name="list_item_press">#eceef5</color>
   <color name="btn_download">#aa34a9dc</color>
   <color name="transparent">#00000000</color>
@@ -239,6 +231,10 @@
   <color name="frame">#86C166</color>
   <color name="guide">#AA86C166</color>
   <color name="menu_bg">#FFFFFB</color>
+
+  <color name="templage_text">#A6A6A6</color>
+  <color name="templage_time">@color/pano_custom_dialog_background</color>
+  <color name="templage_title">#4C403D</color>
 
   <drawable name="dr_white">#ffffff</drawable>
   <drawable name="dr_text_disabled">#e4e4e4</drawable>

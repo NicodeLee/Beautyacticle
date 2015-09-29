@@ -13,7 +13,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:paddingBottom="24dp"
+            android:padding="8dp"
+            android:paddingBottom="18dp"
             >
             <ImageView
                 android:id="@+id/iv_fun"
@@ -21,10 +22,6 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/head"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
                 android:scaleType="centerCrop"
                 />
 
@@ -36,8 +33,10 @@
                 android:layout_below="@+id/iv_fun"
                 android:text="@string/article"
                 android:lineSpacingMultiplier="1.5"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:textColor="@color/templage_text"
                 />
 
         </RelativeLayout>
