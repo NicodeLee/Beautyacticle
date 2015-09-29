@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -14,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:paddingBottom="24dp"
             >
             <ImageView
                 android:id="@+id/iv_fun"
@@ -21,10 +21,11 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/head"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
+                android:scaleType="centerCrop"
                 />
 
             <TextView
@@ -35,41 +36,13 @@
                 android:layout_below="@+id/iv_fun"
                 android:text="@string/article"
                 android:lineSpacingMultiplier="1.5"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 />
 
         </RelativeLayout>
     </ScrollView>
 
-
-  <com.github.clans.fab.FloatingActionMenu
-      android:id="@+id/fl_menu"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:layout_alignParentBottom="true"
-      android:layout_alignParentRight="true"
-      android:layout_marginBottom="16dp"
-      android:layout_marginRight="16dp"
-      fab:menu_labels_ellipsize="end"
-      fab:menu_labels_singleLine="true"
-      fab:menu_backgroundColor="#ccffffff"
-      >
-
-    <com.github.clans.fab.FloatingActionButton
-        android:id="@+id/fb_make"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_edit"
-        fab:fab_label="制作"
-        />
-
-    <com.github.clans.fab.FloatingActionButton
-        android:id="@+id/fb_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_share"
-        fab:fab_label="分享"
-        />
-
-  </com.github.clans.fab.FloatingActionMenu>
+    <include layout="@layout/menu_float"/>
 
 </RelativeLayout>

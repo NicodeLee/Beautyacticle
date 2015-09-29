@@ -24,10 +24,9 @@ import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 /**
  * Created by Nicodelee on 15/9/25.
  */
-public class SquareFragment extends TemplateBase {
+public class RectangleFragment extends TemplateBase {
 
   private Bitmap bitmap;
-
   @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_square, container, false);
@@ -39,9 +38,9 @@ public class SquareFragment extends TemplateBase {
   private void initView() {
     inflater = LayoutInflater.from(mActivity);
     RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivFun.getLayoutParams();
-    int width = DevicesUtil.screenWidth - DevicesUtil.dip2px(getActivity(), 24f);
+    int width = DevicesUtil.screenWidth - DevicesUtil.dip2px(getActivity(),24f);
     params.width = width;
-    params.height = width;
+    params.height = (int)(width * 1.3);
     ivFun.setLayoutParams(params);
     layoutToImage = new LayoutToImage(scFun);
   }
@@ -62,7 +61,7 @@ public class SquareFragment extends TemplateBase {
         break;
       case R.id.iv_fun:
         int selectedMode = MultiImageSelectorActivity.MODE_SINGLE;
-        MultiImageSelectorActivity.startSelect(SquareFragment.this, REQUEST_IMAGE, 1, selectedMode);
+        MultiImageSelectorActivity.startSelect(RectangleFragment.this, REQUEST_IMAGE, 1, selectedMode);
         break;
     }
   }
@@ -73,7 +72,7 @@ public class SquareFragment extends TemplateBase {
       ArrayList<String> mSelectPath =
           data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
       CropEvent cropEvent = new CropEvent();
-      cropEvent.setCropMode(CropImageView.CropMode.RATIO_1_1);
+      cropEvent.setCropMode(CropImageView.CropMode.RATIO_3_4);
       cropEvent.setImagePath(mSelectPath.get(0));
       EventBus.getDefault().postSticky(cropEvent);
       skipIntent(CropAct.class, false);

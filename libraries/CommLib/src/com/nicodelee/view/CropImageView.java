@@ -23,6 +23,7 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import com.nicodelee.R;
+import uk.co.senab.photoview.PhotoView;
 
 public class CropImageView extends ImageView {
 
@@ -1228,7 +1229,7 @@ public class CropImageView extends ImageView {
     mInitialFrameScale = constrain(initialScale, 0.01f, 1.0f, DEFAULT_INITIAL_FRAME_SCALE);
   }
 
-  private void setScale(float mScale) {
+  public void setScale(float mScale) {
     this.mScale = mScale;
   }
 

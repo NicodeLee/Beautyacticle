@@ -52,15 +52,19 @@ public class FunTemplateAct extends BaseSwiBackAct {
     }
 
     @Override public Fragment getItem(int position) {
-      Bundle bundle = new Bundle();
-      bundle.putInt(SquareFragment.EXTRA_POSITION, position);
-      SquareFragment squareFragment = new SquareFragment();
-      squareFragment.setArguments(bundle);
-      return squareFragment;
+      switch (position) {
+        case 0:
+          SquareFragment squareFragment = new SquareFragment();
+          return squareFragment;
+        case 1:
+          RectangleFragment rectangleFragment = new RectangleFragment();
+          return rectangleFragment;
+      }
+      return null;
     }
 
     @Override public int getCount() {
-      return 3;
+      return 2;
     }
   }
 

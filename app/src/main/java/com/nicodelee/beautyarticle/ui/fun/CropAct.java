@@ -37,7 +37,9 @@ public class CropAct extends BaseAct {
   @OnClick({ R.id.corp_done, R.id.corp_cancel }) public void Click(View view) {
     switch (view.getId()) {
       case R.id.corp_done:
-        EventBus.getDefault().postSticky(mCropImageView.getCroppedBitmap());
+        if (mCropImageView.getCroppedBitmap() != null) {
+          EventBus.getDefault().postSticky(mCropImageView.getCroppedBitmap());
+        }
         finish();
         break;
       case R.id.corp_cancel:

@@ -50,6 +50,8 @@ android {
     dependencies {
         compile fileTree(dir: 'libs', include: ['*.jar'])
         compile 'com.android.support:support-v4:22.2.1'
+        compile 'com.github.chrisbanes.photoview:library:1.2.+'
+
     }
 
 }

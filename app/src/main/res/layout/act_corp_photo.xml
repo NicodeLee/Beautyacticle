@@ -47,8 +47,8 @@
   <com.nicodelee.view.CropImageView
       android:id="@+id/cropImageView"
       android:layout_above="@+id/corp_ll"
-      android:paddingTop="24dp"
-      android:paddingBottom="24dp"
+      android:paddingTop="18dp"
+      android:paddingBottom="18dp"
       android:paddingLeft="4dp"
       android:paddingRight="4dp"
       android:layout_width="match_parent"

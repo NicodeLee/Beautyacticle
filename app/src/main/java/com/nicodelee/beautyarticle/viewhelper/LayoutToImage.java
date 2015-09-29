@@ -15,7 +15,7 @@ public class LayoutToImage {
     view.setDrawingCacheEnabled(true);
     view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
         View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-    view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+    view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight()+60);
     view.buildDrawingCache(true);
     Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
 
