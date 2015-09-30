@@ -48,8 +48,6 @@ public abstract class MaterialSettings extends SwipeBackActivity {
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
-    toolbar.setBackgroundColor(
-        getResources().getColor(com.kenumir.materialsettings.R.color.material_deep_teal_500));
     getSupportActionBar().setTitle("设置");
 
     material_settings_content =

@@ -104,4 +104,10 @@
 		<item name="android:layout_height">match_parent</item>
 	</style>
 
+	<style name="ToolBarStyle" parent="Theme.AppCompat.Light">
+		<item name="android:textColorPrimary">#696D6F</item>
+		<item name="android:textColorSecondary">#696D6F</item>
+		<item name="actionMenuTextColor">#696D6F</item>
+	</style>
+
 </resources>

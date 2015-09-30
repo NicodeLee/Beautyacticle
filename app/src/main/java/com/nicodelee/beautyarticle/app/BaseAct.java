@@ -47,7 +47,7 @@ public abstract class BaseAct extends AppCompatActivity {
   }
 
   public void showInfo(String message) {
-    AppMsg.Style style = new AppMsg.Style(1500, R.color.accent);
+    AppMsg.Style style = new AppMsg.Style(1500, R.color.colorAccent);
     AppMsg appMsg = AppMsg.makeText(this, message, style);
     appMsg.setAnimation(R.anim.slide_in_bottom, R.anim.slide_out_bottom);
     appMsg.setLayoutGravity(Gravity.CENTER);

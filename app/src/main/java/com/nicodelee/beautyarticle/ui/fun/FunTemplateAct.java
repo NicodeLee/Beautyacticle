@@ -37,7 +37,7 @@ public class FunTemplateAct extends BaseSwiBackAct {
 
     setSupportActionBar(toolbar);
     final ActionBar ab = getSupportActionBar();
-    ab.setHomeAsUpIndicator(R.drawable.btn_back);
+    //ab.setHomeAsUpIndicator(R.drawable.btn_back);
     ab.setDisplayHomeAsUpEnabled(true);
     ab.setTitle("选择模板");
 

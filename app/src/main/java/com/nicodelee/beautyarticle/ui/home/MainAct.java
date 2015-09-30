@@ -26,7 +26,7 @@ public class MainAct extends MainBase {
   private void initView() {
     setSupportActionBar(toolbar);
     final ActionBar ab = getSupportActionBar();
-    ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+    ab.setHomeAsUpIndicator(R.drawable.ic_menu_grey);
     ab.setDisplayHomeAsUpEnabled(true);
     setupDrawerContent(navigationView);
     setupViewPager(viewPager);

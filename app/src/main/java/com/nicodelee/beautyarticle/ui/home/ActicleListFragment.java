@@ -54,6 +54,8 @@ public class ActicleListFragment extends BaseFragment
     super.onViewCreated(view, savedInstanceState);
     macticleMods = new ArrayList<ActicleMod>();
     mSwipeLayout.setOnRefreshListener(this);
+    mSwipeLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorAccent,
+        R.color.colorAccent, R.color.colorAccent);
     linearLayoutManager = new LinearLayoutManager(mActivity);
     rv.setLayoutManager(linearLayoutManager);
     setupRecyclerView();

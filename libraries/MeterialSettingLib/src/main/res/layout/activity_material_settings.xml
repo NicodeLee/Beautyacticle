@@ -12,9 +12,7 @@
       android:id="@+id/toolbar"
       android:layout_height="?attr/actionBarSize"
       android:layout_width="match_parent"
-      android:background="?attr/colorPrimary"
-      app:theme="?attr/msToolbarTheme"
-      app:popupTheme="?attr/msToolbarThemePopup"
+      app:theme="@style/ToolBarStyle"
       />
 
   <FrameLayout
