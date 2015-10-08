@@ -1,0 +1,36 @@
+ext {
+  java = [sourceCompatibility: JavaVersion.VERSION_1_8,
+          targetCompatibility: JavaVersion.VERSION_1_8]
+
+
+  android = [compileSdkVersion: 23,
+             buildToolsVersion: "23.0.1",
+             applicationId    : "com.nicodelee.beautyarticle",
+             minSdkVersion    : 15,
+             targetSdkVersion : 23,
+             versionCode      : 1,
+             versionName      : "1.0"]
+
+  dependencies = ["com.android.support:design"          : "com.android.support:design:23.0.1",
+                  "com.android.support:appcompat-v7"    : "com.android.support:appcompat-v7:23.0.1",
+                  "com.android.support:support-v4"      : "com.android.support:support-v4:23.0.1",
+                  "com.android.support:cardview-v7"     : "com.android.support:cardview-v7:23.0.1",
+                  "com.android.support:recyclerview-v7" : "com.android.support:recyclerview-v7:23.0.1",
+
+                  "com.jakewharton:butterknife"         : "com.jakewharton:butterknife:7.0.1",
+                  "com.nostra13.universalimageloader"   : "com.nostra13.universalimageloader:universal-image-loader:1.9.4",
+                  "de.greenrobot.eventbus"              : "de.greenrobot:eventbus:2.4.0",
+                  "com.github.johnkil.android-appmsg"   : "com.github.johnkil.android-appmsg:appmsg:1.2.0",
+                  "uk.co.chrisjenx.calligraphy"         : "uk.co.chrisjenx:calligraphy:2.1.0",
+                  "com.squareup.retrofit"               : "com.squareup.retrofit:retrofit:1.9.0",
+                  "com.squareup.okhttp"                 : "com.squareup.okhttp:okhttp:2.5.0",
+                  "com.squareup.picasso"                 : "com.squareup.picasso:picasso:2.5.2",
+                  "com.raizlabs.android.DBFlow.Compiler": "com.raizlabs.android:DBFlow-Compiler:2.2.1",
+                  "com.raizlabs.android.DBFlow.Core"    : "com.raizlabs.android:DBFlow-Core:2.2.1",
+                  "com.raizlabs.android.DBFlow"         : "com.raizlabs.android:DBFlow:2.2.1",
+                  "com.daimajia.numberprogressbar"      : "com.daimajia.numberprogressbar:library:1.2@aar",
+                  "com.github.clans.fab"                : "com.github.clans:fab:1.5.5",
+                  "io.reactivex.rxandroid"              : "io.reactivex:rxandroid:1.0.0"
+
+  ]
+}

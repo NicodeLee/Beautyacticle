@@ -33,10 +33,10 @@ public class MainAct extends MainBase {
     tabLayout.setupWithViewPager(viewPager);
     tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
 
-      boolean isoneSelect = false;
+      boolean isOneSelect = false;
 
       @Override public void onTabSelected(TabLayout.Tab tab) {
-        if (tab.getPosition() == 0) isoneSelect = true;
+        if (tab.getPosition() == 0) isOneSelect = true;
         viewPager.setCurrentItem(tab.getPosition());
       }
 
@@ -44,8 +44,8 @@ public class MainAct extends MainBase {
       }
 
       @Override public void onTabReselected(TabLayout.Tab tab) {
-        if (tab.getPosition() == 0 && !isoneSelect) EventBus.getDefault().postSticky("Reselected");
-        isoneSelect = false;
+        if (tab.getPosition() == 0 && !isOneSelect) EventBus.getDefault().postSticky("Reselected");
+        isOneSelect = false;
       }
     });
   }

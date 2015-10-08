@@ -1,22 +1,17 @@
 apply plugin: 'com.android.library'
 
-repositories {
-    mavenCentral()
-}
-
-
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 10
-        targetSdkVersion 22
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
     }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:22.2.1'
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'de.greenrobot:eventbus:2.4.0'
+    compile rootProject.ext.dependencies["com.android.support:appcompat-v7"]
+    compile rootProject.ext.dependencies["com.android.support:support-v4"]
+    compile rootProject.ext.dependencies["de.greenrobot.eventbus"]
 }

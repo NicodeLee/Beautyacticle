@@ -8,19 +8,20 @@
 
 package cn.sharesdk.onekeyshare;
 
-import static com.mob.tools.utils.R.*;
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.util.FloatMath;
 import android.view.Window;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
+import android.widget.Toast;
 import com.mob.tools.FakeActivity;
+
+import static com.mob.tools.utils.R.getBitmapRes;
+import static com.mob.tools.utils.R.getStringRes;
 
 /** 摇一摇启动分享的例子 */
 public class Shake2Share extends FakeActivity implements SensorEventListener {
@@ -106,7 +107,7 @@ public class Shake2Share extends FakeActivity implements SensorEventListener {
 				float deltaX = x - mLastX;
 				float deltaY = y - mLastY;
 				float deltaZ = z - mLastZ;
-				float delta = FloatMath.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) / diffTime * 10000;
+				float delta = (float)Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) / diffTime * 10000;
 				if (delta > SHAKE_THRESHOLD) {
 					if (!shaken) {
 						shaken = true;

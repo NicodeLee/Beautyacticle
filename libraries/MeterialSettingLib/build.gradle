@@ -1,14 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-	compileSdkVersion 22
-	buildToolsVersion "22.0.1"
+	compileSdkVersion rootProject.ext.android.compileSdkVersion
+	buildToolsVersion rootProject.ext.android.buildToolsVersion
 
 	defaultConfig {
-		minSdkVersion 10
-		targetSdkVersion 22
-		versionCode 1
-		versionName "1.0"
+		minSdkVersion rootProject.ext.android.minSdkVersion
+		targetSdkVersion rootProject.ext.android.targetSdkVersion
 	}
 	buildTypes {
 		release {
@@ -20,6 +18,6 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.android.support:appcompat-v7:22.2.1'
+	compile rootProject.ext.dependencies["com.android.support:appcompat-v7"]
 	compile project(':libraries:SwipeBackLayoutLibary')
 }
