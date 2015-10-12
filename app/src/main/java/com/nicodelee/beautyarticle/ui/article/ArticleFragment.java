@@ -95,7 +95,7 @@ public class ArticleFragment extends BaseFragment {
     }
   }
 
-  private void setUpWebView(String mdText) {
+  private void setUpWebView(final String mdText) {
     webView.setWebViewClient(new WebViewClient() {
       @Override public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);

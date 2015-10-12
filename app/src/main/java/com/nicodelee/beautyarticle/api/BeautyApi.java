@@ -12,7 +12,7 @@ import rx.Observable;
  * Created by Nicodelee on 15/8/25.
  */
 public interface BeautyApi {
-  @GET("/acticle/{page}/{id}") public void getActicle(@Path("page") int page, @Path("id") int id,
-      Callback<ArrayList<ActicleMod>> response);
-  //@GET("/acticle/{page}/{id}") Observable<ActicleData> getActicle(@Path("page") int page, @Path("id") int id);
+  //@GET("/acticle/{page}/{id}") public void getActicle(@Path("page") int page, @Path("id") int id,
+  //    Callback<ArrayList<ActicleMod>> response);
+  @GET("/acticle/{page}/{id}") Observable<ArrayList<ActicleMod>> getActicle(@Path("page") int page, @Path("id") int id);
 }

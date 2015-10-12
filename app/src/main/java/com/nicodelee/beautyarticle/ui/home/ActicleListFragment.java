@@ -24,10 +24,11 @@ import com.nicodelee.utils.ListUtils;
 import com.nicodelee.utils.WeakHandler;
 import com.raizlabs.android.dbflow.sql.language.Select;
 import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class ActicleListFragment extends BaseFragment
     implements SwipeRefreshLayout.OnRefreshListener {
@@ -37,7 +38,7 @@ public class ActicleListFragment extends BaseFragment
   @Bind(R.id.recyclerview) RecyclerView rv;
   @Bind(R.id.swipe_container) MySwipeRefreshLayout mSwipeLayout;
 
-  private ArrayList<ActicleMod> macticleMods;
+  private List<ActicleMod> macticleMods;
   private MainRecyclerViewAdapter mActcleAdapter;
   private boolean isHasMore = true;
   private LinearLayoutManager linearLayoutManager;
@@ -92,53 +93,57 @@ public class ActicleListFragment extends BaseFragment
 
     mSwipeLayout.setRefreshing(true);
 
-    //Subscription subscription = Observable.zip(mbeautyApi.getActicle(page,id),acticles -> );
-
-    mbeautyApi.getActicle(page, id, new Callback<ArrayList<ActicleMod>>() {
-      @Override public void success(final ArrayList<ActicleMod> acticleMods, Response response) {
-        mSwipeLayout.setRefreshing(false);
-        if (ListUtils.isEmpty(acticleMods)) {
-          if (page > 0) {
-            showToast("全部加载完毕");
-            isHasMore = false;
-          } else if (page < 0) {
-            showToast("小编正为你编辑更多文章");
+    mbeautyApi.getActicle(page, id)
+        .subscribeOn(Schedulers.newThread())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<ArrayList<ActicleMod>>() {
+          @Override public void onCompleted() {
           }
-          return;
-        }
 
-        //page = 0 首次 <0 刷新 >0 加载更多
-        if (page == 0) {
-          macticleMods = acticleMods;
-          mActcleAdapter = new MainRecyclerViewAdapter(mActivity, macticleMods);
-          rv.setAdapter(mActcleAdapter);
-        } else if (page > 0) {
-          macticleMods.addAll(acticleMods);
-          mActcleAdapter.notifyItemInserted(macticleMods.size());
-        } else if (page < 0) {
-          for (ActicleMod mainMod : acticleMods) {
-            macticleMods.add(0, mainMod);
+          @Override public void onError(Throwable e) {
+            L.e("onError:" + e.getMessage());
+            mSwipeLayout.setRefreshing(false);
           }
-          //                            mActcleAdapter.notifyItemRangeChanged(0,acticleMods.size());
-          mActcleAdapter.notifyDataSetChanged();
-        }
 
-        new WeakHandler().post(new Runnable() {
-          @Override public void run() {
-            ActicleMod acticleMod;
-            for (ActicleMod mainMod : acticleMods) {
-              acticleMod = mainMod;
-              acticleMod.save();
+          @Override public void onNext(final ArrayList<ActicleMod> acticleMods) {
+            mSwipeLayout.setRefreshing(false);
+            if (ListUtils.isEmpty(acticleMods)) {
+              if (page > 0) {
+                showToast("全部加载完毕");
+                isHasMore = false;
+              } else if (page < 0) {
+                showToast("小编正为你编辑更多文章");
+              }
+              return;
             }
+
+            //page = 0 首次 <0 刷新 >0 加载更多
+            if (page == 0) {
+              macticleMods = acticleMods;
+              mActcleAdapter = new MainRecyclerViewAdapter(mActivity, macticleMods);
+              rv.setAdapter(mActcleAdapter);
+            } else if (page > 0) {
+              macticleMods.addAll(acticleMods);
+              mActcleAdapter.notifyItemInserted(macticleMods.size());
+            } else if (page < 0) {
+              for (ActicleMod mainMod : acticleMods) {
+                macticleMods.add(0, mainMod);
+              }
+              //                            mActcleAdapter.notifyItemRangeChanged(0,acticleMods.size());
+              mActcleAdapter.notifyDataSetChanged();
+            }
+
+            new WeakHandler().post(new Runnable() {
+              @Override public void run() {
+                ActicleMod acticleMod;
+                for (ActicleMod mainMod : acticleMods) {
+                  acticleMod = mainMod;
+                  acticleMod.save();
+                }
+              }
+            });
           }
         });
-      }
-
-      @Override public void failure(RetrofitError error) {
-        mSwipeLayout.setRefreshing(false);
-        L.e("error:" + error + ",url:" + error.getUrl());
-      }
-    });
   }
 
   @Override public void onRefresh() {

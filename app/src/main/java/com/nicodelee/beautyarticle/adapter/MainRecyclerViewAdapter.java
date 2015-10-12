@@ -41,7 +41,7 @@ public class MainRecyclerViewAdapter
     extends RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder> {
 
   private final TypedValue mTypedValue = new TypedValue();
-  private ArrayList<ActicleMod> mylist;
+  private List<ActicleMod> mylist;
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -59,7 +59,7 @@ public class MainRecyclerViewAdapter
     }
   }
 
-  public MainRecyclerViewAdapter(Context context, ArrayList<ActicleMod> items) {
+  public MainRecyclerViewAdapter(Context context, List<ActicleMod> items) {
     context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
     mylist = items;
   }
