@@ -35,9 +35,10 @@
 - [DBFlow](https://github.com/Raizlabs/DBFlow)
 - [SimpleCropView](https://github.com/IsseiAoki/SimpleCropView)
 - [LeakCanary](https://github.com/square/leakcanary)
+- [RxJava](https://github.com/ReactiveX/RxJava)
+- [RxAndroid](https://github.com/ReactiveX/RxAndroid)
 
 
-- [daimajia](https://github.com/daimajia)
 
 Code style
 -----------

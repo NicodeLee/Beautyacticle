@@ -89,61 +89,63 @@ public class ActicleListFragment extends BaseFragment
     return new Select().count().from(ActicleMod.class).count() > 0;
   }
 
-  private void getActicle(final int page, int id) {
+  private void getActicle(final int page, final int id) {
 
     mSwipeLayout.setRefreshing(true);
 
     mbeautyApi.getActicle(page, id)
-        .subscribeOn(Schedulers.newThread())
+        .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Subscriber<ArrayList<ActicleMod>>() {
           @Override public void onCompleted() {
           }
 
           @Override public void onError(Throwable e) {
-            L.e("onError:" + e.getMessage());
             mSwipeLayout.setRefreshing(false);
           }
 
           @Override public void onNext(final ArrayList<ActicleMod> acticleMods) {
-            mSwipeLayout.setRefreshing(false);
-            if (ListUtils.isEmpty(acticleMods)) {
-              if (page > 0) {
-                showToast("全部加载完毕");
-                isHasMore = false;
-              } else if (page < 0) {
-                showToast("小编正为你编辑更多文章");
-              }
-              return;
-            }
-
-            //page = 0 首次 <0 刷新 >0 加载更多
-            if (page == 0) {
-              macticleMods = acticleMods;
-              mActcleAdapter = new MainRecyclerViewAdapter(mActivity, macticleMods);
-              rv.setAdapter(mActcleAdapter);
-            } else if (page > 0) {
-              macticleMods.addAll(acticleMods);
-              mActcleAdapter.notifyItemInserted(macticleMods.size());
-            } else if (page < 0) {
-              for (ActicleMod mainMod : acticleMods) {
-                macticleMods.add(0, mainMod);
-              }
-              //                            mActcleAdapter.notifyItemRangeChanged(0,acticleMods.size());
-              mActcleAdapter.notifyDataSetChanged();
-            }
-
-            new WeakHandler().post(new Runnable() {
-              @Override public void run() {
-                ActicleMod acticleMod;
-                for (ActicleMod mainMod : acticleMods) {
-                  acticleMod = mainMod;
-                  acticleMod.save();
-                }
-              }
-            });
+            setUpData(page, id, acticleMods);
           }
         });
+  }
+
+  private void setUpData(final int page, int id, final ArrayList<ActicleMod> acticleMods) {
+    mSwipeLayout.setRefreshing(false);
+    if (ListUtils.isEmpty(acticleMods)) {
+      if (page > 0) {
+        showToast("全部加载完毕");
+        isHasMore = false;
+      } else if (page < 0) {
+        showToast("小编正为你编辑更多文章");
+      }
+      return;
+    }
+
+    //page = 0 首次 <0 刷新 >0 加载更多
+    if (page == 0) {
+      macticleMods = acticleMods;
+      mActcleAdapter = new MainRecyclerViewAdapter(mActivity, macticleMods);
+      rv.setAdapter(mActcleAdapter);
+    } else if (page > 0) {
+      macticleMods.addAll(acticleMods);
+      mActcleAdapter.notifyItemInserted(macticleMods.size());
+    } else if (page < 0) {
+      for (ActicleMod mainMod : acticleMods) {
+        macticleMods.add(0, mainMod);
+      }
+      mActcleAdapter.notifyDataSetChanged();
+    }
+
+    new WeakHandler().post(new Runnable() {
+      @Override public void run() {
+        ActicleMod acticleMod;
+        for (ActicleMod mainMod : acticleMods) {
+          acticleMod = mainMod;
+          acticleMod.save();
+        }
+      }
+    });
   }
 
   @Override public void onRefresh() {

@@ -25,6 +25,12 @@ import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.utils.UILUtils;
 import java.util.ArrayList;
+import rx.Observable;
+import rx.Observer;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class ArticleFragment extends BaseFragment {
 
@@ -61,8 +67,7 @@ public class ArticleFragment extends BaseFragment {
     webSettings.setUseWideViewPort(true);
     webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
     webSettings.setAppCacheEnabled(true);
-    webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-    webView.setHorizontalScrollbarOverlay(false);
+    webSettings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);
     webView.addJavascriptInterface(this, "handler");
   }
 
@@ -87,12 +92,30 @@ public class ArticleFragment extends BaseFragment {
     if (mod.type.equals("Markdown")) {
       webView.setVisibility(View.VISIBLE);
       tvDetail.setVisibility(View.GONE);
-      setUpWebView(mod.details);
+
+      setMardown(mod.details);
+      //setUpWebView(mod.details);
     } else if (mod.type.equals("text")) {
       webView.setVisibility(View.GONE);
       tvDetail.setVisibility(View.VISIBLE);
       tvDetail.setText(mod.details);
     }
+  }
+
+  private void setMardown(String text) {
+    Observable.create(new Observable.OnSubscribe<Boolean>() {
+      @Override public void call(Subscriber<? super Boolean> subscriber) {
+        setUpWebView(text);
+        subscriber.onNext(true);
+        subscriber.onCompleted();
+      }
+    })
+        .observeOn(Schedulers.io())
+        .subscribeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Action1<Boolean>() {
+          @Override public void call(Boolean aBoolean) {
+          }
+        });
   }
 
   private void setUpWebView(final String mdText) {

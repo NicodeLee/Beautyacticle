@@ -40,6 +40,11 @@ import java.util.ArrayList;
 
 import de.greenrobot.event.EventBus;
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 import static butterknife.ButterKnife.findById;
 
@@ -57,7 +62,7 @@ public class FunFragment extends BaseFragment {
   @BindString(R.string.acticle_title) String acticleTitle;
 
   private LayoutToImage layoutToImage;
-  private Bitmap bitmap;
+  //private Bitmap bitmap;
   private LayoutInflater inflater;
 
   private String title, desc;
@@ -93,11 +98,28 @@ public class FunFragment extends BaseFragment {
     famFun.close(true);
     switch (view.getId()) {
       case R.id.fb_share:
-        bitmap = layoutToImage.convertlayout();
+
         SharImageHelper sharImageHelper = new SharImageHelper();
-        if (sharImageHelper.saveBitmap(bitmap, SharImageHelper.sharePicName)) {
-          ShareHelper.showUp(mActivity, sharImageHelper.getShareMod(bitmap));
-        }
+        //if (sharImageHelper.saveBitmap(bitmap, SharImageHelper.sharePicName)) {
+        //  ShareHelper.showUp(mActivity, sharImageHelper.getShareMod(bitmap));
+        //}
+        Observable.create(new Observable.OnSubscribe<Bitmap>() {
+          @Override public void call(Subscriber<? super Bitmap> subscriber) {
+            Bitmap bitmap = layoutToImage.convertlayout();
+            sharImageHelper.saveBitmap(bitmap, SharImageHelper.sharePicName);
+            subscriber.onNext(bitmap);
+            subscriber.onCompleted();
+          }
+        })
+            //.observeOn(Schedulers.io())
+            .subscribeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Action1<Bitmap>() {
+                  @Override public void call(Bitmap bitmap) {
+                    if (bitmap != null) {
+                      ShareHelper.showUp(mActivity, sharImageHelper.getShareMod(bitmap));
+                    }
+                  }
+                });
 
         break;
       case R.id.fb_make:
@@ -105,7 +127,7 @@ public class FunFragment extends BaseFragment {
         break;
       case R.id.fb_more:
         //showToast("快马加鞭开发中");
-        skipIntent(FunTemplateAct.class,false);
+        skipIntent(FunTemplateAct.class, false);
         break;
       case R.id.iv_fun:
         int selectedMode = MultiImageSelectorActivity.MODE_SINGLE;
