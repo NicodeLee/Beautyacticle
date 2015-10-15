@@ -17,7 +17,6 @@ import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseFragment;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.mode.ActicleMod$Table;
-import com.nicodelee.beautyarticle.utils.L;
 import com.nicodelee.beautyarticle.viewhelper.EndlessRecyclerOnScrollListener;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.utils.ListUtils;
@@ -26,8 +25,10 @@ import com.raizlabs.android.dbflow.sql.language.Select;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class ActicleListFragment extends BaseFragment
@@ -75,11 +76,23 @@ public class ActicleListFragment extends BaseFragment
   private void setupRecyclerView() {
 
     if (isInDB()) {
-      macticleMods = (ArrayList<ActicleMod>) new Select().from(ActicleMod.class)
-          .orderBy(false, ActicleMod$Table.ID)
-          .queryList();
-      mActcleAdapter = new MainRecyclerViewAdapter(mActivity, macticleMods);
-      rv.setAdapter(mActcleAdapter);
+      Observable.create(new Observable.OnSubscribe<List<ActicleMod>>() {
+        @Override public void call(Subscriber<? super List<ActicleMod>> subscriber) {
+          List<ActicleMod> acticleMods =
+              new Select().from(ActicleMod.class).orderBy(false, ActicleMod$Table.ID).queryList();
+          subscriber.onNext(acticleMods);
+          subscriber.onCompleted();
+        }
+      })
+          .subscribeOn(Schedulers.io())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(new Action1<List<ActicleMod>>() {
+            @Override public void call(List<ActicleMod> acticleMods) {
+              macticleMods = acticleMods;
+              mActcleAdapter = new MainRecyclerViewAdapter(mActivity, macticleMods);
+              rv.setAdapter(mActcleAdapter);
+            }
+          });
     } else {
       getActicle(0, 0);//首次获取数据
     }
@@ -93,7 +106,14 @@ public class ActicleListFragment extends BaseFragment
 
     mSwipeLayout.setRefreshing(true);
 
+    //熟悉RxJava再用lambda
     mbeautyApi.getActicle(page, id)
+        .subscribeOn(Schedulers.newThread())
+        .doOnNext(new Action1<ArrayList<ActicleMod>>() {
+          @Override public void call(ArrayList<ActicleMod> acticleMods) {
+            saveActicles(acticleMods);
+          }
+        })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Subscriber<ArrayList<ActicleMod>>() {
@@ -101,16 +121,16 @@ public class ActicleListFragment extends BaseFragment
           }
 
           @Override public void onError(Throwable e) {
-            mSwipeLayout.setRefreshing(false);
+            if (mSwipeLayout.isRefreshing()) mSwipeLayout.setRefreshing(false);
           }
 
           @Override public void onNext(final ArrayList<ActicleMod> acticleMods) {
-            setUpData(page, id, acticleMods);
+            setUpData(page, acticleMods);
           }
         });
   }
 
-  private void setUpData(final int page, int id, final ArrayList<ActicleMod> acticleMods) {
+  private void setUpData(final int page, final ArrayList<ActicleMod> acticleMods) {
     mSwipeLayout.setRefreshing(false);
     if (ListUtils.isEmpty(acticleMods)) {
       if (page > 0) {
@@ -136,16 +156,14 @@ public class ActicleListFragment extends BaseFragment
       }
       mActcleAdapter.notifyDataSetChanged();
     }
+  }
 
-    new WeakHandler().post(new Runnable() {
-      @Override public void run() {
-        ActicleMod acticleMod;
-        for (ActicleMod mainMod : acticleMods) {
-          acticleMod = mainMod;
-          acticleMod.save();
-        }
-      }
-    });
+  private void saveActicles(ArrayList<ActicleMod> acticleMods) {
+    ActicleMod acticleMod;
+    for (ActicleMod mainMod : acticleMods) {
+      acticleMod = mainMod;
+      acticleMod.save();
+    }
   }
 
   @Override public void onRefresh() {

@@ -111,8 +111,8 @@ public class FunFragment extends BaseFragment {
             subscriber.onCompleted();
           }
         })
-            //.observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
+            //.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Action1<Bitmap>() {
                   @Override public void call(Bitmap bitmap) {
                     if (bitmap != null) {
@@ -126,7 +126,6 @@ public class FunFragment extends BaseFragment {
         showEdDialig();
         break;
       case R.id.fb_more:
-        //showToast("快马加鞭开发中");
         skipIntent(FunTemplateAct.class, false);
         break;
       case R.id.iv_fun:

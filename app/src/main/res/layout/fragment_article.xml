@@ -51,17 +51,19 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+
             >
             <WebView
                 android:id="@+id/wv_acticle_detail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/white"
                 />
             <TextView
                 android:id="@+id/tv_acticle_detail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
                 android:visibility="gone"
                 style="@style/FontActicle"
                 android:layout_marginTop="10dp"

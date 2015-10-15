@@ -110,8 +110,8 @@ public class ArticleFragment extends BaseFragment {
         subscriber.onCompleted();
       }
     })
-        .observeOn(Schedulers.io())
-        .subscribeOn(AndroidSchedulers.mainThread())
+        //.subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Action1<Boolean>() {
           @Override public void call(Boolean aBoolean) {
           }

@@ -1,9 +1,7 @@
 package com.nicodelee.beautyarticle.api;
 
-import com.nicodelee.beautyarticle.data.ActicleData;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import java.util.ArrayList;
-import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
 import rx.Observable;

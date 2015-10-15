@@ -21,6 +21,7 @@ ext {
 
                   "com.jakewharton:butterknife"         : "com.jakewharton:butterknife:7.0.1",
                   "com.nostra13.universalimageloader"   : "com.nostra13.universalimageloader:universal-image-loader:1.9.4",
+                  "com.github.chrisbanes.photoview"     : "com.github.chrisbanes.photoview:library:1.2.4",
                   "de.greenrobot.eventbus"              : "de.greenrobot:eventbus:2.4.0",
                   "com.github.johnkil.android-appmsg"   : "com.github.johnkil.android-appmsg:appmsg:1.2.0",
                   "uk.co.chrisjenx.calligraphy"         : "uk.co.chrisjenx:calligraphy:2.1.0",
@@ -32,11 +33,11 @@ ext {
                   "com.raizlabs.android.dbflow"         : "com.raizlabs.android:DBFlow:2.2.1",
                   "com.daimajia.numberprogressbar"      : "com.daimajia.numberprogressbar:library:1.2@aar",
                   "com.github.clans.fab"                : "com.github.clans:fab:1.5.5",
-                  "io.reactivex.rxandroid"              : "io.reactivex:rxandroid:1.0.0",
+                  "io.reactivex.rxandroid"              : "io.reactivex:rxandroid:1.0.1",
                   "com.google.dagger.compiler"          : "com.google.dagger:dagger-compiler:2.0.1",
                   "com.google.dagger"                   : "com.google.dagger:dagger:2.0.1",
                   "javax.annotation"                    : "javax.annotation:javax.annotation-api:1.2",
-                  "smooth-app-bar-layout"                    : "me.henrytao:smooth-app-bar-layout:0.1.4"
+                  "smooth-app-bar-layout"               : "me.henrytao:smooth-app-bar-layout:0.1.4"
 
   ]
 }
