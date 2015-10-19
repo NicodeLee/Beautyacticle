@@ -19,9 +19,12 @@
 
 最新版安装包比配图UI更细致，功能完善。[欢迎下载](http://fir.im/beautyacticle)
 
-<img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/d.gif" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo1.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="http://7xnmkr.com1.z0.glb.clouddn.com/demo1.gif" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/1.png " alt="screenshot" title="screenshot" width="270" height="486" />
 
-<img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo2.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="https://github.com/rizhilee/ResourceCloud/blob/master/Beutyacticle/screenshot/demo3.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="http://7xnmkr.com1.z0.glb.clouddn.com/2.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/3.png" alt="screenshot" title="screenshot" width="270" height="486" />
+
+<img src="http://7xnmkr.com1.z0.glb.clouddn.com/4.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/5.png" alt="screenshot" title="screenshot" width="270" height="486" />
+<img src="http://7xnmkr.com1.z0.glb.clouddn.com/6.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/7.png" alt="screenshot" title="screenshot" width="270" height="486" />
 
 ## Thanks
 - [butterknife](https://github.com/JakeWharton/butterknife)
