@@ -24,7 +24,8 @@
 <img src="http://7xnmkr.com1.z0.glb.clouddn.com/2.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/3.png" alt="screenshot" title="screenshot" width="270" height="486" />
 
 <img src="http://7xnmkr.com1.z0.glb.clouddn.com/4.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/5.png" alt="screenshot" title="screenshot" width="270" height="486" />
-<img src="http://7xnmkr.com1.z0.glb.clouddn.com/6.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/7.png" alt="screenshot" title="screenshot" width="270" height="486" />
+
+<img src="http://7xnmkr.com1.z0.glb.clouddn.com/6.png" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/7.png" alt="screenshot" title="screenshot" width="320" height="486" />
 
 ## Thanks
 - [butterknife](https://github.com/JakeWharton/butterknife)
