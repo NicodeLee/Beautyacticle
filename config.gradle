@@ -37,6 +37,7 @@ ext {
                   "com.google.dagger.compiler"          : "com.google.dagger:dagger-compiler:2.0.1",
                   "com.google.dagger"                   : "com.google.dagger:dagger:2.0.1",
                   "javax.annotation"                    : "javax.annotation:javax.annotation-api:1.2",
+                  "fastScroll"                    : "com.github.plusCubed:recycler-fast-scroll:0.1.0",
                   "smooth-app-bar-layout"               : "me.henrytao:smooth-app-bar-layout:0.1.9"
 
   ]

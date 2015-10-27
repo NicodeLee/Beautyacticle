@@ -21,6 +21,7 @@ import com.nicodelee.beautyarticle.viewhelper.EndlessRecyclerOnScrollListener;
 import com.nicodelee.beautyarticle.viewhelper.MySwipeRefreshLayout;
 import com.nicodelee.utils.ListUtils;
 import com.nicodelee.utils.WeakHandler;
+import com.pluscubed.recyclerfastscroll.RecyclerFastScroller;
 import com.raizlabs.android.dbflow.sql.language.Select;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,7 @@ public class ActicleListFragment extends BaseFragment
 
   @Bind(R.id.recyclerview) RecyclerView rv;
   @Bind(R.id.swipe_container) MySwipeRefreshLayout mSwipeLayout;
+  @Bind(R.id.rc_fast_scroller) RecyclerFastScroller rcFastScroller;
 
   private List<ActicleMod> macticleMods;
   private MainRecyclerViewAdapter mActcleAdapter;
@@ -61,6 +63,7 @@ public class ActicleListFragment extends BaseFragment
     linearLayoutManager = new LinearLayoutManager(mActivity);
     rv.setLayoutManager(linearLayoutManager);
     setupRecyclerView();
+    rcFastScroller.setRecyclerView(rv);
     rv.addOnScrollListener(
         new EndlessRecyclerOnScrollListener(linearLayoutManager, APP.getInstance().imageLoader,
             false, true) {
@@ -180,7 +183,8 @@ public class ActicleListFragment extends BaseFragment
 
   public void onEvent(String msg) {
     if (msg.equals("Reselected")) {
-      linearLayoutManager.scrollToPosition(0);
+      rv.smoothScrollToPosition(0);
+      //linearLayoutManager.scrollToPosition(0);
     } else if (msg.equals("clear")) {
       mActcleAdapter.clearData();
     }

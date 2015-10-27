@@ -8,15 +8,17 @@ def releaseTime() {
 def keyStore = file('beautiful.keystore')
 
 android {
-  compileSdkVersion rootProject.ext.android.compileSdkVersion
-  buildToolsVersion rootProject.ext.android.buildToolsVersion
+  def androidConfig = rootProject.ext.android
+
+  compileSdkVersion androidConfig.compileSdkVersion
+  buildToolsVersion androidConfig.buildToolsVersion
 
   defaultConfig {
-    applicationId rootProject.ext.android.applicationId
-    minSdkVersion rootProject.ext.android.minSdkVersion
-    targetSdkVersion rootProject.ext.android.targetSdkVersion
-    versionCode rootProject.ext.android.versionCode
-    versionName rootProject.ext.android.versionName
+    applicationId androidConfig.applicationId
+    minSdkVersion androidConfig.minSdkVersion
+    targetSdkVersion androidConfig.targetSdkVersion
+    versionCode androidConfig.versionCode
+    versionName androidConfig.versionName
   }
   buildTypes {
     release {
@@ -69,10 +71,6 @@ android {
     }
   }
 
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
 }
 
 repositories {
@@ -107,6 +105,7 @@ dependencies {
   compile dependencies["javax.annotation"]
   apt dependencies["com.google.dagger.compiler"]
   compile dependencies["com.google.dagger"]
+  compile dependencies["fastScroll"]
 //  compile dependencies["smooth-app-bar-layout"]
 
   //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'

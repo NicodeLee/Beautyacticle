@@ -5,7 +5,8 @@
 
 下载：http://fir.im/beautyacticle
 
-如果觉得对你有帮助，请start支持下。
+如果对你有帮助，请start支持下。
+问题或建议请[点击](https://github.com/rizhilee/Beautyacticle/issues/new)
 
 - Material Design
 - 精选好图好文，支持本地缓存
@@ -16,8 +17,6 @@
 - 更多制作的模板（40%）
 - 尝试mvp/mvc架构
 
-
-最新版安装包比配图UI更细致，功能完善。[欢迎下载](http://fir.im/beautyacticle)
 
 <img src="http://7xnmkr.com1.z0.glb.clouddn.com/demo1.gif" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/1.png " alt="screenshot" title="screenshot" width="270" height="486" />
 

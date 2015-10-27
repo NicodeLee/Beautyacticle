@@ -99,7 +99,7 @@ public class FunFragment extends BaseFragment {
     switch (view.getId()) {
       case R.id.fb_share:
 
-        SharImageHelper sharImageHelper = new SharImageHelper();
+        final SharImageHelper sharImageHelper = new SharImageHelper();
         //if (sharImageHelper.saveBitmap(bitmap, SharImageHelper.sharePicName)) {
         //  ShareHelper.showUp(mActivity, sharImageHelper.getShareMod(bitmap));
         //}
@@ -111,7 +111,7 @@ public class FunFragment extends BaseFragment {
             subscriber.onCompleted();
           }
         })
-            //.subscribeOn(Schedulers.io())
+            //.subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(new Action1<Bitmap>() {
                   @Override public void call(Bitmap bitmap) {

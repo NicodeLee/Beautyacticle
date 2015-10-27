@@ -102,7 +102,7 @@ public class ArticleFragment extends BaseFragment {
     }
   }
 
-  private void setMardown(String text) {
+  private void setMardown(final String text) {
     Observable.create(new Observable.OnSubscribe<Boolean>() {
       @Override public void call(Subscriber<? super Boolean> subscriber) {
         setUpWebView(text);
