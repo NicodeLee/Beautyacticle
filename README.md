@@ -1,4 +1,6 @@
 # Beautyacticle
+> 感谢start的伙伴，最近有更新，会尽快提交过来。
+
 > Share the most beautiful words
 
 > 做一个好用的文字APP
@@ -51,7 +53,7 @@ https://github.com/square/java-code-styles
 -------
 
 ```
-Copyright 2015 NicodeLee.
+Copyright 2016 NicodeLee.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
