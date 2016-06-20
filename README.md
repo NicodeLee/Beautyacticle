@@ -1,5 +1,4 @@
 # Beautyacticle
-> 感谢start的伙伴，最近有更新，会尽快提交过来。
 
 > Share the most beautiful words
 
@@ -16,9 +15,8 @@
 - 文艺范分享图文
 
 ###后续
-- 更多制作的模板（40%）
-- 尝试mvp/mvc架构
-
+- 跟多好看的图文模板
+- 不断折腾
 
 <img src="http://7xnmkr.com1.z0.glb.clouddn.com/demo1.gif" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/1.png " alt="screenshot" title="screenshot" width="270" height="486" />
 
