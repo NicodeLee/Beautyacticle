@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -22,4 +22,5 @@ dependencies {
     compile rootProject.ext.dependencies["com.android.support:appcompat-v7"]
     compile rootProject.ext.dependencies["com.squareup.picasso"]
     compile project(':libraries:CommLib')
+    compile project(':beautyarticle-base')
 }

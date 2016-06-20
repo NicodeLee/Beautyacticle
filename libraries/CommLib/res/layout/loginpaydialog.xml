@@ -1,56 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mypaydialog"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal"
-    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="#ffffff"
+>
 
-    >
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/dialog_bg_frame"
-        >
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            android:layout_width="35dip"
-            android:layout_height="35dip"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="4dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            />
-        <!-- <ImageView
-            android:id="@+id/progressBar1"
-            android:layout_width="35dip"
-            android:layout_height="35dip"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:paddingLeft="5dip"
-            android:src="@drawable/loading"
-            /> -->
+  <com.nicodelee.view.ProgressWheel xmlns:wheel="http://schemas.android.com/apk/res-auto"
+      android:id="@+id/progressBar1"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:layout_marginLeft="12dp"
+      android:layout_alignParentLeft="true"
+      android:layout_centerVertical="true"
+      wheel:barColor="#FF7475"
+      wheel:progressIndeterminate="true"
+  />
 
 
-
-        <TextView
-            android:id="@+id/loginpay_text"
-            android:layout_toRightOf="@id/progressBar1"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:text="玩命加载中..."
-            android:textColor="#ffffff"
-            android:textSize="16sp"
-            android:padding="5dp"
-            />
-        </RelativeLayout>
-    
-	
-
-
+  <TextView
+      android:id="@+id/loginpay_text"
+      android:layout_toRightOf="@id/progressBar1"
+      android:singleLine="true"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="10dp"
+      android:text="玩命加载中..."
+      android:layout_centerVertical="true"
+      android:textColor="#444444"
+      android:textSize="16sp"
+      android:layout_marginLeft="12dp"
+  />
 
 </RelativeLayout>

@@ -17,26 +17,22 @@ import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
-import com.nicodelee.beautyarticle.ui.article.ArticleAct;
+import com.nicodelee.beautyarticle.ui.view.activity.ArticleAct;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
-import com.nicodelee.beautyarticle.utils.L;
 import com.nicodelee.utils.ListUtils;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingProgressListener;
-import de.greenrobot.event.EventBus;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+import org.greenrobot.eventbus.EventBus;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by alee on 2015/7/4.
@@ -44,7 +40,6 @@ import rx.schedulers.Schedulers;
 public class MainRecyclerViewAdapter
     extends RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder> {
 
-  private final TypedValue mTypedValue = new TypedValue();
   private List<ActicleMod> mylist;
 
   public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -61,49 +56,11 @@ public class MainRecyclerViewAdapter
       mView = view;
       ButterKnife.bind(this, view);
     }
-
-    private Observable<Bitmap> loadBitmap(String url) {
-      return Observable.create(subscriber -> {
-        APP.getInstance().imageLoader.displayImage(url, ivIcon, APP.options,
-            new ImageLoadingListener() {
-              final List<String> displayedImages =
-                  Collections.synchronizedList(new LinkedList<String>());
-
-              @Override public void onLoadingStarted(String imageUri, View view) {
-                progressBar.setVisibility(View.VISIBLE);
-              }
-
-              @Override
-              public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                subscriber.onError(failReason.getCause());
-              }
-
-              @Override
-              public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                subscriber.onNext(loadedImage);
-                subscriber.onCompleted();
-              }
-
-              @Override public void onLoadingCancelled(String imageUri, View view) {
-                subscriber.onError(new Throwable("Image loading cancelled"));
-              }
-            });
-      });
-    }
   }
 
   public MainRecyclerViewAdapter(Context context, List<ActicleMod> items) {
-    context.getTheme().resolveAttribute(R.attr.selectableItemBackground, mTypedValue, true);
+    context.getTheme().resolveAttribute(R.attr.selectableItemBackground, new TypedValue(), true);
     mylist = items;
-  }
-
-  public void setDatas(ArrayList<ActicleMod> acticleMods) {
-    if (acticleMods == null) {
-      acticleMods = new ArrayList<ActicleMod>();
-    } else {
-      this.mylist = acticleMods;
-    }
-    notifyDataSetChanged();
   }
 
   @Override public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -126,7 +83,7 @@ public class MainRecyclerViewAdapter
     holder.tvDesc.setText(mod.descriptions);
 
     Observable.create(new Observable.OnSubscribe<Bitmap>() {
-      @Override public void call(Subscriber<? super Bitmap> subscriber) {
+      @Override public void call(final Subscriber<? super Bitmap> subscriber) {
         final List<String> displayedImages = Collections.synchronizedList(new LinkedList<String>());
         APP.getInstance().imageLoader.displayImage(mod.image, holder.ivIcon, APP.options,
             new ImageLoadingListener() {
@@ -166,19 +123,17 @@ public class MainRecyclerViewAdapter
               }
             });
       }
-    }).observeOn(AndroidSchedulers.mainThread())
-        //.observeOn(Schedulers.io())
-        .subscribe(new Observer<Bitmap>() {
-          @Override public void onCompleted() {
-          }
+    }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Bitmap>() {
+      @Override public void onCompleted() {
+      }
 
-          @Override public void onError(Throwable e) {
-          }
+      @Override public void onError(Throwable e) {
+      }
 
-          @Override public void onNext(Bitmap bitmap) {
-            holder.ivIcon.setImageBitmap(bitmap);
-          }
-        });
+      @Override public void onNext(Bitmap bitmap) {
+        holder.ivIcon.setImageBitmap(bitmap);
+      }
+    });
 
     holder.mView.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
@@ -204,5 +159,14 @@ public class MainRecyclerViewAdapter
 
       this.notifyItemRangeRemoved(0, size);
     }
+  }
+
+  public void setDatas(ArrayList<ActicleMod> acticleMods) {
+    if (acticleMods == null) {
+      acticleMods = new ArrayList<ActicleMod>();
+    } else {
+      this.mylist = acticleMods;
+    }
+    notifyDataSetChanged();
   }
 }

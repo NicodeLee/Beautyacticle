@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    buildToolsVersion '23.0.2'
 
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -13,5 +13,5 @@ android {
 dependencies {
     compile rootProject.ext.dependencies["com.android.support:appcompat-v7"]
     compile rootProject.ext.dependencies["com.android.support:support-v4"]
-    compile rootProject.ext.dependencies["de.greenrobot.eventbus"]
+    compile rootProject.ext.dependencies["eventbus"]
 }

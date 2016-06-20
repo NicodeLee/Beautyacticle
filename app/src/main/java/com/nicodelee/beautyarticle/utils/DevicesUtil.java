@@ -8,6 +8,7 @@ package com.nicodelee.beautyarticle.utils;
  */
 
 import android.content.Context;
+import android.graphics.Point;
 import android.view.WindowManager;
 
 import java.lang.reflect.Field;
@@ -58,7 +59,6 @@ public class DevicesUtil {
     WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
     int width = wm.getDefaultDisplay().getWidth();// 屏幕宽度
-
     int height = wm.getDefaultDisplay().getHeight();// 屏幕高度
 
     Class<?> c = null;

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="cwac_cam2_ok">OK</string>
+  <string name="cwac_cam2_retry">Try again</string>
+</resources>

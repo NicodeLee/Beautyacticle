@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    >
+>
 
+  <!--    app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
   <android.support.v4.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior"
       android:id="@+id/sc_fun"
       android:background="@color/white"
-      >
+  >
 
     <RelativeLayout
         android:id="@+id/rl_fun"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        >
+    >
 
       <com.nicodelee.view.CircularImage
           android:id="@+id/iv_fun"
@@ -30,48 +29,77 @@
           android:layout_marginTop="32dp"
           android:scaleType="centerCrop"
           android:src="@drawable/head"
-          />
+      />
+
 
       <TextView
           android:id="@+id/tv_title"
           style="@style/FontFun"
           android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+          android:layout_height="match_parent"
           android:layout_below="@+id/iv_fun"
           android:layout_marginTop="24dp"
-          android:layout_toRightOf="@+id/tv_desc"
-          android:layout_marginLeft="32dp"
           android:maxEms="1"
+          android:layout_alignParentRight="true"
+          android:layout_marginRight="60dp"
           android:textColor="@color/templage_title"
           android:textStyle="bold"
           android:textSize="22sp"
-          />
+      />
 
       <com.nicodelee.beautyarticle.viewhelper.VerticalTextView
           android:id="@+id/tv_desc"
           style="@style/FontFun"
           android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+          android:layout_height="match_parent"
           android:layout_below="@+id/iv_fun"
           android:layout_marginTop="24dp"
           android:layout_centerHorizontal="true"
-          />
+      />
 
-      <TextView
-          android:id="@+id/tv_time"
-          style="@style/FontFun"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignParentBottom="true"
+
+      <RelativeLayout android:layout_width="wrap_content"
+          android:layout_height="256dp"
+          android:layout_alignBottom="@+id/tv_desc"
           android:layout_alignParentLeft="true"
-          android:layout_marginBottom="16dp"
-          android:layout_marginLeft="24dp"
-          android:gravity="bottom"
-          android:maxEms="1"
-          android:textColor="@color/templage_time"
+          android:layout_marginLeft="32dp"
           android:layout_marginRight="16dp"
-          android:textSize="16sp"
-          />
+      >
+        <TextView
+            android:id="@+id/tv_day"
+            style="@style/FontFun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxEms="1"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/templage_time"
+            android:textSize="14sp"
+        />
+
+        <TextView
+            android:id="@+id/tv_month"
+            style="@style/FontFun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_day"
+            android:layout_marginBottom="12dp"
+            android:maxEms="1"
+            android:textColor="@color/templage_time"
+            android:textSize="14sp"
+        />
+        <TextView
+            android:id="@+id/tv_year"
+            style="@style/FontFun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_month"
+            android:layout_marginBottom="12dp"
+            android:maxEms="1"
+            android:textColor="@color/templage_time"
+            android:textSize="14sp"
+        />
+      </RelativeLayout>
+
     </RelativeLayout>
   </android.support.v4.widget.NestedScrollView>
 
@@ -87,7 +115,7 @@
       fab:menu_labels_ellipsize="end"
       fab:menu_labels_singleLine="true"
       fab:menu_backgroundColor="#ccffffff"
-      >
+  >
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/fb_more"
@@ -95,7 +123,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/open_more"
         fab:fab_label="更多"
-        />
+    />
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/fb_make"
@@ -103,7 +131,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_edit"
         fab:fab_label="制作"
-        />
+    />
 
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/fb_share"
@@ -111,7 +139,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_share"
         fab:fab_label="分享"
-        />
+    />
 
   </com.github.clans.fab.FloatingActionMenu>
 

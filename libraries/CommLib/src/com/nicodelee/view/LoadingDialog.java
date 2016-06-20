@@ -80,6 +80,8 @@ public class LoadingDialog extends AlertDialog {
 		this.msg = msg;
 		if (loginpay_text != null)
 			loginpay_text.setText(msg);
+
+		show();
 	}
 
 	public void setMessage(int msg) {

@@ -4,6 +4,7 @@ import android.content.Context;
 import com.nicodelee.beautyarticle.api.BeautyApi;
 import com.nicodelee.beautyarticle.api.RetrofitHelper;
 import com.nicodelee.beautyarticle.app.APP;
+import com.nicodelee.beautyarticle.navigation.Navigator;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -14,18 +15,19 @@ import javax.inject.Singleton;
 @Module public class ApplicationModule {
   private final APP mapp;
 
-  private BeautyApi mbeautyApi;
-
   public ApplicationModule(APP app) {
     this.mapp = app;
-    mbeautyApi = new RetrofitHelper().getBeautyApi();
+  }
+
+  @Provides @Singleton Navigator provideNavigator() {
+    return new Navigator();
   }
 
   @Provides @Singleton Context provideAppLicationContext() {
     return this.mapp;
   }
 
-  @Provides @Singleton BeautyApi provideBeautyApi() {
-    return mbeautyApi;
-  }
+  //@Provides @Singleton BeautyApi provideBeautyApi() {
+  //  return new RetrofitHelper().getBeautyApi();
+  //}
 }

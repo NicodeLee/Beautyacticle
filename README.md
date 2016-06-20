@@ -1,5 +1,4 @@
 # Beautyacticle
-
 > Share the most beautiful words
 
 > 做一个好用的文字APP
@@ -15,8 +14,8 @@
 - 文艺范分享图文
 
 ###后续
-- 跟多好看的图文模板
-- 不断折腾
+- 更多好看图文模板
+
 
 <img src="http://7xnmkr.com1.z0.glb.clouddn.com/demo1.gif" alt="screenshot" title="screenshot" width="270" height="486" />  <img src="http://7xnmkr.com1.z0.glb.clouddn.com/1.png " alt="screenshot" title="screenshot" width="270" height="486" />
 
@@ -51,7 +50,7 @@ https://github.com/square/java-code-styles
 -------
 
 ```
-Copyright 2016 NicodeLee.
+Copyright 2016 Nicodelee.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

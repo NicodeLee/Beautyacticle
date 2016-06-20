@@ -1,47 +1,73 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="#f9f9f9"
+>
 
-    <ScrollView
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:id="@+id/sc_fun"
+      android:background="@color/white"
+  >
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/sc_fun"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:padding="8dp"
-            android:paddingBottom="18dp"
-            >
-            <ImageView
-                android:id="@+id/iv_fun"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/head"
-                android:layout_alignParentTop="true"
-                android:scaleType="centerCrop"
-                />
+        android:id="@+id/rl_square"
+    >
+      <ImageView
+          android:id="@+id/iv_fun"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:src="@drawable/head"
+          android:scaleType="centerCrop"
+      />
 
-            <TextView
-                android:id="@+id/tv_fun"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iv_fun"
-                android:text="@string/article"
-                android:lineSpacingMultiplier="1.5"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:textColor="@color/templage_text"
-                />
+      <TextView
+          android:id="@+id/tv_fun"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_below="@+id/iv_fun"
+          android:text="@string/article"
+          android:lineSpacingMultiplier="1.2"
+          android:layout_margin="12dp"
+          android:textColor="#575757"
+          android:gravity="center"
+          style="@style/FontSq"
+      />
+      <!--android:textColor="@color/templage_text"-->
 
-        </RelativeLayout>
-    </ScrollView>
+      <RelativeLayout android:layout_width="42dp" android:layout_height="42dp"
+          android:layout_centerHorizontal="true"
+          android:layout_below="@+id/tv_fun"
+          android:background="@drawable/time_bg">
 
-    <include layout="@layout/menu_float"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/tv_month"
+            android:text="Mar.12"
+            android:textSize="10sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"
+            android:textColor="#c0c0c0"
+            style="@style/FontDate"
+        />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:id="@+id/tv_year"
+            android:text="2016"
+            android:layout_below="@+id/tv_month"
+            android:textSize="10sp"
+            android:layout_marginLeft="4dp"
+            android:textColor="#c0c0c0"
+            style="@style/FontDate"
+        />
+
+      </RelativeLayout>
+    </RelativeLayout>
+  </ScrollView>
+
+  <include layout="@layout/menu_float"/>
 
 </RelativeLayout>

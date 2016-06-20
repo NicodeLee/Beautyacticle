@@ -3,15 +3,13 @@ package com.nicodelee.beautyarticle.viewhelper;
 import android.content.Context;
 import com.nostra13.universalimageloader.core.assist.ContentLengthInputStream;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.ResponseBody;
 import java.io.IOException;
 import java.io.InputStream;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.ResponseBody;
 
 /**
- * Implementation of ImageDownloader which uses {@link com.squareup.okhttp.OkHttpClient} for image stream retrieving.
- *
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  * @author Leo Link (mr[dot]leolink[at]gmail[dot]com)
  */

@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.nicodelee.beautyarticle.ui.camara.PhotoProcessActivity;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import me.nereo.multi_image_selector.view.DetailViewPager;
 import uk.co.senab.photoview.PhotoView;
 
@@ -69,10 +72,14 @@ public class PreviewPicturesActivity extends AppCompatActivity {
 
     tvSend.setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
-        Intent intent = new Intent();
-        intent.putExtra("pics", picList);
-        intent.putExtra("index", index);
-        setResult(RESULT_OK, intent);
+        //Intent intent = new Intent();
+        //intent.putExtra("pics", picList);
+        //intent.putExtra("index", index);
+        //setResult(RESULT_OK, intent);
+        Intent intent = new Intent(PreviewPicturesActivity.this,PhotoProcessActivity.class);
+        intent.putExtra("uri",picList.get(index).toString());
+        startActivity(intent);
+        MultiImageSelectorActivity.multiImageSelectorActivity.finish();
         finish();
       }
     });

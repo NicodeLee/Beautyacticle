@@ -1,6 +1,8 @@
+include (':beautyarticle-base')
 include(':app')
-include (':libraries:SwipeBackLayoutLibary')//侧滑返回
-include (':libraries:CommLib')
-include (':libraries:MeterialSettingLib')
-include (':libraries:multi-image-selector')//图片选择
-include (':libraries:sociallibrary')//社会化登录分享
+include(':libraries:SwipeBackLayoutLibary') //侧滑返回
+include(':libraries:CommLib')
+include(':libraries:MeterialSettingLib')
+include(':libraries:multi-image-selector') //图片选择
+include(':libraries:sociallibrary') //社会化登录分享
+include(':libraries:cam2') //社会化登录分享

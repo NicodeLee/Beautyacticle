@@ -11,7 +11,7 @@ android {
   def androidConfig = rootProject.ext.android
 
   compileSdkVersion androidConfig.compileSdkVersion
-  buildToolsVersion androidConfig.buildToolsVersion
+  buildToolsVersion '23.0.2'
 
   defaultConfig {
     applicationId androidConfig.applicationId
@@ -22,7 +22,6 @@ android {
   }
   buildTypes {
     release {
-      // 不显示Log
       buildConfigField "boolean", "LOG_DEBUG", "false"
 
       debuggable false
@@ -34,14 +33,15 @@ android {
         println "using nicodelee's key"
         signingConfig signingConfigs.debug
       } else {
-        println "---------------using default key---------------"
+        println "using default key"
       }
 
       applicationVariants.all { variant ->
         variant.outputs.each { output ->
           def outputFile = output.outputFile
           if (outputFile != null && outputFile.name.endsWith('.apk')) {
-            def fileName = "Beautyarticle-V${defaultConfig.versionName}.apk"
+            v
+            def fileName = "Beautyarticle-v${defaultConfig.versionName}.apk"
             //                        def fileName = "Beautyarticle-V${defaultConfig.versionName}_${releaseTime()}.apk"
             output.outputFile = new File(outputFile.parent, fileName)
           }
@@ -62,6 +62,15 @@ android {
     exclude 'META-INF/LGPL2.1'
   }
 
+  lintOptions {
+    disable 'MissingTranslation', 'ExtraTranslation'
+  }
+
+  lintOptions {
+    checkReleaseBuilds false
+    abortOnError false
+  }
+
   signingConfigs {
     debug {
       storeFile file("beautiful.keystore")
@@ -71,6 +80,10 @@ android {
     }
   }
 
+  lintOptions {
+    disable "InvalidPackage"
+    lintConfig file("lint.xml")
+  }
 }
 
 repositories {
@@ -89,12 +102,13 @@ dependencies {
   compile dependencies["com.android.support:appcompat-v7"]
   compile dependencies["com.android.support:recyclerview-v7"]
 
-  compile dependencies["com.nostra13.universalimageloader"]
-  compile dependencies["de.greenrobot.eventbus"]
+  compile dependencies.universalimageloader
+  compile dependencies.eventbus
   compile dependencies["com.github.johnkil.android-appmsg"]
   compile dependencies["uk.co.chrisjenx.calligraphy"]
-  compile dependencies["com.squareup.retrofit"]
-  compile dependencies["com.squareup.okhttp"]
+  compile dependencies["retrofit2"]
+  compile dependencies["gson"]
+  //  compile dependencies["com.squareup.okhttp"]
   compile dependencies["com.jakewharton:butterknife"]
   apt dependencies["com.raizlabs.android.dbflow.compiler"]
   compile dependencies["com.raizlabs.android.dbflow.core"]
@@ -102,11 +116,25 @@ dependencies {
   compile dependencies["com.daimajia.numberprogressbar"]
   compile dependencies["com.github.clans.fab"]
   compile dependencies["io.reactivex.rxandroid"]
+  compile dependencies["rxjava"]
   compile dependencies["javax.annotation"]
   apt dependencies["com.google.dagger.compiler"]
   compile dependencies["com.google.dagger"]
-  compile dependencies["fastScroll"]
-//  compile dependencies["smooth-app-bar-layout"]
+  compile dependencies["gpuimage"]
+  compile dependencies["horizontallistview"]
+  compile dependencies["nucleus"]
+  compile dependencies["nucleus-support-v4"]
+  compile dependencies["nucleus-support-v7"]
+  //  compile dependencies["icepick"]
+  //  provided dependencies["icepick-processor"]
+  compile dependencies.converterGson
+  compile dependencies.converterRxjava
+  compile dependencies.OkhttpInterceptor
+
+  compile dependencies.subsampling
+
+  //  compile dependencies["cam2"]
+  //  compile dependencies["smooth-app-bar-layout"]
 
   //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
   //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
@@ -115,6 +143,8 @@ dependencies {
   compile project(':libraries:MeterialSettingLib')
   compile project(':libraries:multi-image-selector')
   compile project(':libraries:sociallibrary')
+  compile project(':libraries:cam2')
+  compile project(':beautyarticle-base')
 }
 
 apply plugin: 'me.tatarka.retrolambda'

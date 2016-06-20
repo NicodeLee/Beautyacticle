@@ -9,6 +9,14 @@ package com.nicodelee;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int alpha_pressed=0x7f01002a;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -55,6 +63,24 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static int circleRadius=0x7f010016;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int color_pressed=0x7f010025;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int color_unpressed=0x7f010026;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -260,6 +286,42 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static int rimWidth=0x7f010013;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int ripple_alpha=0x7f010028;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int ripple_color=0x7f010027;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int ripple_duration=0x7f010029;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>round</code></td><td>0</td><td></td></tr>
+<tr><td><code>rectangle</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static int shape_type=0x7f01002c;
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -353,26 +415,46 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static int touchPadding=0x7f01000a;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int uiradius=0x7f01002b;
+    }
+    public static final class color {
+        public static int color_pressed=0x7f040000;
+        public static int ripple_color=0x7f040001;
+        public static int transparent=0x7f040002;
+    }
+    public static final class dimen {
+        public static int ui_radius=0x7f050000;
     }
     public static final class drawable {
         public static int dialog_bg_frame=0x7f020000;
     }
     public static final class id {
-        public static int circle=0x7f040000;
-        public static int loginpay_text=0x7f04000e;
-        public static int mypaydialog=0x7f04000c;
-        public static int not_show=0x7f040009;
-        public static int progressBar1=0x7f04000d;
-        public static int ratio_16_9=0x7f040001;
-        public static int ratio_1_1=0x7f040002;
-        public static int ratio_3_4=0x7f040003;
-        public static int ratio_4_3=0x7f040004;
-        public static int ratio_9_16=0x7f040005;
-        public static int ratio_custom=0x7f040006;
-        public static int ratio_fit_image=0x7f040007;
-        public static int ratio_free=0x7f040008;
-        public static int show_always=0x7f04000a;
-        public static int show_on_touch=0x7f04000b;
+        public static int circle=0x7f060000;
+        public static int loginpay_text=0x7f060010;
+        public static int mypaydialog=0x7f06000e;
+        public static int not_show=0x7f060009;
+        public static int progressBar1=0x7f06000f;
+        public static int ratio_16_9=0x7f060001;
+        public static int ratio_1_1=0x7f060002;
+        public static int ratio_3_4=0x7f060003;
+        public static int ratio_4_3=0x7f060004;
+        public static int ratio_9_16=0x7f060005;
+        public static int ratio_custom=0x7f060006;
+        public static int ratio_fit_image=0x7f060007;
+        public static int ratio_free=0x7f060008;
+        public static int rectangle=0x7f06000c;
+        public static int round=0x7f06000d;
+        public static int show_always=0x7f06000a;
+        public static int show_on_touch=0x7f06000b;
     }
     public static final class layout {
         public static int loginpaydialog=0x7f030000;
@@ -1077,5 +1159,153 @@ containing a value of this type.
           @attr name com.nicodelee:sriv_right_top_corner_radius
         */
         public static int SelectableRoundedImageView_sriv_right_top_corner_radius = 2;
+        /** Attributes that can be used with a UIButton.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #UIButton_alpha_pressed com.nicodelee:alpha_pressed}</code></td><td></td></tr>
+           <tr><td><code>{@link #UIButton_color_pressed com.nicodelee:color_pressed}</code></td><td></td></tr>
+           <tr><td><code>{@link #UIButton_color_unpressed com.nicodelee:color_unpressed}</code></td><td></td></tr>
+           <tr><td><code>{@link #UIButton_ripple_alpha com.nicodelee:ripple_alpha}</code></td><td></td></tr>
+           <tr><td><code>{@link #UIButton_ripple_color com.nicodelee:ripple_color}</code></td><td></td></tr>
+           <tr><td><code>{@link #UIButton_ripple_duration com.nicodelee:ripple_duration}</code></td><td></td></tr>
+           <tr><td><code>{@link #UIButton_shape_type com.nicodelee:shape_type}</code></td><td></td></tr>
+           <tr><td><code>{@link #UIButton_uiradius com.nicodelee:uiradius}</code></td><td></td></tr>
+           </table>
+           @see #UIButton_alpha_pressed
+           @see #UIButton_color_pressed
+           @see #UIButton_color_unpressed
+           @see #UIButton_ripple_alpha
+           @see #UIButton_ripple_color
+           @see #UIButton_ripple_duration
+           @see #UIButton_shape_type
+           @see #UIButton_uiradius
+         */
+        public static final int[] UIButton = {
+            0x7f010025, 0x7f010026, 0x7f010027, 0x7f010028,
+            0x7f010029, 0x7f01002a, 0x7f01002b, 0x7f01002c
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.nicodelee.R.attr#alpha_pressed}
+          attribute's value can be found in the {@link #UIButton} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.nicodelee:alpha_pressed
+        */
+        public static int UIButton_alpha_pressed = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.nicodelee.R.attr#color_pressed}
+          attribute's value can be found in the {@link #UIButton} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.nicodelee:color_pressed
+        */
+        public static int UIButton_color_pressed = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.nicodelee.R.attr#color_unpressed}
+          attribute's value can be found in the {@link #UIButton} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.nicodelee:color_unpressed
+        */
+        public static int UIButton_color_unpressed = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.nicodelee.R.attr#ripple_alpha}
+          attribute's value can be found in the {@link #UIButton} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.nicodelee:ripple_alpha
+        */
+        public static int UIButton_ripple_alpha = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.nicodelee.R.attr#ripple_color}
+          attribute's value can be found in the {@link #UIButton} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.nicodelee:ripple_color
+        */
+        public static int UIButton_ripple_color = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.nicodelee.R.attr#ripple_duration}
+          attribute's value can be found in the {@link #UIButton} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.nicodelee:ripple_duration
+        */
+        public static int UIButton_ripple_duration = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.nicodelee.R.attr#shape_type}
+          attribute's value can be found in the {@link #UIButton} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>round</code></td><td>0</td><td></td></tr>
+<tr><td><code>rectangle</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name com.nicodelee:shape_type
+        */
+        public static int UIButton_shape_type = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.nicodelee.R.attr#uiradius}
+          attribute's value can be found in the {@link #UIButton} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.nicodelee:uiradius
+        */
+        public static int UIButton_uiradius = 6;
     };
 }

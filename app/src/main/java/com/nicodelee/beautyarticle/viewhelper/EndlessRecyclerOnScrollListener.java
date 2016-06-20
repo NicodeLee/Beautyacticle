@@ -1,7 +1,12 @@
 package com.nicodelee.beautyarticle.viewhelper;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.AbsListView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScrollListener {
@@ -56,15 +61,13 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
         previousTotal = totalItemCount;
       }
     }
-    if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
-      // End has been reached
-      // Do something
-      // current_page++;
-
-      onLoadMore();
-
-      loading = true;
-    }
+    //if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
+    //  // End has been reached
+    //  // Do something
+    //  // current_page++;
+    //  onLoadMore();
+    //  loading = true;
+    //}
 
   }
 
@@ -73,6 +76,10 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
       case RecyclerView.SCROLL_STATE_IDLE:
         imageLoader.resume();
         stopped = false;
+        if(isScollBottom(recyclerView)){
+          onLoadMore();
+          loading = true;
+        }
         break;
       case RecyclerView.SCROLL_STATE_DRAGGING:
         if (pauseOnScroll) {
@@ -95,6 +102,33 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
     }
     if (externalListener != null) {
       externalListener.onScrollStateChanged(recyclerView, newState);
+    }
+  }
+
+  private boolean isScollBottom(RecyclerView recyclerView) {
+    return !isCanScollVertically(recyclerView);
+  }
+
+  private boolean isCanScollVertically(RecyclerView recyclerView) {
+    if (android.os.Build.VERSION.SDK_INT < 14) {
+      return ViewCompat.canScrollVertically(recyclerView, 1) || recyclerView.getScrollY() < recyclerView.getHeight();
+    } else {
+      return ViewCompat.canScrollVertically(recyclerView, 1);
+    }
+  }
+
+  @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+  public static boolean canChildScrollUp(View mTarget) {
+    if (Build.VERSION.SDK_INT < 14) {
+      if (mTarget instanceof AbsListView) {
+        final AbsListView absListView = (AbsListView) mTarget;
+        return absListView.getChildCount() > 0
+            && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0).getTop() < absListView.getPaddingTop());
+      } else {
+        return ViewCompat.canScrollVertically(mTarget, -1) || mTarget.getScrollY() > 0;
+      }
+    } else {
+      return ViewCompat.canScrollVertically(mTarget, -1);
     }
   }
 

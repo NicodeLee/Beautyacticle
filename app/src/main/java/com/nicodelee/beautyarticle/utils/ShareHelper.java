@@ -65,10 +65,11 @@ public class ShareHelper {
         Message msg = Message.obtain(showMsg);
         msg.obj = context.getString(R.string.share_success);
         msg.sendToTarget();
+        Logger.e("share onComplete");
       }
 
       @Override public void onError(Platform platform, int i, Throwable throwable) {
-        L.e("@@@" + throwable.getMessage() + "," + platform.getName());
+        Logger.e("@@@" + throwable.getMessage() + "," + platform.getName()+ "," +throwable.toString());
         Message msg = Message.obtain(showMsg);
         msg.obj = context.getString(R.string.share_error);
         msg.sendToTarget();
@@ -78,6 +79,7 @@ public class ShareHelper {
         Message msg = Message.obtain(showMsg);
         msg.obj = context.getString(R.string.share_cancel);
         msg.sendToTarget();
+        Logger.e("share onCancel");
       }
     };
 
@@ -86,10 +88,11 @@ public class ShareHelper {
         SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
         Platform pf = ShareSDK.getPlatform(context, SinaWeibo.NAME);
         sp.setText(shareMod.text);
-        sp.setUrl(shareMod.url);
+        //sp.setUrl(shareMod.url);
+        //Logger.e("imageData:"+shareMod.imageUrl);
         sp.setImageData(shareMod.imageData);
         sp.setImagePath(shareMod.imageUrl);
-        sp.setShareType(Platform.SHARE_IMAGE);
+        //sp.setShareType(Platform.SHARE_IMAGE);
         pf.setPlatformActionListener(platformActionListener);
         pf.share(sp);
         shareAction(context, dialog);
@@ -103,8 +106,8 @@ public class ShareHelper {
         sp.setTitle(shareMod.title);
         sp.setText(shareMod.text);
         sp.setImageUrl(shareMod.imageUrl);
-        Bitmap imageData = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo);
         sp.setImageData(shareMod.imageData);
+        sp.setImagePath(shareMod.imageUrl);
         sp.setUrl(shareMod.url);
         sp.setShareType(Platform.SHARE_IMAGE);
         plat.setPlatformActionListener(platformActionListener);
@@ -117,12 +120,18 @@ public class ShareHelper {
       @Override public void onClick(View v) {
         Platform plat = ShareSDK.getPlatform(context, WechatMoments.NAME);
         WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
-        sp.title = shareMod.title;
-        sp.text = shareMod.text;
-        sp.imageUrl = shareMod.imageUrl;
-        sp.url = shareMod.url;
-        sp.imageData = shareMod.imageData;
-        sp.shareType = Platform.SHARE_IMAGE;
+        //sp.title = shareMod.title;
+        //sp.text = shareMod.text;
+        //sp.imageUrl = shareMod.imageUrl;
+        //sp.url = shareMod.url;
+        //sp.imageData = shareMod.imageData;
+        sp.setTitle(shareMod.title);
+        sp.setText(shareMod.text);
+        sp.setImageUrl(shareMod.imageUrl);
+        sp.setImageData(shareMod.imageData);
+        sp.setImagePath(shareMod.imageUrl);
+        sp.setUrl(shareMod.url);
+        sp.setShareType(Platform.SHARE_IMAGE);
         plat.setPlatformActionListener(platformActionListener);
         plat.share(sp);
         shareAction(context, dialog);
@@ -136,7 +145,9 @@ public class ShareHelper {
         sp.setTitle(shareMod.title);
         sp.setText(shareMod.text);
         sp.setTitleUrl(shareMod.titleUrl);
+        //sp.setImageData(shareMod.imageData);
         sp.setImagePath(shareMod.imageUrl);
+        sp.setImageUrl(shareMod.imageUrl);
         sp.setShareType(QQ.SHARE_IMAGE);
         plat.setPlatformActionListener(platformActionListener);
         plat.share(sp);
@@ -150,9 +161,9 @@ public class ShareHelper {
         QZone.ShareParams sp = new QZone.ShareParams();
         sp.setTitle(shareMod.title);
         sp.setText(shareMod.text);
-        sp.setImageUrl(shareMod.imageUrl);
         sp.setTitleUrl(shareMod.titleUrl);
-        sp.setImageData(shareMod.imageData);
+        //sp.setImageData(shareMod.imageData);
+        sp.setImageUrl(shareMod.imageUrl);
         sp.setImagePath(shareMod.imageUrl);
         sp.setShareType(QZone.SHARE_IMAGE);
         plat.setPlatformActionListener(platformActionListener);

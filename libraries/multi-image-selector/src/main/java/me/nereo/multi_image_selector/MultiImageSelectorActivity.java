@@ -50,6 +50,8 @@ public class MultiImageSelectorActivity extends AppCompatActivity
   private Button mSubmitButton;
   private int mDefaultCount;
 
+  protected static MultiImageSelectorActivity multiImageSelectorActivity;
+
   /**
    * 开始选取照片，并在onActivityResult方法中返回ArrayList<String> resultList:
    * if(requestCode == REQUEST_IMAGE){
@@ -93,6 +95,7 @@ public class MultiImageSelectorActivity extends AppCompatActivity
     //            resultList = intent.getStringArrayListExtra(EXTRA_DEFAULT_SELECTED_LIST);
     //        }
 
+    multiImageSelectorActivity = this;
     Bundle bundle = new Bundle();
     bundle.putInt(MultiImageSelectorFragment.EXTRA_SELECT_COUNT, mDefaultCount);
     bundle.putInt(MultiImageSelectorFragment.EXTRA_SELECT_MODE, mode);

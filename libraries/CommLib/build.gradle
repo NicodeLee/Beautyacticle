@@ -3,7 +3,7 @@ apply plugin: 'android-library'
 android {
 
   compileSdkVersion rootProject.ext.android.compileSdkVersion
-  buildToolsVersion rootProject.ext.android.buildToolsVersion
+  buildToolsVersion '23.0.2'
 
   defaultConfig {
     minSdkVersion rootProject.ext.android.minSdkVersion

@@ -34,6 +34,12 @@
     <item name="actionMenuTextColor">#696D6F</item>
   </style>
 
+  <style name="ToolBarStyleIn" parent="Theme.AppCompat.Light">
+    <item name="android:textColorPrimary">@color/white</item>
+    <item name="android:textColorSecondary">@color/white</item>
+    <item name="actionMenuTextColor">@color/white</item>
+  </style>
+
   <style name="DetailToolBarStyle" parent="Theme.AppCompat.Light">
     <item name="android:textColorPrimary">#696D6F</item>
     <item name="android:textColorSecondary">@android:color/white</item>
@@ -53,10 +59,24 @@
     <item name="fontPath">fonts/fun_font.TTF</item>
   </style>
 
+  <style name="FontSq">
+    <item name="fontPath">fonts/Apple-LiSung-Light.ttf</item>
+  </style>
+  <style name="FontDate">
+    <item name="fontPath">fonts/AGaramondPro-Regular.otf</item>
+  </style>
+
+
+
   <style name="menu_labels_style">
     <item name="android:background">@drawable/fab_label_background</item>
     <item name="android:textColor">@color/white</item>
   </style>
 
+
+  <style name="AppTheme.Launcher">
+    <item name="android:windowBackground">@drawable/launch_screen</item>
+    <item name="android:windowFullscreen">true</item>
+  </style>
 
 </resources>

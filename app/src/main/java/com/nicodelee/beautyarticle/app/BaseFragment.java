@@ -6,15 +6,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.Gravity;
 import android.widget.Toast;
-import de.greenrobot.event.EventBus;
+import com.devspark.appmsg.AppMsg;
+import com.nicodelee.beautyarticle.internal.di.components.ApiComponent;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import nucleus.presenter.Presenter;
+import nucleus.view.NucleusSupportFragment;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public abstract class BaseFragment extends Fragment {
+
   private Context context;
 
   @Override public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +58,15 @@ public abstract class BaseFragment extends Fragment {
 
   public void showToast(String message) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+  }
+
+  public void showInfo(String message) {
+    AppMsg.Style style = new AppMsg.Style(1500, com.nicodelee.beautyarticle.base.R.color.colorAccent);
+    AppMsg appMsg = AppMsg.makeText(getActivity(), message, style);
+    appMsg.setAnimation(
+        com.nicodelee.beautyarticle.base.R.anim.slide_in_bottom, com.nicodelee.beautyarticle.base.R.anim.slide_out_bottom);
+    appMsg.setLayoutGravity(Gravity.CENTER);
+    appMsg.show();
   }
 
   public void skipIntent(Class clz, HashMap<String, Object> map, boolean isFinish) {
@@ -109,11 +125,7 @@ public abstract class BaseFragment extends Fragment {
   }
 
   @Override public void onStart() {
-    if (isStickyAvailable()) {
       EventBus.getDefault().register(this);
-    } else {
-      EventBus.getDefault().registerSticky(this);
-    }
     super.onStart();
   }
 
@@ -122,10 +134,19 @@ public abstract class BaseFragment extends Fragment {
     super.onStop();
   }
 
+  @Subscribe
   public void onEvent(Object event) {
   }
 
   protected boolean isStickyAvailable() {
     return false;
   }
+
+  protected void injectorPresenter() {}
+
+  protected ApiComponent getApiComponent() {
+    return ((APP) getActivity().getApplication()).getApiComponent();
+  }
+
+
 }

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="72dp"
+      android:layout_alignParentTop="true"
+      android:background="#25272a">
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/btn_default_light"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_close_white_24dp"/>
+    >
+  </RelativeLayout>
+  <FrameLayout
+      android:id="@+id/cwac_cam2_preview_stack"
+      android:layout_marginTop="72dp"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <com.commonsware.cwac.cam2.CameraView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+  </FrameLayout>
+
+  <com.nicodelee.view.ProgressWheel xmlns:wheel="http://schemas.android.com/apk/res-auto"
+      android:id="@+id/cwac_cam2_progress"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:visibility="visible"
+      wheel:barColor="#FF7475"
+      wheel:progressIndeterminate="true"
+  />
+
+  <ViewSwitcher
+      android:id="@+id/vLowerPanel"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@+id/cwac_cam2_preview_stack"
+      android:background="#25272a"
+  >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <FrameLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/btn_chiose_pic"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_capture_options"
+            android:src="@drawable/ic_collections_white_24dp"/>
+      </FrameLayout>
+
+      <FrameLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btnTakePhoto"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center"
+            android:background="@drawable/selector_photo_take"/>
+      </FrameLayout>
+
+      <FrameLayout
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/btn_switch"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_capture_options"
+            android:src="@drawable/ic_camera_rear_white_24dp"/>
+      </FrameLayout>
+    </LinearLayout>
+  </ViewSwitcher>
+
+</RelativeLayout>

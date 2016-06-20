@@ -2,16 +2,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_msg"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/custom_press_bg"
-    >
+    android:paddingBottom="16dp"
+>
 
   <com.nicodelee.beautyarticle.viewhelper.OverlayImageView
       android:id="@+id/main_ic"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:scaleType="centerCrop"
-      />
+  />
 
   <TextView
       android:id="@+id/main_title"
@@ -25,7 +26,7 @@
       android:textColor="#696D6F"
       android:textSize="20sp"
       android:textStyle="bold"
-      />
+  />
 
   <TextView
       android:id="@+id/main_desc"
@@ -36,18 +37,17 @@
       android:layout_marginTop="8dp"
       android:layout_marginLeft="16dp"
       android:layout_marginRight="16dp"
-      android:layout_marginBottom="16dp"
       android:maxLines="4"
       android:textColor="#949B9E"
       android:textSize="16sp"
-      />
+  />
 
-    <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/number_progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        />
+  <com.daimajia.numberprogressbar.NumberProgressBar
+      android:id="@+id/number_progress_bar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:visibility="gone"
+  />
 
 </RelativeLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+>
+
+  <include
+      android:id="@+id/head"
+      layout="@layout/comm_head"
+  />
+
+  <RelativeLayout
+      android:id="@+id/drawing_view_container"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/head"
+      android:orientation="vertical">
+    <jp.co.cyberagent.android.gpuimage.GPUImageView
+        android:id="@+id/gpuimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+    />
+  </RelativeLayout>
+
+  <LinearLayout
+      android:layout_below="@+id/drawing_view_container"
+      android:layout_width="fill_parent"
+      android:layout_height="fill_parent"
+      android:background="#161819"
+      android:orientation="vertical">
+
+    <it.sephiroth.android.library.widget.HListView
+        android:id="@+id/list_tools"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:overScrollMode="always"
+        app:hlv_dividerWidth="8dp"/>
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/list_tools"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+    <!--/>-->
+  </LinearLayout>
+
+
+</RelativeLayout>

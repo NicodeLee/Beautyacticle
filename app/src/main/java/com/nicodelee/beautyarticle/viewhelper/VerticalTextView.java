@@ -12,6 +12,8 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import com.nicodelee.beautyarticle.app.APP;
+import com.nicodelee.beautyarticle.utils.DevicesUtil;
 
 public class VerticalTextView extends View {
 
@@ -196,7 +198,9 @@ public class VerticalTextView extends View {
   private int measureHeight(int measureSpec) {
     int specMode = MeasureSpec.getMode(measureSpec);
     int specSize = MeasureSpec.getSize(measureSpec);
-    int result = 500;
+    int result = DevicesUtil.screenHeight - DevicesUtil.dip2px(APP.getInstance(),
+        48 + 200 + 32 + DevicesUtil.statusBar);//根据布局计算
+    //int result = 800;
     if (specMode == MeasureSpec.AT_MOST) {
       result = specSize;
     } else if (specMode == MeasureSpec.EXACTLY) {
@@ -204,5 +208,9 @@ public class VerticalTextView extends View {
     }
     mTextHeight = result;//设置文本高度
     return result;
+  }
+
+  public void setTextHeight(int height) {
+    mTextHeight = height;
   }
 }

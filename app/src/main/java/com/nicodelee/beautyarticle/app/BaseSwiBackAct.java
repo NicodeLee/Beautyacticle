@@ -7,7 +7,7 @@ import me.imid.swipebacklayout.lib.Utils;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityBase;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
-public class BaseSwiBackAct extends BaseAct implements SwipeBackActivityBase {
+public abstract class BaseSwiBackAct extends BaseAct implements SwipeBackActivityBase {
   private SwipeBackActivityHelper mHelper;
 
   @Override protected void onCreate(Bundle savedInstanceState) {

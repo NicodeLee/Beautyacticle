@@ -20,7 +20,7 @@
   <style name="ActTheme" parent="Base.Theme.DesignDemo">
     <item name="android:windowIsTranslucent">true</item>
     <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-    <item name="android:statusBarColor">@android:color/transparent</item>
+    <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
     <item name="android:windowTranslucentStatus">true</item>
     <item name="actionMenuTextColor">@color/black</item>
   </style>
