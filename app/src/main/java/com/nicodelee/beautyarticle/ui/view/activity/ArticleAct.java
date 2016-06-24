@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 import butterknife.Bind;
+import com.jaeger.library.StatusBarUtil;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.BaseSwiBackAct;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
@@ -35,7 +36,8 @@ public class ArticleAct extends BaseSwiBackAct {
     return R.layout.act_article;
   }
 
-  private void initView() {
+  @Override
+  protected void initView() {
     mAdapter = new ArticleAdt(getSupportFragmentManager());
   }
 

@@ -31,6 +31,9 @@ public class CropAct extends BaseAct {
     return R.layout.act_corp_photo;
   }
 
+  @Override protected void initView() {
+  }
+
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEvent(CropEvent cropEvent) {
     mCropImageView.setCropMode(cropEvent.getCropMode());

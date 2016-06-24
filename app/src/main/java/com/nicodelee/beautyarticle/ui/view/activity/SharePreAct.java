@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import butterknife.Bind;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+import com.jaeger.library.StatusBarUtil;
 import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.app.BaseSwiBackAct;
@@ -31,10 +32,12 @@ public class SharePreAct extends BaseSwiBackAct {
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     initView();
+    int mColor = getResources().getColor(R.color.colorAccent);;
+    StatusBarUtil.setColor(this, mColor,0);
   }
 
-  private void initView() {
-
+  @Override
+  protected void initView() {
     setSupportActionBar(toolbar);
     ActionBar ab = getSupportActionBar();
     if (ab != null) {

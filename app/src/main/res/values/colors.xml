@@ -267,4 +267,9 @@
   <color name="bg_comments">#ffffff</color>
 
 
+  <color name="raspberryColor">#872657</color>
+  <color name="icebergColor">#c8d5db</color>
+
+  <color name="tempalteText">#575757</color>
+
 </resources>

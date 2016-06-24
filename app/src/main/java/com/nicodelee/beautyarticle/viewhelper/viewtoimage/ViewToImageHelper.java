@@ -42,21 +42,20 @@ public class ViewToImageHelper {
   public void createImageAndShare(final Activity context, final SaveImageAction action,
       final View compressView) {
     Runtime runtime = Runtime.getRuntime();
-     final int viewWidth = compressView.getWidth();
-     final int viewHeight;
+    final int viewWidth = compressView.getWidth();
+    final int viewHeight;
 
-    if (compressView instanceof CoordinatorLayout){
+    if (compressView instanceof CoordinatorLayout) {
       NestedScrollView scrollView =
           (NestedScrollView) ((CoordinatorLayout) compressView).getChildAt(1);
       viewHeight = scrollView.getChildAt(0).getHeight() + viewWidth;
-    }else if (compressView instanceof NestedScrollView ){
+    } else if (compressView instanceof NestedScrollView) {
       viewHeight = ((NestedScrollView) compressView).getChildAt(0).getHeight();
-    }
-    else{
+    } else {
       viewHeight = compressView.getHeight();
     }
 
-    Logger.e("viewWidth" + viewWidth +",viewHeight"+viewHeight);
+    Logger.e("viewWidth" + viewWidth + ",viewHeight" + viewHeight);
 
     if (((long) (((compressView.getWidth() * compressView.getHeight()) * 4) + 20971520))
         > runtime.maxMemory() - runtime.totalMemory()) {
@@ -127,7 +126,7 @@ public class ViewToImageHelper {
         protected void onPostExecute(File result) {
           super.onPostExecute(result);
           //Logger.e("保存成功:" + result.getAbsolutePath());
-          iViewToImage.saveToFile(result,action);
+          iViewToImage.saveToFile(result, action);
         }
       }.execute(new Void[0]);
     }
@@ -197,28 +196,24 @@ public class ViewToImageHelper {
   }
 
   //文章内容需要添加配图后再分享
-  public View addImageViewToLayout(LayoutInflater layoutInflater,String srcHead,String srcText){
-    Logger.e("srcHead="+srcHead+",srcText="+srcText);
-    View viewRoot = layoutInflater.inflate(R.layout.conver_to_picture,null,false);
-    ImageView ivHead = (ImageView)viewRoot.findViewById(R.id.head_pic);
-    ImageView ivText = (ImageView)viewRoot.findViewById(R.id.text_pic);
-    APP.getInstance().imageLoader.displayImage(srcHead,ivHead,APP.options);
-    APP.getInstance().imageLoader.displayImage(srcText,ivText,APP.options);
+  public View addImageViewToLayout(LayoutInflater layoutInflater, String srcHead, String srcText) {
+    Logger.e("srcHead=" + srcHead + ",srcText=" + srcText);
+    View viewRoot = layoutInflater.inflate(R.layout.conver_to_picture, null, false);
+    ImageView ivHead = (ImageView) viewRoot.findViewById(R.id.head_pic);
+    ImageView ivText = (ImageView) viewRoot.findViewById(R.id.text_pic);
+    APP.getInstance().imageLoader.displayImage(srcHead, ivHead, APP.options);
+    APP.getInstance().imageLoader.displayImage(srcText, ivText, APP.options);
     ViewGroup viewGroup = (ViewGroup) viewRoot;
     viewGroup.removeAllViews();
-    //ivHead.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-    //ivText.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-    //viewGroup.addView(ivText);
     viewGroup.addView(ivHead);
-    viewGroup.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-    //Logger.e("viewGroup width="+viewGroup.getWidth()+",getHeight="+viewGroup.getHeight());
+    viewGroup.setLayoutParams(
+        new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
     return viewGroup;
   }
 
   public enum SaveImageAction {
     SAVELOCAL,
     SHARE,
-    ADD,
   }
 
   public enum IMAGE {
@@ -232,6 +227,6 @@ public class ViewToImageHelper {
   }
 
   public interface IViewToImage {
-    void saveToFile(File file,SaveImageAction saveImageAction);
+    void saveToFile(File file, SaveImageAction saveImageAction);
   }
 }

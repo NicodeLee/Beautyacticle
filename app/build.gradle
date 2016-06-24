@@ -132,6 +132,9 @@ dependencies {
   compile dependencies.OkhttpInterceptor
 
   compile dependencies.subsampling
+  compile dependencies.statusbaruitl
+  compile dependencies.observablescrollview
+  compile dependencies.hollyviewpager
 
   //  compile dependencies["cam2"]
   //  compile dependencies["smooth-app-bar-layout"]

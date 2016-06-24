@@ -6,7 +6,6 @@
     android:background="@color/white"
 >
 
-  <!--    app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
   <android.support.v4.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
@@ -49,12 +48,12 @@
 
       <com.nicodelee.beautyarticle.viewhelper.VerticalTextView
           android:id="@+id/tv_desc"
-          style="@style/FontFun"
           android:layout_width="wrap_content"
-          android:layout_height="match_parent"
+          android:layout_height="wrap_content"
           android:layout_below="@+id/iv_fun"
           android:layout_marginTop="24dp"
-          android:layout_centerHorizontal="true"
+          android:layout_toLeftOf="@+id/title"
+          android:layout_marginRight="48dp"
       />
 
 

@@ -11,9 +11,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.utils.DevicesUtil;
+import com.nicodelee.beautyarticle.utils.Logger;
 
 public class VerticalTextView extends View {
 
@@ -29,6 +32,8 @@ public class VerticalTextView extends View {
   private int mLineWidth = 0;//列宽度
   private int TextLength = 0;//字符串长度
   private int maxTextCount = 18;//每行超过字数自动换行数
+  // 每行超过字数自动换行数
+  private static int maxCountInOneLine = 20;
   private int oldwidth = 0;//存储久的width
   private String text = "";//待显示的文字
   private Handler mHandler = null;
@@ -46,7 +51,7 @@ public class VerticalTextView extends View {
     paint = new Paint();
     paint.setTextAlign(Paint.Align.CENTER);//文字居中
     paint.setAntiAlias(true);//平滑处理
-    paint.setColor(Color.BLACK);//默认文字颜色
+    paint.setColor(context.getResources().getColor(R.color.tempalteText));//默认文字颜色
     try {
       mFontSize = Float.parseFloat(attrs.getAttributeValue(null, "textSize"));
     } catch (Exception e) {
@@ -108,6 +113,7 @@ public class VerticalTextView extends View {
     }
     //画字
     draw(canvas, this.text);
+
   }
 
   private void draw(Canvas canvas, String thetext) {
@@ -138,9 +144,6 @@ public class VerticalTextView extends View {
         }
       }
     }
-
-    //调用接口方法
-    //activity.getHandler().sendEmptyMessage(TestFontActivity.UPDATE);
   }
 
   //计算文字行数和总宽
@@ -156,7 +159,7 @@ public class VerticalTextView extends View {
     }
 
     Paint.FontMetrics fm = paint.getFontMetrics();
-    mFontHeight = (int) (Math.ceil(fm.descent - fm.top) * 0.9);// 获得字体高度
+    mFontHeight = (int) (Math.ceil(fm.descent - fm.top) * 1.2);// 获得字体高度
 
     //计算文字行数
     mRealLine = 0;
@@ -195,22 +198,59 @@ public class VerticalTextView extends View {
     }
   }
 
+  //private int measureHeight(int measureSpec) {
+  //  int specMode = MeasureSpec.getMode(measureSpec);
+  //  int specSize = MeasureSpec.getSize(measureSpec);
+  //  int result = DevicesUtil.screenHeight - DevicesUtil.dip2px(APP.getInstance(),
+  //      48 + 200 + 32 + DevicesUtil.statusBar);//根据布局计算
+  //  //int result = 800;
+  //  if (specMode == MeasureSpec.AT_MOST) {
+  //    result = specSize;
+  //  } else if (specMode == MeasureSpec.EXACTLY) {
+  //    result = specSize;
+  //  }
+  //  mTextHeight = result;//设置文本高度
+  //  return result;
+  //}
+
+  /**
+   * 设定一行的最大字数
+   */
+  public static void setMaxCountInOneLine(int maxCountInOneLine) {
+    VerticalTextView.maxCountInOneLine = maxCountInOneLine;
+  }
+
+  /**
+   * 计算控件的高度
+   */
   private int measureHeight(int measureSpec) {
     int specMode = MeasureSpec.getMode(measureSpec);
     int specSize = MeasureSpec.getSize(measureSpec);
-    int result = DevicesUtil.screenHeight - DevicesUtil.dip2px(APP.getInstance(),
-        48 + 200 + 32 + DevicesUtil.statusBar);//根据布局计算
-    //int result = 800;
-    if (specMode == MeasureSpec.AT_MOST) {
+    float[] widths = new float[1];
+    // 获取单个汉字的宽度
+    paint.getTextWidths("正", widths);
+    int result = (int) widths[0] * maxCountInOneLine;
+    if (specMode == MeasureSpec.EXACTLY) {
       result = specSize;
-    } else if (specMode == MeasureSpec.EXACTLY) {
-      result = specSize;
+    } else {
+      if (specMode == MeasureSpec.AT_MOST) {
+        result = Math.min(result, specSize);
+      }
     }
-    mTextHeight = result;//设置文本高度
+    // 设置文本高度
+    mTextHeight = result;
     return result;
   }
 
   public void setTextHeight(int height) {
     mTextHeight = height;
+  }
+
+  @Override public boolean onTouchEvent(MotionEvent event) {
+    if (event.getAction() == MotionEvent.ACTION_DOWN){
+      Logger.e("down");
+      return true;
+    }
+    return true;
   }
 }

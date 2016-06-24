@@ -6,12 +6,14 @@ import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.jaeger.library.StatusBarUtil;
 import com.kenumir.materialsettings.MaterialSettings;
 import com.kenumir.materialsettings.items.DividerItem;
 import com.kenumir.materialsettings.items.HeaderItem;
 import com.kenumir.materialsettings.items.TextItem;
 import com.kenumir.materialsettings.storage.PreferencesStorageInterface;
 import com.kenumir.materialsettings.storage.StorageInterface;
+import com.nicodelee.beautyarticle.R;
 import com.nicodelee.beautyarticle.app.APP;
 import com.nicodelee.beautyarticle.mode.ActicleMod;
 import com.nicodelee.beautyarticle.utils.FileUtil;
@@ -90,12 +92,15 @@ public class SettingAct extends MaterialSettings implements SampleDialog.OnDialo
     addItem(new DividerItem(this));
     addItem(new HeaderItem(this).setTitle("关于"));
     addItem(new TextItem(this, "key4").setTitle("作者")
-        .setSubtitle("感谢使用@By Nicodelee")
+        .setSubtitle("感谢使用@By NicodeLee")
         .setOnclick(new TextItem.OnClickListener() {
           @Override public void onClick(TextItem v) {
-            Toast.makeText(SettingAct.this, "感谢使用@By Nicodelee", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingAct.this, "感谢使用@By NicodeLee", Toast.LENGTH_SHORT).show();
           }
         }));
+
+    int mColor = getResources().getColor(R.color.white);;
+    StatusBarUtil.setColor(this, mColor,125);
   }
 
   @Override public StorageInterface initStorageInterface() {

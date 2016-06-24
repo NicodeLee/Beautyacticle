@@ -53,6 +53,9 @@ ext {
                   "icepick"                             : "frankiesardo:icepick:3.1.0",
                   "icepick-processor"                   : "frankiesardo:icepick-processor:3.1.0",
                   "subsampling"                         : "com.davemorrissey.labs:subsampling-scale-image-view:3.5.0",
+                  "statusbaruitl"                       : "com.jaeger.statusbaruitl:library:1.1.0",
+                  "hollyviewpager"                      : "com.github.florent37:hollyviewpager:1.0.1",
+                  "observablescrollview"                      : "com.github.ksoichiro:android-observablescrollview:1.5.2",
                   "smooth-app-bar-layout"               : "me.henrytao:smooth-app-bar-layout:0.1.9"
 
   ]

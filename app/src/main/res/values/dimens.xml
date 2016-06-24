@@ -9,4 +9,10 @@
     <dimen name="list_item_avatar_size">40dp</dimen>
 
     <dimen name="txtSize">18sp</dimen>
+
+
+    <!--hollyViewPager-->
+    <dimen name="header_height">128dp</dimen>
+    <dimen name="viewpager_margin">-48dp</dimen>
+    <dimen name="viewpager_margin_fix">24dp</dimen>
 </resources>

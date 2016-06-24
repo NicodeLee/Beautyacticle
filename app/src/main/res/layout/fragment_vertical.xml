@@ -4,13 +4,10 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:id="@+id/scrollView"
     android:scrollbars="none"
-    android:background="@color/raspberryColor"
->
+    android:background="@color/raspberryColor">
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginLeft="@dimen/viewpager_margin_fix"
-      android:layout_marginRight="@dimen/viewpager_margin_fix"
       android:id="@+id/ll_root"
       android:orientation="vertical">
     <include layout="@layout/hvp_header_placeholder"/>
@@ -19,11 +16,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/card_temp"
+        android:layout_marginLeft="@dimen/viewpager_margin_fix"
+        android:layout_marginRight="48dp"
         app:cardBackgroundColor="@color/white">
       <RelativeLayout android:layout_width="match_parent"
           android:layout_height="match_parent"
           android:id="@+id/rl_square"
-          android:orientation="vertical"
       >
         <ImageView
             android:id="@+id/iv_fun"
@@ -34,28 +32,46 @@
             android:scaleType="centerCrop"
         />
 
-        <TextView
+        <com.nicodelee.beautyarticle.viewhelper.VerticalTextView
             android:id="@+id/tv_fun"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/article"
-            android:lineSpacingMultiplier="1.6"
             android:layout_below="@+id/iv_fun"
-            android:layout_centerHorizontal="true"
             android:layout_margin="12dp"
-            android:textSize="12sp"
-            android:textColor="#575757"
-            android:gravity="center"
-            style="@style/FontSq"
-            android:layout_gravity="center"
+            android:textColor="@color/tempalteText"
+            android:gravity="left"
+            android:layout_gravity="left"
+            android:layout_alignParentLeft="true"
         />
 
+
+        <LinearLayout android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:id="@+id/ll_by"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true">
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="by: "
+              android:textSize="10sp"
+              style="@style/FontSq"
+              android:textColor="#c0c0c0"
+          />
+          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:id="@+id/tv_by"
+              android:text="NicodeLee"
+              android:textSize="12sp"
+              style="@style/FontDate"
+          />
+        </LinearLayout>
+
         <RelativeLayout android:layout_width="36dp" android:layout_height="36dp"
-            android:layout_gravity="center"
             android:background="@drawable/time_bg"
-            android:layout_marginBottom="12dp"
-            android:layout_below="@+id/tv_fun"
-            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/iv_fun"
+            android:layout_marginTop="108dp"
+            android:layout_marginRight="12dp"
         >
 
           <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -77,28 +93,7 @@
               android:textColor="#c0c0c0"
               style="@style/FontDate"
           />
-
         </RelativeLayout>
-
-        <LinearLayout android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true">
-          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:text="by: "
-              android:textSize="10sp"
-              style="@style/FontSq"
-              android:textColor="#c0c0c0"
-          />
-          <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:id="@+id/tv_by"
-              android:text="NicodeLee"
-              android:textSize="12sp"
-              style="@style/FontDate"
-          />
-        </LinearLayout>
-
 
       </RelativeLayout>
     </android.support.v7.widget.CardView>

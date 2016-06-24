@@ -44,6 +44,7 @@ public abstract class BaseAct extends AppCompatActivity {
   @Override public void onContentChanged() {//布局改变回调
     super.onContentChanged();
     ButterKnife.bind(this);
+    initView();
   }
 
   @Override protected void attachBaseContext(Context newBase) {
@@ -51,7 +52,7 @@ public abstract class BaseAct extends AppCompatActivity {
   }
 
   public void showToast(String message) {
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    Toast.makeText(APP.getInstance(), message, Toast.LENGTH_SHORT).show();
   }
 
   public void showShortToast(String message) {
@@ -143,6 +144,8 @@ public abstract class BaseAct extends AppCompatActivity {
   }
 
   abstract protected @LayoutRes int getLayoutResId();
+
+  abstract protected  void initView();
 
   protected AppComponent getAppComponent() {
     return ((APP) getApplication()).getApplicationComponent();

@@ -25,11 +25,14 @@ public class MainAct extends MainBase {
     return R.layout.activity_main;
   }
 
-  private void initView() {
+  @Override
+  protected void initView() {
     setSupportActionBar(toolbar);
-    final ActionBar ab = getSupportActionBar();
-    ab.setHomeAsUpIndicator(R.drawable.ic_menu_grey);
-    ab.setDisplayHomeAsUpEnabled(true);
+    ActionBar ab = getSupportActionBar();
+    if (ab != null){
+      ab.setHomeAsUpIndicator(R.drawable.ic_menu_grey);
+      ab.setDisplayHomeAsUpEnabled(true);
+    }
     setupDrawerContent(navigationView);
     setupViewPager(viewPager);
     tabLayout.setupWithViewPager(viewPager);
@@ -76,7 +79,6 @@ public class MainAct extends MainBase {
             mDrawerLayout.closeDrawers();
             switch (menuItem.getItemId()) {
               case R.id.nav_home:
-
                 break;
               case R.id.nav_setting:
                 skipIntent(SettingAct.class, false);

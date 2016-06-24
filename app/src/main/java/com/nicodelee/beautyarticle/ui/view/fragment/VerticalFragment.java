@@ -1,7 +1,9 @@
 package com.nicodelee.beautyarticle.ui.view.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,48 +38,54 @@ import org.greenrobot.eventbus.ThreadMode;
 /**
  * Created by Nicodelee on 15/9/25.
  */
-public class RectangleFragment extends TemplateBase {
+public class VerticalFragment extends TemplateVerticalBase {
 
   public static final String EXTRA_POSITION = "ARTICLE_POSITION";
+  private static final int REQUEST_IMAGE = 2;
   @Bind(R.id.iv_fun) ImageView ivFun;
   @Bind(R.id.tv_month) TextView tvMonth;
   @Bind(R.id.tv_year) TextView tvYear;
   @Bind(R.id.scrollView) ObservableScrollView scrollView;
   @Bind(R.id.card_temp) CardView cardTemp;
-  @Bind(R.id.rl_square) RelativeLayout rlSquare;
   @Bind(R.id.ll_root) LinearLayout llRoot;
   private int position;
 
-  public static RectangleFragment newInstance(int sposition) {
+  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
+      Bundle savedInstanceState) {
+    View view = inflater.inflate(R.layout.fragment_vertical, container, false);
+    ButterKnife.bind(this, view);
+    position = getArguments().getInt(EXTRA_POSITION);
+    HollyViewPagerBus.registerScrollView(getActivity(), scrollView);
+    initView();
+    return view;
+  }
+
+  public static VerticalFragment newInstance(int sposition) {
     Bundle args = new Bundle();
     args.putInt(EXTRA_POSITION, sposition);
-    RectangleFragment fragment = new RectangleFragment();
+    VerticalFragment fragment = new VerticalFragment();
     fragment.setArguments(args);
     return fragment;
   }
 
-  @Nullable @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_rectangle, container, false);
-    ButterKnife.bind(this, view);
-    return view;
-  }
-
-  @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-    ButterKnife.bind(this, view);
-    HollyViewPagerBus.registerScrollView(mActivity, scrollView);
-    position = getArguments().getInt(EXTRA_POSITION);
-    initView();
-  }
-
   private void initView() {
     inflater = LayoutInflater.from(mActivity);
+
+
     RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) ivFun.getLayoutParams();
-    int width = DevicesUtil.screenWidth - DevicesUtil.dip2px(mActivity, 64.f);
+    int width = DevicesUtil.screenWidth - DevicesUtil.dip2px(mActivity, 56.f);
     params.width = width;
     params.height = width;
     ivFun.setLayoutParams(params);
+
+    llRoot.setPadding(0, 0, 0, DevicesUtil.dip2px(mActivity, 32.f));
+
+    tvDesc.setTextSize(DevicesUtil.sp2px(mActivity, 10));
+    tvDesc.setLineWidth(DevicesUtil.dip2px(mActivity, 18));
+    Typeface face = Typeface.createFromAsset(mActivity.getAssets(), "fonts/Apple-LiSung-Light.ttf");
+    tvDesc.setTextColor(R.color.tempalteText);
+    tvDesc.setTypeface(face);
+    tvDesc.setText(acticle);
 
     tvMonth.setText(TimeUtils.getEnMonth() + " " + TimeUtils.getSimpleDay());
     tvYear.setText(TimeUtils.getSimpleYear());
@@ -96,16 +104,11 @@ public class RectangleFragment extends TemplateBase {
 
   @Override public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
-    if (resultCode == mActivity.RESULT_OK && requestCode == REQUEST_IMAGE) {
+    if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_IMAGE) {
       ArrayList<String> mSelectPath =
           data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
       CropEvent cropEvent = new CropEvent();
-      if (position == 1) {
-        cropEvent.setCropMode(CropImageView.CropMode.RATIO_3_4);
-      } else if (position == 2) {
-        cropEvent.setCropMode(CropImageView.CropMode.RATIO_4_3);
-      }
-
+      cropEvent.setCropMode(CropImageView.CropMode.RATIO_1_1);
       cropEvent.setImagePath(mSelectPath.get(0));
       EventBus.getDefault().postSticky(cropEvent);
       skipIntent(CropAct.class, false);
@@ -127,4 +130,6 @@ public class RectangleFragment extends TemplateBase {
       removeStickEven();
     }
   }
+
+
 }
